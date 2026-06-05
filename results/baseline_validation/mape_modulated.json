@@ -1,0 +1,10 @@
+{
+  "tm": "modulated",
+  "checkpoint": "48-5.26",
+  "n_simulations": 300,
+  "n_flows_total": 81600,
+  "mape_mean": 5.2262,
+  "mape_median": 3.7987,
+  "paper_mape": 5.21,
+  "delta": 0.0162
+}

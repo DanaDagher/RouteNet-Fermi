@@ -1,0 +1,60 @@
+KernelSHAP nsamples=256 audit
+Date: 2026-06-04
+==============================
+
+1. WHERE nsamples IS DEFINED
+-----------------------------
+File: xai/kernel_shap.py, line 31
+  N_PERTURBATIONS = 256   # per THESIS_DECISIONS §8
+
+File: xai/kernel_shap.py, line 122
+  shap_vals = explainer.shap_values(x_explain, nsamples=n_perturbations, silent=True)
+
+File: xai/kernel_shap.py, line 92-93 (function signature)
+  def compute_kernel_shap(model, inputs, medians,
+                          n_perturbations=N_PERTURBATIONS,   # default = 256
+
+File: run_step4.py, line 119
+  scores = compute_kernel_shap(model, x_batch, medians,
+                               n_perturbations=N_PERTURBATIONS,  # = 256 (imported constant)
+
+Chain: N_PERTURBATIONS (256, constant) -> n_perturbations (arg) -> nsamples (shap call).
+No CLI override. No variable reassignment anywhere in the call chain.
+nsamples=256 is what shap.KernelExplainer.shap_values() received for all 300 sims.
+
+
+2. DOES SHAP INTERNALLY CAP OR ADAPT nsamples?
+-----------------------------------------------
+SHAP version: 0.42.1
+Source: venv/Lib/site-packages/shap/explainers/_kernel.py, lines 314-323
+
+Relevant source:
+  self.nsamples = kwargs.get("nsamples", "auto")
+  if self.nsamples == "auto":
+      self.nsamples = 2 * self.M + 2**11       # auto = 2*M + 2048
+
+  self.max_samples = 2 ** 30
+  if self.M <= 30:
+      self.max_samples = 2 ** self.M - 2       # for M=10: max_samples = 1022
+      if self.nsamples > self.max_samples:
+          self.nsamples = self.max_samples      # cap only if nsamples > max_samples
+
+For our case:
+  M = 10 features
+  max_samples = 2**10 - 2 = 1022
+  nsamples passed = 256
+  256 < 1022 -> cap NOT triggered
+  256 is NOT "auto" -> auto-formula NOT applied
+
+Conclusion: nsamples=256 is honored exactly as passed. No internal adaptation.
+All 300 KernelSHAP explanations used exactly 256 perturbations.
+
+
+3. ADDITIONAL CONTEXT
+----------------------
+The "auto" formula would give: 2*10 + 2048 = 2068 perturbations.
+We used 256, which is below auto but above the minimum required for meaningful
+SHAP estimation (rule of thumb: nsamples >= 2*M + 2 = 22 for M=10).
+256 perturbations gives 256/1022 = 25% coverage of the full subset space,
+which is a reasonable trade-off between variance and compute budget.
+This is documented in THESIS_DECISIONS §8 and §9 (computational cost section).

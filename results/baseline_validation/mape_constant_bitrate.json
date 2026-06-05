@@ -1,0 +1,10 @@
+{
+  "tm": "constant_bitrate",
+  "checkpoint": "45-4.29",
+  "n_simulations": 300,
+  "n_flows_total": 81600,
+  "mape_mean": 4.4699,
+  "mape_median": 1.1749,
+  "paper_mape": 4.43,
+  "delta": 0.0399
+}

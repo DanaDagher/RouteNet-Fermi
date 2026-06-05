@@ -1,0 +1,10 @@
+{
+  "tm": "onoff",
+  "checkpoint": "44-2.74",
+  "n_simulations": 300,
+  "n_flows_total": 81600,
+  "mape_mean": 2.8259,
+  "mape_median": 0.9967,
+  "paper_mape": 2.9,
+  "delta": -0.0741
+}

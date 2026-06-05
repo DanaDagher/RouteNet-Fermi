@@ -1,0 +1,10 @@
+{
+  "tm": "all_multiplexed",
+  "checkpoint": "48-4.53",
+  "n_simulations": 300,
+  "n_flows_total": 81600,
+  "mape_mean": 4.6184,
+  "mape_median": 2.5418,
+  "paper_mape": 4.71,
+  "delta": -0.0916
+}

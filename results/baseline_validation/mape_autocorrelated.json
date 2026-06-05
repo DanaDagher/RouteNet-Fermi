@@ -1,0 +1,10 @@
+{
+  "tm": "autocorrelated",
+  "checkpoint": "50-2.46",
+  "n_simulations": 300,
+  "n_flows_total": 81600,
+  "mape_mean": 2.5087,
+  "mape_median": 0.949,
+  "paper_mape": 2.62,
+  "delta": -0.1113
+}
