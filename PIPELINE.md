@@ -124,7 +124,9 @@ After each step: **stop and report** to the user before moving on.
 
 ## Step 3.5 — Pre-registration
 
-**SKIPPED — see Step 10a for retrospective plausibility analysis.**
+**PARTIALLY COMPLETE — file created, content to be written by Dana before Step 5 aggregation is reviewed.**
+
+File: `results/theoretical_expectations.md`
 
 ---
 
