@@ -162,6 +162,5 @@ Determinism confirmed. **PASSED.**
 Step 3 is complete. All implementations are correct and tested.
 The XAI methods are ready for Step 4 (running on 300 all_multiplexed simulations).
 
-Step 3.5 (theoretical expectations) is being written by Dana in
-`results/theoretical_expectations.md` and must be completed before
+Step 3.5 (theoretical expectations)is written in `results/theoretical_expectations.md` and must be completed before
 Step 5 aggregation results are reviewed.

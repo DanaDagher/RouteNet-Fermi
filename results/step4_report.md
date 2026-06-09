@@ -240,7 +240,8 @@ Step 4 is fully audited and clean.
   compiled TF 2.6 graph performance.
 
 Ready for Step 5 (aggregate and rank features globally, half-split Spearman check).
-Step 3.5 (theoretical_expectations.md) to be completed
+
+Step 3.5 theoretical_expectations.md
 
 ---
 

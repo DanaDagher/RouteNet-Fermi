@@ -1,3 +1,6 @@
+>>>>>> old notes  update them don't take it into consideration
+
+this is old work...
 
 # Step 1 — DONE: Understand Input/Output
 Reverse-engineered delay_model.py completely. RouteNet-Fermi is a Graph Neural Network with message-passing between 3 entity types Path - Link - Queue anf Graph tensors
@@ -15,13 +18,12 @@ all_multiplexed	        4.53%	2.48%
 
 > Matches paper's reported MAPE. Model validated.
 
-
 # Step 3 — SHAP Plan
 The challenge: RouteNet-Fermi takes dict inputs with ragged/graph tensors — standard SHAP can't perturb them directly. The strategy:
 
-Focus: 12 scalar path features per flow (the traffic, packets, etc.)
+Focus: 10 scalar path features per flow (the traffic, packets, etc.)
 Method: shap.KernelExplainer — model-agnostic, works via perturbation
-Wrapper: flatten one flow's 12 features, call full model with that flow's features replaced
+Wrapper: flatten one flow's 10 features, call full model with that flow's features replaced
 Dataset: constant_bitrate (simplest, cleanest — good for baseline)
 Samples: 40 flows (20 low-delay + 20 high-delay)
 Background: median of 50 reference flows

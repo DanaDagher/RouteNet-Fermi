@@ -17,7 +17,13 @@
       "Bash(venv/Scripts/pip.exe install *)",
       "Bash(venv/Scripts/python.exe -c \"import pptx; print\\('pptx', pptx.__version__\\)\")",
       "Bash(ls \"C:\\\\Users\\\\ddagher\\\\Downloads\\\\slicing-simulations.zip\\\\2.2.1-10kprocessed\" 2>&1 | head -50)",
-      "PowerShell(Get-ChildItem -Recurse -Directory -ErrorAction SilentlyContinue | Where-Object { $_.Name -match 'data|dataset|sample|record' } | Select-Object -ExpandProperty FullName)"
+      "PowerShell(Get-ChildItem -Recurse -Directory -ErrorAction SilentlyContinue | Where-Object { $_.Name -match 'data|dataset|sample|record' } | Select-Object -ExpandProperty FullName)",
+      "PowerShell(& \"C:\\\\Users\\\\ddagher\\\\RouteNet-Fermi\\\\venv\\\\Scripts\\\\python.exe\" -c \"import tensorflow as tf; import numpy as np; import shap; import sklearn; print\\('TF', tf.__version__\\); print\\('numpy', np.__version__\\); print\\('shap OK'\\); print\\('sklearn OK'\\)\" 2>&1)",
+      "PowerShell($env:PYTHONIOENCODING=\"utf-8\"; & \"C:\\\\Users\\\\ddagher\\\\RouteNet-Fermi\\\\venv\\\\Scripts\\\\python.exe\" \"C:\\\\Users\\\\ddagher\\\\RouteNet-Fermi\\\\xai\\\\training_stats.py\" 2>&1 | Select-String -NotMatch \"cudart|dlerror|stream_executor|WARNING|Unresolved|checkpointed|MLIR|oneDNN|AVX|loop_optimizer|Skipping\")",
+      "Bash(git push *)",
+      "Bash(python -c \"import numpy as np; a=np.load\\('explanation_set/indices.npy'\\); print\\(a.shape, a[:10]\\)\")",
+      "Bash(cd \"C:\\\\Users\\\\ddagher\\\\RouteNet-Fermi\" && cat /tmp/wait_stability2.log; echo \"=== grep result ===\"; grep -n \"complete\" results/inference/step4_stability_run.log; echo \"=== log size/tail ===\"; wc -l results/inference/step4_stability_run.log; tail -20 results/inference/step4_stability_run.log; echo \"=== process check ===\"; ps aux | grep python | grep -v grep)",
+      "Bash(awk -F, 'NR>1{s+=$3; n++} END{print \"n=\"n, \"avg=\"s/n\"s\", \"ETA_remaining_min=\"\\(\\(300-n\\)*s/n\\)/60}' results/inference/ig_stability/timings.csv)"
     ]
   }
 }

@@ -43,7 +43,7 @@ for tm in ['constant_bitrate', 'onoff', 'autocorrelated', 'modulated', 'all_mult
     model.load_weights(os.path.join(ckpt_dir, best))
 
     ds_test = input_fn(TEST_PATH, shuffle=False)
-    ds_test = ds_test.take(200)
+    ds_test = ds_test.take(300) # here 300 samples are taken for testing, but this can be changed to the whole test set if desired
     ds_test = ds_test.prefetch(tf.data.experimental.AUTOTUNE)
 
 
