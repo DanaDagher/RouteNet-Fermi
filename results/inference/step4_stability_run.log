@@ -1,0 +1,82 @@
+2026-06-08 14:38:13.548017: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'cudart64_110.dll'; dlerror: cudart64_110.dll not found
+2026-06-08 14:38:13.548475: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+2026-06-08 14:38:19.712886: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'nvcuda.dll'; dlerror: nvcuda.dll not found
+2026-06-08 14:38:19.713150: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2026-06-08 14:38:19.737703: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:169] retrieving CUDA diagnostic information for host: LFR-5CG12043SB
+2026-06-08 14:38:19.738040: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:176] hostname: LFR-5CG12043SB
+2026-06-08 14:38:19.738450: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX AVX2
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-06-08 14:38:20.136425: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:185] None of the MLIR Optimization Passes are enabled (registered 2)
+2026-06-08 14:38:48.521229: W tensorflow/core/grappler/optimizers/loop_optimizer.cc:907] Skipping loop optimization for Merge node with control input: RaggedConcat_15/assert_equal_1/Assert/AssertGuard/branch_executed/_159
+2026-06-08 15:12:52.338210: W tensorflow/core/grappler/optimizers/loop_optimizer.cc:907] Skipping loop optimization for Merge node with control input: RaggedConcat_15/assert_equal_1/Assert/AssertGuard/branch_executed/_954
+C:\Users\ddagher\RouteNet-Fermi\venv\lib\site-packages\tensorflow\python\framework\indexed_slices.py:449: UserWarning: Converting sparse IndexedSlices(IndexedSlices(indices=Tensor("gradients/RaggedGetItem_1/GatherV2_grad/Reshape_1:0", shape=(None,), dtype=int64), values=Tensor("gradients/RaggedGetItem_1/GatherV2_grad/Reshape:0", shape=(None, 32), dtype=float32), dense_shape=Tensor("gradients/RaggedGetItem_1/GatherV2_grad/Cast:0", shape=(2,), dtype=int32))) to a dense Tensor of unknown shape. This may consume a large amount of memory.
+  "shape. This may consume a large amount of memory." % value)
+C:\Users\ddagher\RouteNet-Fermi\venv\lib\site-packages\tensorflow\python\framework\indexed_slices.py:449: UserWarning: Converting sparse IndexedSlices(IndexedSlices(indices=Tensor("gradients/RaggedGatherNd_6/RaggedGatherNd/RaggedGather/GatherV2_grad/Reshape_1:0", shape=(None,), dtype=int64), values=Tensor("gradients/RaggedGatherNd_6/RaggedGatherNd/RaggedGather/GatherV2_grad/Reshape:0", shape=(None, 32), dtype=float32), dense_shape=Tensor("gradients/RaggedGatherNd_6/RaggedGatherNd/RaggedGather/GatherV2_grad/Cast:0", shape=(2,), dtype=int32))) to a dense Tensor of unknown shape. This may consume a large amount of memory.
+  "shape. This may consume a large amount of memory." % value)
+C:\Users\ddagher\RouteNet-Fermi\venv\lib\site-packages\tensorflow\python\framework\indexed_slices.py:449: UserWarning: Converting sparse IndexedSlices(IndexedSlices(indices=Tensor("gradients/RaggedGatherNd_5/RaggedGatherNd/RaggedGather/GatherV2_grad/Reshape_1:0", shape=(None,), dtype=int64), values=Tensor("gradients/RaggedGatherNd_5/RaggedGatherNd/RaggedGather/GatherV2_grad/Reshape:0", shape=(None, 32), dtype=float32), dense_shape=Tensor("gradients/RaggedGatherNd_5/RaggedGatherNd/RaggedGather/GatherV2_grad/Cast:0", shape=(2,), dtype=int32))) to a dense Tensor of unknown shape. This may consume a large amount of memory.
+  "shape. This may consume a large amount of memory." % value)
+C:\Users\ddagher\RouteNet-Fermi\venv\lib\site-packages\tensorflow\python\framework\indexed_slices.py:449: UserWarning: Converting sparse IndexedSlices(IndexedSlices(indices=Tensor("gradients/RaggedGatherNd_4/RaggedGatherNd/RaggedGather/GatherV2_grad/Reshape_1:0", shape=(None,), dtype=int64), values=Tensor("gradients/RaggedGatherNd_4/RaggedGatherNd/RaggedGather/GatherV2_grad/Reshape:0", shape=(None, 32), dtype=float32), dense_shape=Tensor("gradients/RaggedGatherNd_4/RaggedGatherNd/RaggedGather/GatherV2_grad/Cast:0", shape=(2,), dtype=int32))) to a dense Tensor of unknown shape. This may consume a large amount of memory.
+  "shape. This may consume a large amount of memory." % value)
+C:\Users\ddagher\RouteNet-Fermi\venv\lib\site-packages\tensorflow\python\framework\indexed_slices.py:449: UserWarning: Converting sparse IndexedSlices(IndexedSlices(indices=Tensor("gradients/RaggedGatherNd_3/RaggedGatherNd/RaggedGather/GatherV2_grad/Reshape_1:0", shape=(None,), dtype=int64), values=Tensor("gradients/RaggedGatherNd_3/RaggedGatherNd/RaggedGather/GatherV2_grad/Reshape:0", shape=(None, 32), dtype=float32), dense_shape=Tensor("gradients/RaggedGatherNd_3/RaggedGatherNd/RaggedGather/GatherV2_grad/Cast:0", shape=(2,), dtype=int32))) to a dense Tensor of unknown shape. This may consume a large amount of memory.
+  "shape. This may consume a large amount of memory." % value)
+C:\Users\ddagher\RouteNet-Fermi\venv\lib\site-packages\tensorflow\python\framework\indexed_slices.py:449: UserWarning: Converting sparse IndexedSlices(IndexedSlices(indices=Tensor("gradients/RaggedGatherNd_2/RaggedGatherNd/RaggedGather/GatherV2_grad/Reshape_1:0", shape=(None,), dtype=int64), values=Tensor("gradients/RaggedGatherNd_2/RaggedGatherNd/RaggedGather/GatherV2_grad/Reshape:0", shape=(None, 32), dtype=float32), dense_shape=Tensor("gradients/RaggedGatherNd_2/RaggedGatherNd/RaggedGather/GatherV2_grad/Cast:0", shape=(2,), dtype=int32))) to a dense Tensor of unknown shape. This may consume a large amount of memory.
+  "shape. This may consume a large amount of memory." % value)
+C:\Users\ddagher\RouteNet-Fermi\venv\lib\site-packages\tensorflow\python\framework\indexed_slices.py:449: UserWarning: Converting sparse IndexedSlices(IndexedSlices(indices=Tensor("gradients/RaggedGatherNd_1/RaggedGatherNd/RaggedGather/GatherV2_grad/Reshape_1:0", shape=(None,), dtype=int64), values=Tensor("gradients/RaggedGatherNd_1/RaggedGatherNd/RaggedGather/GatherV2_grad/Reshape:0", shape=(None, 32), dtype=float32), dense_shape=Tensor("gradients/RaggedGatherNd_1/RaggedGatherNd/RaggedGather/GatherV2_grad/Cast:0", shape=(2,), dtype=int32))) to a dense Tensor of unknown shape. This may consume a large amount of memory.
+  "shape. This may consume a large amount of memory." % value)
+C:\Users\ddagher\RouteNet-Fermi\venv\lib\site-packages\tensorflow\python\framework\indexed_slices.py:449: UserWarning: Converting sparse IndexedSlices(IndexedSlices(indices=Tensor("gradients/RaggedGatherNd/RaggedGatherNd/RaggedGather/GatherV2_grad/Reshape_1:0", shape=(None,), dtype=int64), values=Tensor("gradients/RaggedGatherNd/RaggedGatherNd/RaggedGather/GatherV2_grad/Reshape:0", shape=(None, 32), dtype=float32), dense_shape=Tensor("gradients/RaggedGatherNd/RaggedGatherNd/RaggedGather/GatherV2_grad/Cast:0", shape=(2,), dtype=int32))) to a dense Tensor of unknown shape. This may consume a large amount of memory.
+  "shape. This may consume a large amount of memory." % value)
+Loaded checkpoint: C:\Users\ddagher\RouteNet-Fermi\traffic_models\delay\ckpt_dir_all_multiplexed\48-4.53
+Main-run reference (median) sample: traffic=576.8310
+Stability-run reference (mean)  sample: traffic=671.7567
+
+[Step 4 stability — IG] alt-baseline=mean, 300 sims, n_steps=50...
+  IG-stab sim   1/300  n_flows=272  t=41.3s  avg=41.3s  ETA~206min
+  IG-stab sim  25/300  n_flows=272  t=4.5s  avg=8.3s  ETA~38min
+  IG-stab sim  50/300  n_flows=272  t=4.9s  avg=6.6s  ETA~28min
+  IG-stab sim  75/300  n_flows=272  t=8.5s  avg=6.1s  ETA~23min
+  IG-stab sim 100/300  n_flows=272  t=4.9s  avg=6.0s  ETA~20min
+  IG-stab sim 125/300  n_flows=272  t=4.4s  avg=5.8s  ETA~17min
+  IG-stab sim 150/300  n_flows=272  t=4.6s  avg=5.6s  ETA~14min
+  IG-stab sim 175/300  n_flows=272  t=7.1s  avg=5.8s  ETA~12min
+  IG-stab sim 200/300  n_flows=272  t=6.8s  avg=6.0s  ETA~10min
+  IG-stab sim 225/300  n_flows=272  t=9.1s  avg=6.2s  ETA~8min
+  IG-stab sim 250/300  n_flows=272  t=8.4s  avg=6.5s  ETA~5min
+  IG-stab sim 275/300  n_flows=272  t=11.3s  avg=6.6s  ETA~3min
+  IG-stab sim 300/300  n_flows=272  t=6.7s  avg=6.9s  ETA~0min
+IG stability run done. Timings saved to C:\Users\ddagher\RouteNet-Fermi\results\inference\ig_stability\timings.csv
+
+[Step 4 stability — KernelSHAP] alt-background=mean point, 300 sims (nsamples=256)...
+  SHAP-stab sim   1/300  n_flows=272  t=15.0s  avg=15.0s  ETA~75min
+  SHAP-stab sim  10/300  n_flows=272  t=11.6s  avg=11.5s  ETA~56min
+  SHAP-stab sim  20/300  n_flows=272  t=8.1s  avg=10.2s  ETA~48min
+  SHAP-stab sim  30/300  n_flows=272  t=8.6s  avg=9.5s  ETA~43min
+  SHAP-stab sim  40/300  n_flows=272  t=10.2s  avg=9.9s  ETA~43min
+  SHAP-stab sim  50/300  n_flows=272  t=10.4s  avg=10.4s  ETA~43min
+  SHAP-stab sim  60/300  n_flows=272  t=10.5s  avg=10.8s  ETA~43min
+  SHAP-stab sim  70/300  n_flows=272  t=10.7s  avg=10.7s  ETA~41min
+  SHAP-stab sim  80/300  n_flows=272  t=8.7s  avg=10.5s  ETA~39min
+  SHAP-stab sim  90/300  n_flows=272  t=9.5s  avg=10.4s  ETA~36min
+  SHAP-stab sim 100/300  n_flows=272  t=7.3s  avg=10.1s  ETA~34min
+  SHAP-stab sim 110/300  n_flows=272  t=6.4s  avg=9.9s  ETA~31min
+  SHAP-stab sim 120/300  n_flows=272  t=6.7s  avg=9.6s  ETA~29min
+  SHAP-stab sim 130/300  n_flows=272  t=6.6s  avg=9.4s  ETA~27min
+  SHAP-stab sim 140/300  n_flows=272  t=6.5s  avg=9.2s  ETA~25min
+  SHAP-stab sim 150/300  n_flows=272  t=6.9s  avg=9.0s  ETA~23min
+  SHAP-stab sim 160/300  n_flows=272  t=6.5s  avg=8.9s  ETA~21min
+  SHAP-stab sim 170/300  n_flows=272  t=6.4s  avg=8.8s  ETA~19min
+  SHAP-stab sim 180/300  n_flows=272  t=6.9s  avg=8.7s  ETA~17min
+  SHAP-stab sim 190/300  n_flows=272  t=6.7s  avg=8.6s  ETA~16min
+  SHAP-stab sim 200/300  n_flows=272  t=7.4s  avg=8.5s  ETA~14min
+  SHAP-stab sim 210/300  n_flows=272  t=6.5s  avg=8.4s  ETA~13min
+  SHAP-stab sim 220/300  n_flows=272  t=6.8s  avg=8.3s  ETA~11min
+  SHAP-stab sim 230/300  n_flows=272  t=6.4s  avg=8.3s  ETA~10min
+  SHAP-stab sim 240/300  n_flows=272  t=6.8s  avg=8.2s  ETA~8min
+  SHAP-stab sim 250/300  n_flows=272  t=6.7s  avg=8.2s  ETA~7min
+  SHAP-stab sim 260/300  n_flows=272  t=6.8s  avg=8.1s  ETA~5min
+  SHAP-stab sim 270/300  n_flows=272  t=7.0s  avg=8.1s  ETA~4min
+  SHAP-stab sim 280/300  n_flows=272  t=6.8s  avg=8.0s  ETA~3min
+  SHAP-stab sim 290/300  n_flows=272  t=7.1s  avg=8.0s  ETA~1min
+  SHAP-stab sim 300/300  n_flows=272  t=6.7s  avg=7.9s  ETA~0min
+KernelSHAP stability run done. Timings saved to C:\Users\ddagher\RouteNet-Fermi\results\inference\kernel_shap_stability\timings.csv
+
+Step 4 stability runs complete.
