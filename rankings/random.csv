@@ -1,0 +1,11 @@
+rank,feature,mean_abs_score
+1,avg_t_on,10.0
+2,avg_pkts_lambda,9.0
+3,eq_lambda,8.0
+4,ar_a,7.0
+5,pkts_lambda_on,6.0
+6,avg_t_off,5.0
+7,sigma,4.0
+8,exp_max_factor,3.0
+9,traffic,2.0
+10,packets,1.0

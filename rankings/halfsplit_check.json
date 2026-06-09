@@ -1,0 +1,60 @@
+{
+  "ig": {
+    "rho": 0.8787878787878788,
+    "p_value": 0.0008138621117322101,
+    "n_sims_each_half": 150,
+    "rank_first_half": [
+      "sigma",
+      "traffic",
+      "packets",
+      "pkts_lambda_on",
+      "eq_lambda",
+      "ar_a",
+      "avg_t_off",
+      "exp_max_factor",
+      "avg_t_on",
+      "avg_pkts_lambda"
+    ],
+    "rank_second_half": [
+      "traffic",
+      "sigma",
+      "packets",
+      "avg_t_off",
+      "ar_a",
+      "pkts_lambda_on",
+      "eq_lambda",
+      "exp_max_factor",
+      "avg_t_on",
+      "avg_pkts_lambda"
+    ]
+  },
+  "kernel_shap": {
+    "rho": 0.9515151515151514,
+    "p_value": 2.279854920641689e-05,
+    "n_sims_each_half": 150,
+    "rank_first_half": [
+      "sigma",
+      "traffic",
+      "packets",
+      "eq_lambda",
+      "pkts_lambda_on",
+      "ar_a",
+      "avg_t_off",
+      "exp_max_factor",
+      "avg_t_on",
+      "avg_pkts_lambda"
+    ],
+    "rank_second_half": [
+      "traffic",
+      "packets",
+      "sigma",
+      "eq_lambda",
+      "pkts_lambda_on",
+      "avg_t_off",
+      "ar_a",
+      "exp_max_factor",
+      "avg_t_on",
+      "avg_pkts_lambda"
+    ]
+  }
+}
