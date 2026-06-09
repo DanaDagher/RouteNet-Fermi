@@ -1,0 +1,21 @@
+{
+  "xai_method": "baseline",
+  "k": null,
+  "partition": "full",
+  "kept_features": [
+    "traffic",
+    "packets",
+    "eq_lambda",
+    "avg_pkts_lambda",
+    "exp_max_factor",
+    "pkts_lambda_on",
+    "avg_t_off",
+    "avg_t_on",
+    "ar_a",
+    "sigma"
+  ],
+  "dropped_features": [],
+  "n_path_scalars_kept": 10,
+  "path_embedding_input_dim": 17,
+  "note": "All 10 path scalars kept. Retrained from scratch with seed=42."
+}

@@ -1,12 +1,42 @@
 import tensorflow as tf
 
+# Ordered list of the 10 per-flow path scalars (XAI scope, THESIS_DECISIONS §5).
+# This order matches the original model's tf.concat in call().
+# 'model' (one-hot 7-bit) is NOT in this list — it is always included in
+# path_embedding and is never a candidate for dropping.
+PATH_SCALAR_FEATURES = [
+    'traffic', 'packets', 'eq_lambda', 'avg_pkts_lambda', 'exp_max_factor',
+    'pkts_lambda_on', 'avg_t_off', 'avg_t_on', 'ar_a', 'sigma',
+]
+
 
 class RouteNet_Fermi(tf.keras.Model):
-    def __init__(self):
+    def __init__(self, kept_path_scalars=None):
+        """
+        Args:
+            kept_path_scalars: list of path-scalar feature names to include in
+                path_embedding input. Defaults to all 10 (full baseline).
+                Must be a subset of PATH_SCALAR_FEATURES in any order;
+                features are concatenated in PATH_SCALAR_FEATURES order.
+                path_embedding input_dim = len(kept_path_scalars) + max_num_models.
+
+                Note: 'traffic' and 'packets' are also used for structural
+                computations (link load and transmission delay) regardless of
+                whether they appear in kept_path_scalars. Dropping them from
+                kept_path_scalars removes them from the path initial state only.
+        """
         super(RouteNet_Fermi, self).__init__()
 
         # Configuration dictionary. It contains the needed Hyperparameters for the model.
         # All the Hyperparameters can be found in the config.ini file
+
+        if kept_path_scalars is None:
+            kept_path_scalars = PATH_SCALAR_FEATURES
+        # Store in original PATH_SCALAR_FEATURES order for reproducibility
+        self.kept_path_scalars = [f for f in PATH_SCALAR_FEATURES
+                                   if f in kept_path_scalars]
+        assert len(self.kept_path_scalars) == len(kept_path_scalars), \
+            "kept_path_scalars contains unknown feature name(s)"
 
         self.max_num_models = 7
 
@@ -33,8 +63,10 @@ class RouteNet_Fermi(tf.keras.Model):
         self.link_update = tf.keras.layers.GRUCell(self.link_state_dim)
         self.queue_update = tf.keras.layers.GRUCell(self.queue_state_dim)
 
+        # path_embedding_input_dim = kept path scalars + model one-hot (always kept)
+        path_embedding_input_dim = len(self.kept_path_scalars) + self.max_num_models
         self.path_embedding = tf.keras.Sequential([
-            tf.keras.layers.Input(shape=10 + self.max_num_models),
+            tf.keras.layers.Input(shape=path_embedding_input_dim),
             tf.keras.layers.Dense(self.path_state_dim, activation=tf.keras.activations.relu),
             tf.keras.layers.Dense(self.path_state_dim, activation=tf.keras.activations.relu)
         ])
@@ -62,18 +94,13 @@ class RouteNet_Fermi(tf.keras.Model):
 
     @tf.function
     def call(self, inputs):
+        # ── Structural inputs: always present in every variant ────────────────
+        # traffic and packets are kept even when "dropped" as path scalars
+        # because they are needed for load and pkt_size (structural computation).
         traffic = inputs['traffic']
         packets = inputs['packets']
         length = inputs['length']
         model = inputs['model']
-        eq_lambda = inputs['eq_lambda']
-        avg_pkts_lambda = inputs['avg_pkts_lambda']
-        exp_max_factor = inputs['exp_max_factor']
-        pkts_lambda_on = inputs['pkts_lambda_on']
-        avg_t_off = inputs['avg_t_off']
-        avg_t_on = inputs['avg_t_on']
-        ar_a = inputs['ar_a']
-        sigma = inputs['sigma']
 
         capacity = inputs['capacity']
         policy = tf.one_hot(inputs['policy'], self.num_policies)
@@ -88,24 +115,29 @@ class RouteNet_Fermi(tf.keras.Model):
         path_to_queue = inputs['path_to_queue']
         queue_to_link = inputs['queue_to_link']
 
+        # Structural computations (independent of which path scalars are kept)
         path_gather_traffic = tf.gather(traffic, path_to_link[:, :, 0])
         load = tf.math.reduce_sum(path_gather_traffic, axis=1) / capacity
 
         pkt_size = traffic / packets
 
-        # Initialize the initial hidden state for links
-        path_state = self.path_embedding(tf.concat(
-            [(traffic - self.z_score['traffic'][0]) / self.z_score['traffic'][1],
-             (packets - self.z_score['packets'][0]) / self.z_score['packets'][1],
-             tf.one_hot(model, self.max_num_models),
-             (eq_lambda - self.z_score['eq_lambda'][0]) / self.z_score['eq_lambda'][1],
-             (avg_pkts_lambda - self.z_score['avg_pkts_lambda'][0]) / self.z_score['avg_pkts_lambda'][1],
-             (exp_max_factor - self.z_score['exp_max_factor'][0]) / self.z_score['exp_max_factor'][1],
-             (pkts_lambda_on - self.z_score['pkts_lambda_on'][0]) / self.z_score['pkts_lambda_on'][1],
-             (avg_t_off - self.z_score['avg_t_off'][0]) / self.z_score['avg_t_off'][1],
-             (avg_t_on - self.z_score['avg_t_on'][0]) / self.z_score['avg_t_on'][1],
-             (ar_a - self.z_score['ar_a'][0]) / self.z_score['ar_a'][1],
-             (sigma - self.z_score['sigma'][0]) / self.z_score['sigma'][1]], axis=1))
+        # ── Path embedding: only kept_path_scalars + model one-hot ───────────
+        # Build normalised tensors only for features that are kept.
+        # Features not in kept_path_scalars are absent from inputs dict
+        # (removed by data_generator), so we must not access them here.
+        # traffic and packets are always in inputs (structural); the 8 others
+        # are present only when they appear in kept_path_scalars.
+        _feat_tensors = {}
+        _feat_tensors['traffic'] = (traffic - self.z_score['traffic'][0]) / self.z_score['traffic'][1]
+        _feat_tensors['packets'] = (packets - self.z_score['packets'][0]) / self.z_score['packets'][1]
+        for _f in self.kept_path_scalars:
+            if _f not in ('traffic', 'packets'):
+                _v = inputs[_f]
+                _feat_tensors[_f] = (_v - self.z_score[_f][0]) / self.z_score[_f][1]
+
+        path_concat = [_feat_tensors[f] for f in self.kept_path_scalars]
+        path_concat.append(tf.one_hot(model, self.max_num_models))
+        path_state = self.path_embedding(tf.concat(path_concat, axis=1))
 
         # Initialize the initial hidden state for paths
         link_state = self.link_embedding(tf.concat([load, policy], axis=1))

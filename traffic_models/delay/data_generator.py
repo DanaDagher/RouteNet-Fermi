@@ -24,7 +24,39 @@ from datanetAPI import DatanetAPI  # This API may be different for different ver
 POLICIES = np.array(['WFQ', 'SP', 'DRR', 'FIFO'])
 
 
-def generator(data_dir, shuffle):
+# Path scalar features that can be removed from the output dict when dropped.
+# 'traffic' and 'packets' are NOT in this set — they are always kept in the
+# output because delay_model.py uses them for structural computations (link
+# load and transmission delay) regardless of whether they are in the
+# path_embedding input (THESIS_DECISIONS §5 / xai-protocol-b note).
+_DROPPABLE_PATH_SCALARS = frozenset([
+    'eq_lambda', 'avg_pkts_lambda', 'exp_max_factor', 'pkts_lambda_on',
+    'avg_t_off', 'avg_t_on', 'ar_a', 'sigma',
+])
+
+
+def generator(data_dir, shuffle, dropped_features=None):
+    """
+    Args:
+        data_dir:         path to dataset split directory
+        shuffle:          whether to shuffle samples
+        dropped_features: optional list of path-scalar feature names to omit
+                          from the yielded input dict. Only features in
+                          _DROPPABLE_PATH_SCALARS are actually removed;
+                          'traffic' and 'packets' are always kept (structural).
+    """
+    # TF from_generator serialises args through numpy, so dropped_features may
+    # arrive as a numpy array of byte-strings rather than a Python list.
+    if dropped_features is None:
+        dropped = set()
+    else:
+        _df = []
+        for f in dropped_features:
+            try:
+                _df.append(f.decode('UTF-8'))
+            except AttributeError:
+                _df.append(str(f))
+        dropped = set(_df) & _DROPPABLE_PATH_SCALARS
     try:
         data_dir = data_dir.decode('UTF-8')
     except (UnicodeDecodeError, AttributeError):
@@ -45,6 +77,11 @@ def generator(data_dir, shuffle):
         # SKIP SAMPLES WITH ZERO OR NEGATIVE VALUES
         if not all(x > 0 for x in ret[1]):
             continue
+        if dropped:
+            inputs = dict(ret[0])
+            for feat in dropped:
+                inputs.pop(feat, None)
+            ret = (inputs, ret[1])
         yield ret
 
 
@@ -237,37 +274,55 @@ def network_to_hypergraph(G, R, T, P):
     return D_G
 
 
-def input_fn(data_dir, shuffle=False):
-    ds = tf.data.Dataset.from_generator(generator,
-                                        args=[data_dir, shuffle],
-                                        output_signature=(
-                                            {"traffic": tf.TensorSpec(shape=(None, 1), dtype=tf.float32),
-                                             "packets": tf.TensorSpec(shape=(None, 1), dtype=tf.float32),
-                                             "length": tf.TensorSpec(shape=None, dtype=tf.int32),
-                                             "model": tf.TensorSpec(shape=None, dtype=tf.int32),
-                                             "eq_lambda": tf.TensorSpec(shape=(None, 1), dtype=tf.float32),
-                                             "avg_pkts_lambda": tf.TensorSpec(shape=(None, 1), dtype=tf.float32),
-                                             "exp_max_factor": tf.TensorSpec(shape=(None, 1), dtype=tf.float32),
-                                             "pkts_lambda_on": tf.TensorSpec(shape=(None, 1), dtype=tf.float32),
-                                             "avg_t_off": tf.TensorSpec(shape=(None, 1), dtype=tf.float32),
-                                             "avg_t_on": tf.TensorSpec(shape=(None, 1), dtype=tf.float32),
-                                             "ar_a": tf.TensorSpec(shape=(None, 1), dtype=tf.float32),
-                                             "sigma": tf.TensorSpec(shape=(None, 1), dtype=tf.float32),
-                                             "capacity": tf.TensorSpec(shape=(None, 1), dtype=tf.float32),
-                                             "queue_size": tf.TensorSpec(shape=(None, 1), dtype=tf.float32),
-                                             "policy": tf.TensorSpec(shape=None, dtype=tf.int32),
-                                             "priority": tf.TensorSpec(shape=None, dtype=tf.int32),
-                                             "weight": tf.TensorSpec(shape=(None, 1), dtype=tf.float32),
-                                             "link_to_path": tf.RaggedTensorSpec(shape=(None, 1), dtype=tf.int32),
-                                             "queue_to_path": tf.RaggedTensorSpec(shape=(None, 1), dtype=tf.int32),
-                                             "queue_to_link": tf.RaggedTensorSpec(shape=(None, 1), dtype=tf.int32),
-                                             "path_to_queue": tf.RaggedTensorSpec(shape=(None, None, 2), dtype=tf.int32,
-                                                                                  ragged_rank=1),
-                                             "path_to_link": tf.RaggedTensorSpec(shape=(None, None, 2), dtype=tf.int32,
-                                                                                 ragged_rank=1)
-                                             }
-                                            , tf.TensorSpec(shape=None, dtype=tf.float32)
-                                        ))
+def input_fn(data_dir, shuffle=False, dropped_features=None):
+    """
+    Args:
+        data_dir:         path to dataset split directory
+        shuffle:          whether to shuffle
+        dropped_features: optional list of path-scalar feature names to drop.
+                          Same semantics as generator(): only _DROPPABLE_PATH_SCALARS
+                          are actually removed; 'traffic' and 'packets' always kept.
+    """
+    dropped = set(dropped_features or []) & _DROPPABLE_PATH_SCALARS
+
+    # Full signature for all optional path scalars
+    _optional_sig = {
+        "eq_lambda":       tf.TensorSpec(shape=(None, 1), dtype=tf.float32),
+        "avg_pkts_lambda": tf.TensorSpec(shape=(None, 1), dtype=tf.float32),
+        "exp_max_factor":  tf.TensorSpec(shape=(None, 1), dtype=tf.float32),
+        "pkts_lambda_on":  tf.TensorSpec(shape=(None, 1), dtype=tf.float32),
+        "avg_t_off":       tf.TensorSpec(shape=(None, 1), dtype=tf.float32),
+        "avg_t_on":        tf.TensorSpec(shape=(None, 1), dtype=tf.float32),
+        "ar_a":            tf.TensorSpec(shape=(None, 1), dtype=tf.float32),
+        "sigma":           tf.TensorSpec(shape=(None, 1), dtype=tf.float32),
+    }
+
+    # Build output_signature: always-present features + non-dropped optionals
+    output_sig = {
+        "traffic":      tf.TensorSpec(shape=(None, 1), dtype=tf.float32),
+        "packets":      tf.TensorSpec(shape=(None, 1), dtype=tf.float32),
+        "length":       tf.TensorSpec(shape=None,      dtype=tf.int32),
+        "model":        tf.TensorSpec(shape=None,      dtype=tf.int32),
+        "capacity":     tf.TensorSpec(shape=(None, 1), dtype=tf.float32),
+        "queue_size":   tf.TensorSpec(shape=(None, 1), dtype=tf.float32),
+        "policy":       tf.TensorSpec(shape=None,      dtype=tf.int32),
+        "priority":     tf.TensorSpec(shape=None,      dtype=tf.int32),
+        "weight":       tf.TensorSpec(shape=(None, 1), dtype=tf.float32),
+        "link_to_path":  tf.RaggedTensorSpec(shape=(None, 1),         dtype=tf.int32),
+        "queue_to_path": tf.RaggedTensorSpec(shape=(None, 1),         dtype=tf.int32),
+        "queue_to_link": tf.RaggedTensorSpec(shape=(None, 1),         dtype=tf.int32),
+        "path_to_queue": tf.RaggedTensorSpec(shape=(None, None, 2),   dtype=tf.int32, ragged_rank=1),
+        "path_to_link":  tf.RaggedTensorSpec(shape=(None, None, 2),   dtype=tf.int32, ragged_rank=1),
+    }
+    for feat, spec in _optional_sig.items():
+        if feat not in dropped:
+            output_sig[feat] = spec
+
+    ds = tf.data.Dataset.from_generator(
+        generator,
+        args=[data_dir, shuffle, list(dropped)],
+        output_signature=(output_sig, tf.TensorSpec(shape=None, dtype=tf.float32))
+    )
 
     ds = ds.prefetch(tf.data.experimental.AUTOTUNE)
 

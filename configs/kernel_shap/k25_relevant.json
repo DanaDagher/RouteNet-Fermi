@@ -1,0 +1,22 @@
+{
+  "xai_method": "kernel_shap",
+  "k": 25,
+  "partition": "relevant",
+  "kept_features": [
+    "traffic",
+    "sigma"
+  ],
+  "dropped_features": [
+    "packets",
+    "eq_lambda",
+    "pkts_lambda_on",
+    "ar_a",
+    "avg_t_off",
+    "exp_max_factor",
+    "avg_t_on",
+    "avg_pkts_lambda"
+  ],
+  "n_path_scalars_kept": 2,
+  "path_embedding_input_dim": 9,
+  "note": "Keep top-25% (2 features) by kernel_shap ranking."
+}
