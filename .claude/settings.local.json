@@ -25,7 +25,10 @@
       "Bash(cd \"C:\\\\Users\\\\ddagher\\\\RouteNet-Fermi\" && cat /tmp/wait_stability2.log; echo \"=== grep result ===\"; grep -n \"complete\" results/inference/step4_stability_run.log; echo \"=== log size/tail ===\"; wc -l results/inference/step4_stability_run.log; tail -20 results/inference/step4_stability_run.log; echo \"=== process check ===\"; ps aux | grep python | grep -v grep)",
       "Bash(awk -F, 'NR>1{s+=$3; n++} END{print \"n=\"n, \"avg=\"s/n\"s\", \"ETA_remaining_min=\"\\(\\(300-n\\)*s/n\\)/60}' results/inference/ig_stability/timings.csv)",
       "Bash(git checkout *)",
-      "Bash(\"venv/Scripts/python.exe\" run_step6_smoke.py)"
+      "Bash(\"venv/Scripts/python.exe\" run_step6_smoke.py)",
+      "Bash(gh pr create --repo DanaDagher/RouteNet-Fermi --base main --head xai-features --title 'XAI pipeline Steps 1-5: baseline validation, IG + KernelSHAP explanations, global feature rankings' --body ' *)",
+      "Bash(gh pr *)",
+      "Bash(git fetch *)"
     ]
   }
 }
