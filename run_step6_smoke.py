@@ -21,7 +21,7 @@ import json
 import glob
 
 # ── repo path so imports work regardless of CWD ──────────────────────────────
-REPO = r'C:\Users\ddagher\RouteNet-Fermi'
+REPO = os.path.dirname(os.path.abspath(__file__))
 os.chdir(REPO)                          # needed by DatanetAPI relative imports
 sys.path.insert(0, REPO)
 sys.path.insert(0, os.path.join(REPO, 'traffic_models', 'delay'))
