@@ -28,7 +28,19 @@
       "Bash(\"venv/Scripts/python.exe\" run_step6_smoke.py)",
       "Bash(gh pr create --repo DanaDagher/RouteNet-Fermi --base main --head xai-features --title 'XAI pipeline Steps 1-5: baseline validation, IG + KernelSHAP explanations, global feature rankings' --body ' *)",
       "Bash(gh pr *)",
-      "Bash(git fetch *)"
+      "Bash(git fetch *)",
+      "Bash(\"venv/Scripts/python.exe\" -c \"import PyPDF2; print\\('pypdf2 ok'\\)\")",
+      "Bash(\"venv/Scripts/python.exe\" -c \"import fitz; print\\('fitz ok'\\)\")",
+      "Bash(pip list *)",
+      "Bash(\"venv/Scripts/python.exe\" -m pip uninstall pypdf -y --quiet)",
+      "Bash(\"venv/Scripts/python.exe\" -m pip install \"typing-extensions==3.10.0.2\" \"PyPDF2==2.12.1\" --quiet)",
+      "Bash(\"venv/Scripts/python.exe\" -c \"import typing_extensions, PyPDF2, tensorflow as tf; print\\('typing-extensions restored, PyPDF2 ok, TF', tf.__version__\\)\")",
+      "Bash(node -e \"const d=require\\('docx'\\); console.log\\('docx ok', d.Version || ''\\)\")",
+      "PowerShell(npm --version)",
+      "PowerShell(py -0p 2>$null; python --version 2>$null; \\(Get-Command python -ErrorAction SilentlyContinue\\).Source)",
+      "PowerShell(py -3.11 \"C:\\\\Users\\\\ddagher\\\\RouteNet-Fermi\\\\deliverable\\\\_fix_zoom.py\"; $env:PYTHONIOENCODING='utf-8'; $env:PYTHONUTF8='1'; py -3.11 \"C:\\\\Users\\\\ddagher\\\\AppData\\\\Roaming\\\\Claude\\\\local-agent-mode-sessions\\\\skills-plugin\\\\eb3cff85-bb14-4303-9b21-bb0d69e3fe6d\\\\6e246a8a-a583-4ff3-9ca1-346d79601d86\\\\skills\\\\docx\\\\scripts\\\\office\\\\validate.py\" \"C:\\\\Users\\\\ddagher\\\\RouteNet-Fermi\\\\deliverable\\\\D3.2_T3.2_XAI_GNN_draft_v0.1.docx\")",
+      "PowerShell(Get-ChildItem -Directory C:\\\\Users\\\\ddagher\\\\RouteNet-Fermi | ForEach-Object { $size = \\(Get-ChildItem $_.FullName -Recurse -File -ErrorAction SilentlyContinue | Measure-Object -Sum Length\\).Sum; [PSCustomObject]@{ Dir = $_.Name; MB = [math]::Round\\($size/1MB,1\\) } } | Sort-Object MB -Descending | Format-Table -AutoSize)",
+      "PowerShell(git add .claude/settings.local.json deliverable/)"
     ]
   }
 }
