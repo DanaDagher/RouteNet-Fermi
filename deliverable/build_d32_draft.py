@@ -6,7 +6,7 @@ as a Word document for internal review (Dana + Mouna).
 Structure mirrors the ANR TRAVEL report chapter style (cf. Rapport-ANR DX.1,
 Chapter 4): Introduction / Background / Datasets / Methodology / Results /
 Discussion / Conclusion, with numbered "5.x" sections since this contribution
-feeds D3.2 Section 5.
+feeds D3.2 Section 1.
 
 Usage: py -3.11 deliverable/build_d32_draft.py
 Output: deliverable/D3.2_T3.2_XAI_GNN_draft_v0.1.docx
@@ -138,11 +138,11 @@ doc.add_page_break()
 # ══════════════════════════════════════════════════════════════════════════════
 # 5  Chapter
 # ══════════════════════════════════════════════════════════════════════════════
-doc.add_heading('5  Critical and Comparative Study of XAI Approaches for '
+doc.add_heading('1  Critical and Comparative Study of XAI Approaches for '
                 'GNN-based QoS Prediction in SDN Network Automation', level=1)
 
 # ── 5.1 Introduction ─────────────────────────────────────────────────────────
-doc.add_heading('5.1  Introduction', level=2)
+doc.add_heading('1.1  Introduction', level=2)
 para('Graph Neural Networks (GNNs) are now the reference approach for data-driven '
      'network performance modeling: models such as RouteNet-Fermi predict per-flow '
      'Quality of Service (QoS) metrics (delay, jitter, loss) directly from the '
@@ -173,9 +173,9 @@ para('The study follows a 11-step preregistered pipeline. This draft reports the
      'integrated in the next revision of this section.')
 
 # ── 5.2 Background ───────────────────────────────────────────────────────────
-doc.add_heading('5.2  Background', level=2)
+doc.add_heading('1.2  Background', level=2)
 
-doc.add_heading('5.2.1  RouteNet-Fermi', level=3)
+doc.add_heading('1.2.1  RouteNet-Fermi', level=3)
 para('RouteNet-Fermi (Ferriol-Galmés et al., IEEE/ACM Transactions on Networking, '
      '2023) is a message-passing GNN that models a network as a heterogeneous '
      'hypergraph of three entity types — flows (paths), queues and links. Each '
@@ -188,7 +188,7 @@ para('RouteNet-Fermi (Ferriol-Galmés et al., IEEE/ACM Transactions on Networkin
      'architecture used here is the official BNN-UPC implementation '
      '(TensorFlow 2), unchanged.')
 
-doc.add_heading('5.2.2  Compared XAI methods', level=3)
+doc.add_heading('1.2.2  Compared XAI methods', level=3)
 para('Integrated Gradients (IG) attributes a prediction to each input feature by '
      'accumulating the model’s gradients along a straight-line path from a '
      'reference (baseline) input to the actual input. It is white-box (requires '
@@ -206,7 +206,7 @@ para('The two methods make different assumptions (local gradients vs. coalition 
      'ranking (seed 42) completes the comparison as a negative control: any valid '
      'fidelity metric must separate the principled methods from random.')
 
-doc.add_heading('5.2.3  Fidelity evaluation by retraining (ROAR)', level=3)
+doc.add_heading('1.2.3  Fidelity evaluation by retraining (ROAR)', level=3)
 para('Evaluating attribution quality on a frozen model is methodologically fragile: '
      'masking or perturbing inputs at inference time produces out-of-distribution '
      'samples, and the measured degradation conflates feature importance with '
@@ -222,9 +222,9 @@ para('Evaluating attribution quality on a frozen model is methodologically fragi
      'accordingly — a real architectural change per variant, not a runtime mask.')
 
 # ── 5.3 Dataset and feature scope ────────────────────────────────────────────
-doc.add_heading('5.3  Dataset and Feature Scope', level=2)
+doc.add_heading('1.3  Dataset and Feature Scope', level=2)
 
-doc.add_heading('5.3.1  Dataset', level=3)
+doc.add_heading('1.3.1  Dataset', level=3)
 para('All experiments use the public BNN-UPC dataset-v6-traffic-models corpus '
      '(the dataset of the RouteNet-Fermi paper’s traffic-models experiment), '
      'sub-experiment delay. It contains five sub-datasets by traffic model: '
@@ -233,12 +233,12 @@ para('All experiments use the public BNN-UPC dataset-v6-traffic-models corpus '
      'Topologies: NSFNET (14 nodes) and GEANT2 (24 nodes) in training, GBN '
      '(17 nodes) in test. The study targets all_multiplexed — the hardest and '
      'most realistic sub-configuration — for all XAI work; the other four are '
-     'used once, in the baseline validity check (Section 5.4.1). The '
+     'used once, in the baseline validity check (Section 1.4.1). The '
      'all_multiplexed training split contains 15,039 simulations; the test split '
      'is disjoint and topology-shifted (GBN unseen in training). The prediction '
      'target is per-flow average delay.')
 
-doc.add_heading('5.3.2  Feature scope: 10 rankable scalars vs. 12 structural inputs', level=3)
+doc.add_heading('1.3.2  Feature scope: 10 rankable scalars vs. 12 structural inputs', level=3)
 para('RouteNet-Fermi consumes 22 input signals per sample. A central design '
      'decision of this study is that only 10 of them — the per-flow path scalars — '
      'are in scope for XAI ranking and removal. The remaining 12 inputs define '
@@ -260,7 +260,7 @@ table(
          'Define the hypergraph and the physics of the simulation',
          'Always present; never dropped'],
     ],
-    caption='Table 5-1: Input feature scope.',
+    caption='Table 1-1: Input feature scope.',
     col_widths=[2.6, 6.2, 4.4, 2.8],
 )
 para('Two scalars, traffic and packets, have a dual role: they are rankable '
@@ -272,9 +272,9 @@ para('Two scalars, traffic and packets, have a dual role: they are rankable '
      'of the simulator.')
 
 # ── 5.4 Methodology ──────────────────────────────────────────────────────────
-doc.add_heading('5.4  Methodology and Completed Pipeline Steps', level=2)
+doc.add_heading('1.4  Methodology and Completed Pipeline Steps', level=2)
 
-doc.add_heading('5.4.1  Environment and baseline validation (Steps 1, 2.5)', level=3)
+doc.add_heading('1.4.1  Environment and baseline validation (Steps 1, 2.5)', level=3)
 para('The working environment reproduces the reference implementation: official '
      'BNN-UPC repository, TensorFlow 2.6.5, Python 3.7.9, with the pretrained '
      'checkpoints shipped by the authors. Before any XAI work, the environment '
@@ -291,7 +291,7 @@ table(
         ['modulated', '5.21 %', '5.23 %', '+0.02 pp'],
         ['all_multiplexed', '4.71 %', '4.62 %', '−0.09 pp'],
     ],
-    caption='Table 5-2: Reproduction of RouteNet-Fermi paper Table V (delay MAPE) '
+    caption='Table 1-2: Reproduction of RouteNet-Fermi paper Table V (delay MAPE) '
             'on N = 300 test simulations per sub-dataset.',
     col_widths=[4.0, 4.0, 4.6, 3.0],
 )
@@ -300,7 +300,7 @@ para('All five sub-datasets match the published numbers within 0.11 percentage '
      'N = 300 simulations as a representative evaluation budget, which was then '
      'locked as the explanation-set size for both XAI methods.')
 
-doc.add_heading('5.4.2  XAI implementation and verification (Step 3)', level=3)
+doc.add_heading('1.4.2  XAI implementation and verification (Step 3)', level=3)
 para('Both methods were implemented against the unmodified pretrained model, with '
      'the explanation target defined as the predicted delay of one reference flow '
      '(flow index 0) per simulation, attributed over its 10 path scalars while '
@@ -322,7 +322,7 @@ bullets([
      'before production use.'),
 ])
 
-doc.add_heading('5.4.3  Preregistration (Step 3.5)', level=3)
+doc.add_heading('1.4.3  Preregistration (Step 3.5)', level=3)
 para('Before generating any explanation, theoretical expectations were written '
      'down and committed: which features should rank high under queueing-theoretic '
      'reasoning (traffic and packets as load drivers; sigma for '
@@ -331,7 +331,7 @@ para('Before generating any explanation, theoretical expectations were written '
      'preregistration discipline protects the comparative analysis from '
      'post-hoc rationalisation.')
 
-doc.add_heading('5.4.4  Explanation generation (Step 4)', level=3)
+doc.add_heading('1.4.4  Explanation generation (Step 4)', level=3)
 para('Both methods were run on the same locked set of 300 all_multiplexed test '
      'simulations (deterministic order, indices committed to the repository). '
      'Each run produces one 10-dimensional attribution vector per simulation. '
@@ -352,16 +352,16 @@ bullets([
 ])
 para('In addition, both methods were re-run with an alternative reference (the '
      'training-set mean instead of the median) on all 300 simulations, providing '
-     'a reference-sensitivity (stability) measurement reported in Section 5.5.3.')
+     'a reference-sensitivity (stability) measurement reported in Section 1.5.3.')
 
-doc.add_heading('5.4.5  Global ranking construction (Step 5)', level=3)
+doc.add_heading('1.4.5  Global ranking construction (Step 5)', level=3)
 para('Per-method global rankings are obtained by averaging absolute attributions '
      'over the 300 simulations and sorting. Statistical sufficiency of the '
      'explanation budget was tested by a half-split check: rankings computed '
      'independently on simulations 0–149 and 150–299 are compared by Spearman '
      'rank correlation, with ρ ≥ 0.7 preregistered as the acceptance threshold.')
 
-doc.add_heading('5.4.6  Reduced-input variant design (Step 6)', level=3)
+doc.add_heading('1.4.6  Reduced-input variant design (Step 6)', level=3)
 para('For each method M ∈ {IG, KernelSHAP} and each threshold k ∈ {25, 50, 75}, '
      'the 10 scalars are partitioned according to M’s ranking into a relevant_k '
      'variant (keep the top-k% features: top-2 / top-5 / top-7) and an '
@@ -380,9 +380,9 @@ para('A smoke test executed all 13 configurations end-to-end on real test data '
      'loaded batches, and a complete forward pass. Result: 13/13 pass.')
 
 # ── 5.5 Results ──────────────────────────────────────────────────────────────
-doc.add_heading('5.5  Results of the Completed Phases', level=2)
+doc.add_heading('1.5  Results of the Completed Phases', level=2)
 
-doc.add_heading('5.5.1  Global feature rankings', level=3)
+doc.add_heading('1.5.1  Global feature rankings', level=3)
 table(
     ['Rank', 'IG — feature', 'IG — mean |attr.|', 'KernelSHAP — feature', 'SHAP — mean |attr.|'],
     [
@@ -397,7 +397,7 @@ table(
         ['9', 'avg_t_on', '0.0036', 'avg_t_on', '0.0043'],
         ['10', 'avg_pkts_lambda', '0.0018', 'avg_pkts_lambda', '0.0017'],
     ],
-    caption='Table 5-3: Global feature rankings (mean absolute attribution over '
+    caption='Table 1-3: Global feature rankings (mean absolute attribution over '
             '300 simulations, median reference).',
     col_widths=[1.4, 3.8, 3.0, 4.2, 3.2],
 )
@@ -411,7 +411,7 @@ para('The headline structural finding is a cliff between ranks 3 and 4: the '
      'variance for that traffic class and is structurally zero for all others, '
      'making it highly informative when present.')
 
-doc.add_heading('5.5.2  Cross-method agreement and sample sufficiency', level=3)
+doc.add_heading('1.5.2  Cross-method agreement and sample sufficiency', level=3)
 table(
     ['Comparison', 'Spearman ρ', 'p-value', 'Interpretation'],
     [
@@ -422,7 +422,7 @@ table(
         ['KernelSHAP half-split', '0.952', '2.3×10⁻⁵',
          'N = 300 sufficient (≥ 0.7 threshold)'],
     ],
-    caption='Table 5-4: Agreement and sufficiency checks.',
+    caption='Table 1-4: Agreement and sufficiency checks.',
     col_widths=[6.0, 2.4, 2.4, 5.2],
 )
 para('Both methods return the same top-3 set, with sigma and traffic swapping '
@@ -433,14 +433,14 @@ para('Both methods return the same top-3 set, with sigma and traffic swapping '
      'every half — the evaluation budget is sufficient for the rankings that '
      'drive the retraining matrix.')
 
-doc.add_heading('5.5.3  Reference-sensitivity (stability) check', level=3)
+doc.add_heading('1.5.3  Reference-sensitivity (stability) check', level=3)
 table(
     ['Method', 'ρ (median vs. mean reference)', 'p-value'],
     [
         ['Integrated Gradients', '0.612', '0.060'],
         ['KernelSHAP', '0.636', '0.048'],
     ],
-    caption='Table 5-5: Ranking stability under change of reference point.',
+    caption='Table 1-5: Ranking stability under change of reference point.',
     col_widths=[5.0, 5.6, 2.6],
 )
 para('Replacing the median reference by the mean leaves the top-3 unchanged for '
@@ -452,7 +452,7 @@ para('Replacing the median reference by the mean leaves the top-3 unchanged for 
      'over-interpreted — a critical observation that the fidelity experiment is '
      'designed to quantify.')
 
-doc.add_heading('5.5.4  Random control', level=3)
+doc.add_heading('1.5.4  Random control', level=3)
 para('The seed-42 random ranking places the three signal-carrying features at '
      'ranks 7, 9 and 10 — close to the inverse of the principled rankings. It '
      'therefore provides a well-separated negative control: if the retraining '
@@ -460,8 +460,8 @@ para('The seed-42 random ranking places the three signal-carrying features at '
      'fidelity curves clearly distinguishable from the IG and KernelSHAP curves.')
 
 # ── 5.6 Work in progress ─────────────────────────────────────────────────────
-doc.add_heading('5.6  Work in Progress: Retraining Campaign and Fidelity Analysis', level=2)
-para('The 13 training configurations of Section 5.4.6 are scheduled on the '
+doc.add_heading('1.6  Work in Progress: Retraining Campaign and Fidelity Analysis', level=2)
+para('The 13 training configurations of Section 1.4.6 are scheduled on the '
      'project’s reference compute (NVIDIA RTX 4090). All runs use the exact '
      'training protocol of the reference paper — 150 epochs × 2,000 samples, '
      'Adam (lr = 0.001), MAPE loss, hidden state 32, T = 8 message-passing '
@@ -476,7 +476,7 @@ table(
         ['8–13', 'KernelSHAP · k ∈ {25, 50, 75} · {relevant, irrelevant}', '2/8, 5/5, 7/3'],
         ['(14–19)', 'Random control · same matrix (conditional on compute)', '2/8, 5/5, 7/3'],
     ],
-    caption='Table 5-6: Retraining matrix (Step 7).',
+    caption='Table 1-6: Retraining matrix (Step 7).',
     col_widths=[1.6, 9.4, 5.0],
 )
 para('The fidelity analysis (Step 8) will compare, per method and threshold, the '
@@ -491,7 +491,7 @@ para('The fidelity analysis (Step 8) will compare, per method and threshold, the
      'of WP4 (Step 10b).')
 
 # ── 5.7 Conclusion ───────────────────────────────────────────────────────────
-doc.add_heading('5.7  Conclusion (Interim)', level=2)
+doc.add_heading('1.7  Conclusion (Interim)', level=2)
 para('The completed phases establish a validated and fully reproducible '
      'foundation for the comparative XAI study mandated by T3.2: the reference '
      'GNN environment matches the published accuracy to within 0.11 pp; two '
@@ -507,7 +507,7 @@ para('The completed phases establish a validated and fully reproducible '
      'plausible claim that the retraining campaign will now put to the test.')
 
 # ── References ───────────────────────────────────────────────────────────────
-doc.add_heading('5.8  References', level=2)
+doc.add_heading('1.8  References', level=2)
 refs = [
     'M. Ferriol-Galmés, J. Paillisse, J. Suárez-Varela, K. Rusek, S. Xiao, '
     'X. Shi, X. Cheng, P. Barlet-Ros, A. Cabellos-Aparicio, “RouteNet-Fermi: '
@@ -529,4 +529,18 @@ for i, r in enumerate(refs, 1):
     p.paragraph_format.space_after = Pt(4)
 
 doc.save(OUT)
+
+# python-docx writes <w:zoom w:val="bestFit"/> without the schema-required
+# w:percent attribute; patch it so the file passes strict OOXML validation.
+import zipfile
+with zipfile.ZipFile(OUT, 'r') as z:
+    items = {n: z.read(n) for n in z.namelist()}
+settings = items['word/settings.xml'].decode('utf-8')
+settings = settings.replace('<w:zoom w:val="bestFit"/>',
+                            '<w:zoom w:val="bestFit" w:percent="100"/>')
+items['word/settings.xml'] = settings.encode('utf-8')
+with zipfile.ZipFile(OUT, 'w', zipfile.ZIP_DEFLATED) as z:
+    for n, d in items.items():
+        z.writestr(n, d)
+
 print('saved:', OUT)

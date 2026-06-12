@@ -40,7 +40,11 @@
       "PowerShell(py -0p 2>$null; python --version 2>$null; \\(Get-Command python -ErrorAction SilentlyContinue\\).Source)",
       "PowerShell(py -3.11 \"C:\\\\Users\\\\ddagher\\\\RouteNet-Fermi\\\\deliverable\\\\_fix_zoom.py\"; $env:PYTHONIOENCODING='utf-8'; $env:PYTHONUTF8='1'; py -3.11 \"C:\\\\Users\\\\ddagher\\\\AppData\\\\Roaming\\\\Claude\\\\local-agent-mode-sessions\\\\skills-plugin\\\\eb3cff85-bb14-4303-9b21-bb0d69e3fe6d\\\\6e246a8a-a583-4ff3-9ca1-346d79601d86\\\\skills\\\\docx\\\\scripts\\\\office\\\\validate.py\" \"C:\\\\Users\\\\ddagher\\\\RouteNet-Fermi\\\\deliverable\\\\D3.2_T3.2_XAI_GNN_draft_v0.1.docx\")",
       "PowerShell(Get-ChildItem -Directory C:\\\\Users\\\\ddagher\\\\RouteNet-Fermi | ForEach-Object { $size = \\(Get-ChildItem $_.FullName -Recurse -File -ErrorAction SilentlyContinue | Measure-Object -Sum Length\\).Sum; [PSCustomObject]@{ Dir = $_.Name; MB = [math]::Round\\($size/1MB,1\\) } } | Sort-Object MB -Descending | Format-Table -AutoSize)",
-      "PowerShell(git add .claude/settings.local.json deliverable/)"
+      "PowerShell(git add .claude/settings.local.json deliverable/)",
+      "Bash(\"venv/Scripts/python.exe\" audit_steps_1_to_6.py)",
+      "Bash(PYTHONIOENCODING=utf-8 \"venv/Scripts/python.exe\" audit_steps_1_to_6.py)",
+      "Bash(git commit -m 'Add independent end-to-end audit script for Steps 1-6 \\(all checks pass\\) *)",
+      "PowerShell(Set-Location traffic_models\\\\delay; & C:\\\\Users\\\\ddagher\\\\RouteNet-Fermi\\\\venv\\\\Scripts\\\\python.exe $env:TEMP\\\\delay_range_check.py)"
     ]
   }
 }
