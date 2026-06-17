@@ -1,15 +1,15 @@
 # PIPELINE.md
 
 **Project:** XAI for GNN-based QoS Prediction in SDN — M2 Thesis + D3.2 Section 5
-**Companion to:** `THESIS_DECISIONS.md` (v6)
+**Companion to:** `THESIS_DECISIONS.md` (v7)
 **Reference paper:** Ferriol-Galmés et al., *RouteNet-Fermi*, IEEE/ACM ToN 2023, DOI 10.1109/TNET.2023.3269983.
-**Version:** v6
+**Version:** v7
 
 Read `THESIS_DECISIONS.md` first. Every choice is justified there.
 
 ## Protocol summary (LOCKED)
 
-**Retraining-based feature filtering**, confirmed by Karim (IMT). For each XAI method × each threshold k ∈ {25, 50, 75}, two reduced-input dataset variants are built by **dropping columns** (not masking values), and the model is retrained from scratch on each. **13 trained models in the core**; optionally +6 for a random-ranking control.
+**Retraining-based feature filtering**, confirmed by Karim (IMT). For each XAI method × each threshold k ∈ {30, 50, 70}, two reduced-input dataset variants are built by **dropping columns** (not masking values), and the model is retrained from scratch on each. **13 trained models in the core**; optionally +6 for a random-ranking control.
 
 ---
 
@@ -24,7 +24,7 @@ Read `THESIS_DECISIONS.md` first. Every choice is justified there.
 [Step 4]    Generate explanations on N=300 from all_multiplexed (using upstream pretrained)
 [Step 5]    Aggregate and rank features globally (+ half-split check)
 [Step 6]    Build reduced-input dataset variants (COLUMN DROPPING)
-[Step 7]    Retrain RouteNet-Fermi from scratch — 13 models (+ optional 6 for random control)
+[Step 7]    Retrain RouteNet-Fermi from scratch — 13 unique models (baseline + 6 principled + 6 random)
 [Step 8]    Build fidelity curves and compare
 [Step 9]    Stability and cost analysis
 [Step 10a]  Plausibility analysis (vs Step 3.5 pre-registration)
@@ -112,7 +112,7 @@ After each step: **stop and report** to the user before moving on.
 
 ### 3.3 — Random-ranking control
 - Deterministic helper: `random_ranking(seed=42)` produces one random permutation of the 10 feature names.
-- Used downstream **only if §7.B random-control retraining executes** (conditional).
+- Used downstream by the **core** random-control retrainings (Step 7 cells 8–13).
 
 **Sanity check for IG and KernelSHAP:** synthetic input where one feature is artificially extreme → method ranks it most important.
 
@@ -168,15 +168,15 @@ File: `results/theoretical_expectations.md`
 
 **Goal:** For each (XAI method, k), build two reduced-input configurations that drop specified feature columns from the input pipeline.
 
-**Per XAI method M ∈ {IG, KernelSHAP} (and random if §7.B runs):**
+**Per XAI method M ∈ {IG, KernelSHAP, random} (all three configs generated; IG ≡ KernelSHAP, so only IG + random are trained — see Step 7):**
 
-For each k ∈ {25, 50, 75}:
-- **`relevant_k`**: drop the bottom-(100−k)% feature columns from the path-feature dict. Keep top-k%. Equivalent feature counts: k=25 → keep top-2, k=50 → keep top-5, k=75 → keep top-7.
-- **`irrelevant_k`**: drop the top-k% feature columns. Keep bottom-(100−k)%. Equivalent feature counts: k=25 → keep top-7 to top-10 (3 features), k=50 → keep bottom-5, k=75 → keep bottom-2 to top-1 (2 features).
+For each k ∈ {30, 50, 70}:
+- **`relevant_k`**: keep the top-k% most important features; drop the bottom-(100−k)% columns.
+- **`irrelevant_k`**: keep the bottom-(100−k)% least important features; drop the top-k% columns.
 
-**Wait — clarify k semantics in code comments:** k is the *drop fraction* for the `relevant` direction, meaning at k=75 the `relevant_k` variant keeps 75% (7 features) and drops 25% (3 features). For the `irrelevant_k` variant at k=75, top-75% are dropped (drop top 7) and bottom-25% (3 features) are kept. **Confirm this with Karim if any ambiguity remains.** The locked convention here:
-- **`relevant_k`** = keep the top-k% most important features.
-- **`irrelevant_k`** = keep the bottom-(100−k)% least important features.
+The mapping to feature counts is exact (k×10): **k=30 → top-3 / bottom-7**, **k=50 → top-5 / bottom-5**, **k=70 → top-7 / bottom-3**. The two partitions at each k are complementary (kept ∪ kept = all 10, disjoint).
+
+**Why {30, 50, 70}** (revised from {25, 50, 75}, v7): Step 5 rankings place the same three features ({traffic, sigma, packets}, ~93% of attribution mass) above a ~19–20× attribution cliff in *both* methods. **k=30 isolates exactly this top-3 cliff set** — the cleanest fidelity test (relevant_30 = signal sufficiency, irrelevant_30 = signal necessity). k=50 is an intermediate control on the monotonicity of the trend; k=70 keeps top-7 to test whether padding the relevant set with noise-tail features degrades performance. Thresholds are derived from attribution *magnitudes*, not from downstream retraining performance, so the design does not condition on its own outcome.
 
 **Implementation (column dropping, real input-dimension change):**
 
@@ -195,35 +195,29 @@ On `xai-protocol-b`:
 
 ---
 
-## Step 7 — Retrain RouteNet-Fermi — the 13 (or 19) trainings
+## Step 7 — Retrain RouteNet-Fermi — the 13 unique trainings
 
-**Goal:** Train one model per variant configuration, all under identical hyperparameters and seed.
+**Goal:** Train one model per variant configuration, all under identical hyperparameters and seed. Run on **GCP** (Dana executes by hand; Claude never runs remote compute). Driver: `run_step7_all.sh`.
 
-### §7.A — Core matrix (mandatory)
+### §7.A — Core matrix (13 unique models, all mandatory)
 
-| # | Cell | Output dir |
-|---|---|---|
-| 1 | Baseline — full 10 path scalars, seed 42 | `checkpoints/baseline_seed42/` |
-| 2 | IG · k=25 · relevant | `checkpoints/ig/k25_relevant/` |
-| 3 | IG · k=25 · irrelevant | `checkpoints/ig/k25_irrelevant/` |
-| 4 | IG · k=50 · relevant | `checkpoints/ig/k50_relevant/` |
-| 5 | IG · k=50 · irrelevant | `checkpoints/ig/k50_irrelevant/` |
-| 6 | IG · k=75 · relevant | `checkpoints/ig/k75_relevant/` |
-| 7 | IG · k=75 · irrelevant | `checkpoints/ig/k75_irrelevant/` |
-| 8 | KernelSHAP · k=25 · relevant | `checkpoints/kernel_shap/k25_relevant/` |
-| 9 | KernelSHAP · k=25 · irrelevant | `checkpoints/kernel_shap/k25_irrelevant/` |
-| 10 | KernelSHAP · k=50 · relevant | `checkpoints/kernel_shap/k50_relevant/` |
-| 11 | KernelSHAP · k=50 · irrelevant | `checkpoints/kernel_shap/k50_irrelevant/` |
-| 12 | KernelSHAP · k=75 · relevant | `checkpoints/kernel_shap/k75_relevant/` |
-| 13 | KernelSHAP · k=75 · irrelevant | `checkpoints/kernel_shap/k75_irrelevant/` |
+| # | Cell | Config | Output dir |
+|---|---|---|---|
+| 1 | Baseline — full 10 path scalars, seed 42 | `configs/baseline/full.json` | `checkpoints/baseline_seed42/` |
+| 2 | Principled · k=30 · relevant | `configs/ig/k30_relevant.json` | `checkpoints/principled/k30_relevant/` |
+| 3 | Principled · k=30 · irrelevant | `configs/ig/k30_irrelevant.json` | `checkpoints/principled/k30_irrelevant/` |
+| 4 | Principled · k=50 · relevant | `configs/ig/k50_relevant.json` | `checkpoints/principled/k50_relevant/` |
+| 5 | Principled · k=50 · irrelevant | `configs/ig/k50_irrelevant.json` | `checkpoints/principled/k50_irrelevant/` |
+| 6 | Principled · k=70 · relevant | `configs/ig/k70_relevant.json` | `checkpoints/principled/k70_relevant/` |
+| 7 | Principled · k=70 · irrelevant | `configs/ig/k70_irrelevant.json` | `checkpoints/principled/k70_irrelevant/` |
+| 8 | Random · k=30 · relevant | `configs/random/k30_relevant.json` | `checkpoints/random/k30_relevant/` |
+| 9 | Random · k=30 · irrelevant | `configs/random/k30_irrelevant.json` | `checkpoints/random/k30_irrelevant/` |
+| 10 | Random · k=50 · relevant | `configs/random/k50_relevant.json` | `checkpoints/random/k50_relevant/` |
+| 11 | Random · k=50 · irrelevant | `configs/random/k50_irrelevant.json` | `checkpoints/random/k50_irrelevant/` |
+| 12 | Random · k=70 · relevant | `configs/random/k70_relevant.json` | `checkpoints/random/k70_relevant/` |
+| 13 | Random · k=70 · irrelevant | `configs/random/k70_irrelevant.json` | `checkpoints/random/k70_irrelevant/` |
 
-### §7.B — Random-ranking control (conditional)
-
-Run only if §7.A completed cleanly AND time + GPU access remain.
-
-| # | Cell | Output dir |
-|---|---|---|
-| 14–19 | Random · k=25/50/75 · {relevant, irrelevant} | `checkpoints/random/k{k}_{rel|irrel}/` |
+**The "principled" cells are trained from `configs/ig/` and equal KernelSHAP** — at k ∈ {30,50,70} the two rankings produce identical kept-feature sets at every cell (verified by `audit_steps_1_to_6.py`), so the 6 principled models cover both methods. Training the 6 KernelSHAP configs would reproduce these bit-for-bit and is therefore skipped. The random control is **core, not conditional**: because IG ≡ KernelSHAP, the fidelity headline is principled-vs-random. See THESIS_DECISIONS §7.
 
 **Hyperparameters for every run (paper §IV.D, locked):**
 - 150 epochs × 2,000 samples per epoch.
@@ -248,22 +242,22 @@ Run only if §7.A completed cleanly AND time + GPU access remain.
 **Goal:** Per-(method, k) MAE/MAPE table, the `irrelevant_k − relevant_k` gap statistic, and the headline curves.
 
 **Tasks:**
-- Load all 13 (or 19) `metrics.json` into a DataFrame.
-- Save: `results/fidelity_summary.csv` with columns `[xai_method, k, partition, test_mae, test_mape, n_features_kept]`.
-- Compute the **per-(method, k) MAE gap**: `gap(method, k) = MAE(irrelevant_k) − MAE(relevant_k)`. Larger = stronger fidelity.
-- **Headline figure**: at each k ∈ {25, 50, 75}, plot for each method:
+- Load all 13 `metrics.json` into a DataFrame (1 baseline + 6 principled + 6 random).
+- Save: `results/fidelity_summary.csv` with columns `[group, k, partition, test_mae, test_mape, n_features_kept]` where `group ∈ {baseline, principled, random}`.
+- Compute the **per-(group, k) MAE gap**: `gap(group, k) = MAE(irrelevant_k) − MAE(relevant_k)`. Larger = stronger fidelity.
+- **Headline figure**: at each k ∈ {30, 50, 70}, plot for **principled** and **random**:
   - The retrained baseline MAE as horizontal anchor.
-  - `relevant_k` MAE (one bar/point per method).
-  - `irrelevant_k` MAE (one bar/point per method).
+  - `relevant_k` MAE (one bar/point per group).
+  - `irrelevant_k` MAE (one bar/point per group).
   - The gap is the visual difference between the two bars.
-- **Secondary figure**: gap vs k for each method (one line per method, three points each).
+- **Secondary figure**: gap vs k for principled and random (two lines, three points each).
 - Same plots in MAPE alongside MAE.
 
 **Interpretation rules (locked):**
-- For each (method, k): `relevant_k` MAE close to baseline = good (the top-k features carry the signal). `irrelevant_k` MAE close to baseline = the XAI method picked the wrong features (the bottom features carry the signal too).
-- Across methods at the same k: larger `irrelevant − relevant` gap = more faithful method.
-- Across k for the same method: how does the gap behave? Larger gap at smaller k (k=25, keep top-2) is a stronger statement than larger gap at k=75 (keep top-7) because at k=75 most features are kept either way.
-- Random control (if §7.B ran): the gap for random should be near zero across all k. If IG and KernelSHAP gaps are not visibly larger than random's, the protocol isn't informative — itself a finding.
+- For (principled, k): `relevant_k` MAE close to baseline = good (the top-k features carry the signal). `irrelevant_k` MAE close to baseline = the ranking picked the wrong features.
+- **The headline comparison is principled vs. random** (not IG vs. KernelSHAP — they share identical models, §7.A). The ranking is faithful iff the **principled** gap clearly exceeds the **random** gap. If it does not, the protocol isn't informative on this dataset — itself a finding.
+- Across k for the principled group: larger gap at smaller k (k=30, keep top-3) is a stronger statement than larger gap at k=70 (keep top-7), because at k=70 most features are kept either way.
+- **Caveat (lower-bound gaps):** `traffic` and `packets` are structurally retained (load, `pkt_size`), so gaps that rely on removing them understate true importance; the test most cleanly validates the 8 truly-removable features + `sigma`. State this with the figure.
 
 **Outputs:**
 - `results/fidelity_summary.csv`
@@ -346,11 +340,10 @@ RouteNet-Fermi/   (xai-protocol-b branch — branched off xai-features before St
 ├── data_generator.py             ← MODIFIED: accepts dropped_features parameter
 ├── delay_model.py                ← MODIFIED: path_embedding input dim varies per variant
 ├── configs/                      ← Step 6: 12–18 variant configs
-└── checkpoints/                  ← Step 7: 13 (or 19) trained models
+└── checkpoints/                  ← Step 7: 13 unique trained models
     ├── baseline_seed42/
-    ├── ig/k{25,50,75}_{relevant,irrelevant}/
-    ├── kernel_shap/k{25,50,75}_{relevant,irrelevant}/
-    └── random/k{25,50,75}_{relevant,irrelevant}/  (conditional)
+    ├── principled/k{30,50,70}_{relevant,irrelevant}/   ← IG ≡ KernelSHAP (from configs/ig/)
+    └── random/k{30,50,70}_{relevant,irrelevant}/       ← negative control (core)
 ```
 
 ---
@@ -363,8 +356,8 @@ RouteNet-Fermi/   (xai-protocol-b branch — branched off xai-features before St
 | One of the 13 retrainings diverges or fails to converge | Medium | Same hyperparameters as paper §IV.D should converge cleanly. If a variant fails, investigate (likely too few features kept at extreme k) before retrying. |
 | `data_generator.py` modifications introduce bugs that silently corrupt the input | High if not checked | Unit test: load one variant config, dump the first batch, verify exactly the expected columns are present and have plausible values. |
 | `path_embedding` input dim modification fails to retrain because of TF state | Medium | Recreate the model from scratch per variant (don't try to "patch" a pre-existing model). Always instantiate fresh. |
-| RTX 4090 access falls through | Medium | Mouna confirms access; fallback is Colab Pro+ but timeline suffers. |
-| §7.B random control unrunnable due to compute | Possible | §7.B is conditional; report the limitation in the thesis if skipped. |
+| GCP access/quota falls through | Medium | Dana provisions the company GCP resource; the trainer/driver are GPU-agnostic so any CUDA-capable VM works. Claude never runs remote compute — Dana executes by hand. |
+| One of the 13 retrainings diverges | Medium | Same hyperparameters as paper §IV.D should converge; if a variant fails (likely too few features at k=30), investigate before retrying. |
 | Implausible XAI rankings (top-5 don't match queueing-theory intuition) | Possible | Treat as a finding. Pre-registration converts this from embarrassment to publishable result. |
 | Half-split Spearman in Step 5 is low | Low | If < 0.7, increase N before Step 6. Document the observed value. |
 | Confusion between "10-of-22 XAI scope" and "what's dropped in variants" | High | §5 of THESIS_DECISIONS is explicit: XAI ranks 10 features. Dropping in variants is restricted to those 10. The 12 structural inputs are NEVER dropped. |
@@ -382,3 +375,4 @@ RouteNet-Fermi/   (xai-protocol-b branch — branched off xai-features before St
 | v5 | Switched to inference-only. 12 inference cells. |
 | v5.5 | Both protocols (A inference / B retraining) documented as conditional branches with hard-stop gate. Random control as third method. k ∈ {25, 50, 75}. Pre-registration formalized. Step 2.5 added. |
 | v6 | **Protocol locked to retraining-based per Karim's email (June 2026).** Variant generation locked to **column dropping** (per Karim's confirmation). Inference-only branch and hard-stop gate removed. Step 6 rewritten as the dropping-based variant generator on a sister branch `xai-protocol-b`. Step 7 rewritten with the 13-cell core matrix + conditional 6-cell §7.B random control. Step 8 rewritten around the `irrelevant_k − relevant_k` MAE gap as the headline statistic. Risks table updated to reflect dropping-specific risks. |
+| v7 | **Post-Step-5 redesign (2026-06-16/17).** (1) Threshold sweep {25,50,75} → {30,50,70} — k=30 isolates the top-3 above the ~19–20× attribution cliff; exact mapping k×10 = 3/5/7. (2) **Step 7 matrix restructured to 13 unique = 1 baseline + 6 principled + 6 random.** IG ≡ KernelSHAP at every cell (identical kept-sets; audit equivalence check), so only the 6 IG-derived "principled" models are trained (`checkpoints/principled/`); KernelSHAP duplicates skipped. (3) **Random control promoted from conditional to core** — it carries the fidelity headline (principled-vs-random). (4) Step 8 reframed to principled-vs-random; (5) traffic/packets lower-bound caveat added; (6) compute → **GCP** (risk table updated). Configs regenerated (incl. `configs/random/`); re-verified audit + smoke **19/19**. See THESIS_DECISIONS §6/§7/§10 and changelog v7. |

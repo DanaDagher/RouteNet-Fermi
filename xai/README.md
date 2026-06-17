@@ -11,7 +11,7 @@ are never perturbed or dropped in these modules. See THESIS_DECISIONS §5.
 | `training_stats.py` | Compute/cache training-set median per feature. Run once; saved to `results/training_stats.json`. |
 | `integrated_gradients.py` | Integrated Gradients (Sundararajan 2017). 50 interpolation steps from training-set median to actual. Gradient of output[flow_idx=0] w.r.t. flow[0]'s path scalars. |
 | `kernel_shap.py` | KernelSHAP (Lundberg & Lee 2017). Black-box wrapper: varies only flow[0]'s 10 path scalars. 256 perturbations, single background = training-set median. |
-| `random_control.py` | Deterministic random ranking (seed=42). Negative control for Step 6/7 (conditional §7.B). |
+| `random_control.py` | Deterministic random ranking (seed=42). Negative control for Step 6/7 (core — Step 7 cells 8–13; carries the principled-vs-random fidelity result). |
 | `tests/test_ig.py` | IG sanity checks (real-data + synthetic). |
 | `tests/test_kernel_shap.py` | KernelSHAP sanity checks (real-data + synthetic). |
 

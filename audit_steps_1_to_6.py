@@ -165,10 +165,11 @@ print('\n[Step 6] Variant configs — consistency against Step 5 rankings')
 def ranked_features(csv_name):
     return [r[1] for r in load_csv_ranking(csv_name)]
 
-K_KEEP = {25: 2, 50: 5, 75: 7}
-for method, csv_name in [('ig', 'ig.csv'), ('kernel_shap', 'kernel_shap.csv')]:
+K_KEEP = {30: 3, 50: 5, 70: 7}
+for method, csv_name in [('ig', 'ig.csv'), ('kernel_shap', 'kernel_shap.csv'),
+                         ('random', 'random.csv')]:
     ranking = ranked_features(csv_name)
-    for k in [25, 50, 75]:
+    for k in [30, 50, 70]:
         n_top = K_KEEP[k]
         expect_rel = set(ranking[:n_top])
         expect_irr = set(ranking[n_top:])
@@ -185,6 +186,18 @@ for method, csv_name in [('ig', 'ig.csv'), ('kernel_shap', 'kernel_shap.csv')]:
                   cfg['path_embedding_input_dim'] == len(kept) + 7,
                   f"dim={cfg['path_embedding_input_dim']}")
 
+# IG == KernelSHAP equivalence at every cell (justifies training 7 unique, not 13):
+# at k in {30,50,70} the two rankings yield identical kept-feature SETS, so the
+# 6 principled trainings cover both methods. This must hold for the matrix design.
+for k in [30, 50, 70]:
+    for part in ['relevant', 'irrelevant']:
+        ig_kept = set(json.load(open(
+            os.path.join(REPO, 'configs', 'ig', f'k{k}_{part}.json')))['kept_features'])
+        sh_kept = set(json.load(open(
+            os.path.join(REPO, 'configs', 'kernel_shap', f'k{k}_{part}.json')))['kept_features'])
+        check(f'IG set == KernelSHAP set at k{k}_{part} (principled equivalence)',
+              ig_kept == sh_kept)
+
 # baseline config
 with open(os.path.join(REPO, 'configs', 'baseline', 'full.json')) as fh:
     base = json.load(fh)
@@ -195,8 +208,8 @@ check('baseline: keeps all 10, dim 17',
 # model-side: delay_model on this branch accepts kept_path_scalars and dims correctly
 from delay_model import RouteNet_Fermi, PATH_SCALAR_FEATURES
 check('delay_model.PATH_SCALAR_FEATURES == canonical list', PATH_SCALAR_FEATURES == PATH_SCALARS)
-m2 = RouteNet_Fermi(kept_path_scalars=['sigma', 'traffic'])
-check('model dim for top-2 variant == 9', m2.path_embedding.input_shape[-1] == 9)
+m2 = RouteNet_Fermi(kept_path_scalars=['sigma', 'traffic', 'packets'])
+check('model dim for top-3 variant == 10', m2.path_embedding.input_shape[-1] == 10)
 m10 = RouteNet_Fermi()
 check('default model dim == 17 (upstream-identical)', m10.path_embedding.input_shape[-1] == 17)
 # unknown feature rejected

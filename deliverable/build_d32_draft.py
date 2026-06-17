@@ -125,14 +125,16 @@ para('WP3 — XAI-based E2E network automation  ·  Task T3.2 — Critical and c
      'study of XAI approaches for network automation',
      size=10, align=WD_ALIGN_PARAGRAPH.CENTER)
 para('', size=6)
-para('DRAFT v0.1 — internal review version (Dana Dagher / Mouna Ben Mabrouk). '
-     'Covers completed work: pipeline Steps 1 to 6. Retraining campaign (Step 7) '
-     'and fidelity results (Step 8) to be added in the next revision.',
+para('DRAFT v0.2 — internal review version (Dana Dagher / Mouna Ben Mabrouk). '
+     'Covers completed work: pipeline Steps 1 to 6, including the post-Step-5 '
+     'design decisions (method-equivalence finding, threshold choice, and stated '
+     'limitations — Sections 1.5.5–1.5.6). Retraining campaign (Step 7) and '
+     'fidelity results (Step 8) to be added in the next revision.',
      italic=True, size=10, align=WD_ALIGN_PARAGRAPH.CENTER,
      color=RGBColor(0xB0, 0x30, 0x30))
 para('Author: Dana Dagher (SogetiLabs). Reviewer: Mouna Ben Mabrouk (SogetiLabs).',
      size=10, align=WD_ALIGN_PARAGRAPH.CENTER)
-para('Date: 12 June 2026', size=10, align=WD_ALIGN_PARAGRAPH.CENTER)
+para('Date: 17 June 2026', size=10, align=WD_ALIGN_PARAGRAPH.CENTER)
 doc.add_page_break()
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -335,9 +337,12 @@ doc.add_heading('1.4.4  Explanation generation (Step 4)', level=3)
 para('Both methods were run on the same locked set of 300 all_multiplexed test '
      'simulations (deterministic order, indices committed to the repository). '
      'Each run produces one 10-dimensional attribution vector per simulation. '
-     'Wall-clock cost on CPU: 43.8 minutes for IG (≈8.8 s/simulation) and '
-     '9.8 minutes for KernelSHAP (≈2.0 s/simulation on the already-compiled '
-     'graph). Three audits were performed on the raw attributions:')
+     'Raw sequential wall-clock (44 min IG, 10 min KernelSHAP) is not a fair cost '
+     'comparison: the two methods ran back-to-back, so KernelSHAP inherited the '
+     'TensorFlow graph already JIT-compiled by the IG run and only IG paid the '
+     'one-time compilation. The complexity comparison is therefore based on model '
+     'evaluations per explanation and on equally-warmed timing, reported in '
+     'Section 1.5.5. Three audits were performed on the raw attributions:')
 bullets([
     ('Sign structure: ', 'traffic and packets attributions split ≈50/50 '
      'positive/negative across simulations — expected for signed IG around a '
@@ -362,12 +367,18 @@ para('Per-method global rankings are obtained by averaging absolute attributions
      'rank correlation, with ρ ≥ 0.7 preregistered as the acceptance threshold.')
 
 doc.add_heading('1.4.6  Reduced-input variant design (Step 6)', level=3)
-para('For each method M ∈ {IG, KernelSHAP} and each threshold k ∈ {25, 50, 75}, '
+para('For each method M ∈ {IG, KernelSHAP} and each threshold k ∈ {30, 50, 70}, '
      'the 10 scalars are partitioned according to M’s ranking into a relevant_k '
-     'variant (keep the top-k% features: top-2 / top-5 / top-7) and an '
-     'irrelevant_k variant (keep the complementary bottom-75/50/25%: 8 / 5 / 3 '
-     'features). With the full-input baseline this yields 13 training '
-     'configurations (19 if the conditional random-control matrix is executed). '
+     'variant (keep the top-k% features: top-3 / top-5 / top-7) and an '
+     'irrelevant_k variant (keep the complementary bottom-70/50/30%: 7 / 5 / 3 '
+     'features). The thresholds are aligned to the attribution structure found '
+     'in Step 5, where both methods place the same three features above a '
+     '~19–20× importance cliff: k = 30 isolates exactly this top-3 set. With the '
+     'full-input baseline, and accounting for the fact that IG and KernelSHAP '
+     'produce identical kept-feature sets at every cell (their rankings differ '
+     'only by adjacent swaps that never cross a cut boundary), this yields 13 '
+     'unique training configurations: one baseline, six principled variants '
+     '(shared by IG and KernelSHAP), and six random-control variants. '
      'Implementation: the data loader accepts a dropped-feature list and removes '
      'those columns at load time; the model’s path-embedding input layer is '
      'dimensioned to the kept-feature count (n_kept + 7 for the always-present '
@@ -402,8 +413,8 @@ table(
     col_widths=[1.4, 3.8, 3.0, 4.2, 3.2],
 )
 para('The headline structural finding is a cliff between ranks 3 and 4: the '
-     'top-3 features (sigma, traffic, packets) carry ≈97 % of the total '
-     'attribution mass, with a ≈20× magnitude drop to the rank-4 feature for '
+     'top-3 features (sigma, traffic, packets) carry ≈93 % of the total '
+     'attribution mass (IG 92.9 %, KernelSHAP 93.3 %), with a ≈20× magnitude drop to the rank-4 feature for '
      'both methods. The bottom-7 features form a flat near-noise tail. '
      'Physically, this is coherent: traffic and packets determine link load and '
      'packet size — the primary delay drivers in queueing terms — while sigma, '
@@ -459,10 +470,94 @@ para('The seed-42 random ranking places the three signal-carrying features at '
      'experiment is sound, variants built from the random ranking must produce '
      'fidelity curves clearly distinguishable from the IG and KernelSHAP curves.')
 
+doc.add_heading('1.5.5  Method equivalence and its consequences for the study design', level=3)
+para('A structural consequence of the cross-method agreement was identified before '
+     'launching the retraining campaign and reshapes the study. The IG and '
+     'KernelSHAP rankings differ only by three adjacent transpositions (ranks 1–2, '
+     '4–5 and 6–7); none of the partition cut points (after the 3rd, 5th and 7th '
+     'feature) falls between a transposed pair. Consequently, at every '
+     '(k, partition) cell the two methods select the identical set of kept '
+     'features — verified by an automated set-equality check over all six cells. '
+     'Because the model concatenates path scalars in a fixed canonical order, '
+     'identical feature sets yield identical retrained models. Three consequences '
+     'follow:')
+bullets([
+    ('Unique-model count: ', 'the matrix contains 7 unique principled models '
+     '(one baseline plus six variants), not twelve. Training the KernelSHAP '
+     'variants separately would reproduce the IG-derived models bit-for-bit, so '
+     'they are not retrained; the six principled models represent both methods. '
+     'With the six random-control variants this gives 13 unique trainings.'),
+    ('Comparison axis: ', 'IG and KernelSHAP cannot be separated on fidelity '
+     '(identical models give identical curves). They are compared instead on '
+     'ranking stability (half-split ρ = 0.88 for IG vs. 0.95 for KernelSHAP — '
+     'SHAP marginally more stable) and computational complexity (Table 1-6): IG '
+     'issues ≈5× fewer model evaluations per explanation (50 vs. 256) and is '
+     'faster per simulation on equally-warmed runs, but requires gradient access; '
+     'KernelSHAP is model-agnostic but more costly and approximate. Since both '
+     'rankings are equally faithful, the more complex method is not preferable for '
+     'this model where gradients are available — the recommendation is Integrated '
+     'Gradients, with KernelSHAP reserved for black-box settings.'),
+    ('Random control becomes central: ', 'with the two principled methods '
+     'equivalent, the fidelity question reduces to principled-vs-random. The six '
+     'random-control retrainings are therefore promoted from optional to core; '
+     'they carry the faithfulness result.'),
+])
+table(
+    ['Aspect', 'Integrated Gradients', 'KernelSHAP'],
+    [
+        ['Model evaluations / explanation', '50 (interpolation steps)', '256 (coalition samples)'],
+        ['Access required', 'gradients (white-box)', 'predictions only (black-box)'],
+        ['Estimator', 'deterministic (exact in the limit)', 'sampling-based (approximate)'],
+        ['Warm time / simulation', '≈6.9 s', '≈7.9 s'],
+    ],
+    caption='Table 1-6: Computational complexity of the two XAI methods. The raw '
+            'sequential wall-clock (44 vs 10 min) is excluded as it reflects a '
+            'JIT-compilation artefact (KernelSHAP ran on the graph IG had already '
+            'compiled); the equally-warmed per-simulation times reverse that '
+            'apparent ordering, consistent with the model-evaluation counts.',
+    col_widths=[5.6, 5.4, 5.0],
+)
+para('This convergence of two methods from opposite families (gradient-based vs. '
+     'perturbation-based) is reported as a positive finding — convergent validity: '
+     'it indicates the ranking reflects the model rather than an artifact of a '
+     'single method, which is notable given that disagreement between explanation '
+     'methods is a well-documented concern in the XAI literature.')
+
+doc.add_heading('1.5.6  Limitations of the completed phases', level=3)
+para('Four limitations are stated openly; each is a property to interpret around, '
+     'not a defect in the pipeline.')
+bullets([
+    ('Structurally retained features: ', 'traffic and packets cannot be fully '
+     'removed (they feed the load and packet-size computations), so any fidelity '
+     'gap that relies on removing them is a lower bound; the retraining test most '
+     'cleanly validates the eight fully-removable scalars plus sigma. This '
+     'structural floor is identical across every variant — principled, random and '
+     'baseline alike — so the principled-vs-random contrast remains valid; at '
+     'worst it compresses the dynamic range, which would itself be informative '
+     '(the model would be shown to rely mainly on the queueing physics, the '
+     'learned path features adding a secondary correction).'),
+    ('Conditional importance of sigma: ', 'sigma is zero for the ≈79 % of flows '
+     'that are not modulated, so its high mean-absolute attribution is driven by '
+     'the ≈21 % modulated flows. Its rank-1 (IG) / rank-2 (KernelSHAP) position '
+     'should therefore be read as strong importance conditional on modulated '
+     'traffic, not universal dominance — by frequency of being the single '
+     'top-attributed feature, traffic leads in ≈71 % of simulations.'),
+    ('Noise-tail volatility: ', 'ranks 4–10 are near-zero and reorder when the '
+     'reference point changes; tail attribution magnitudes are therefore not '
+     'interpreted. The study rests solely on the top-3 set {traffic, sigma, '
+     'packets}, which is identical across all four rankings (both methods × both '
+     'reference points) — only its internal order shuffles — so the moderate '
+     'overall stability (ρ ≈ 0.61–0.64) does not affect any conclusion.'),
+    ('Data-informed thresholds: ', 'the thresholds {30, 50, 70} are aligned to the '
+     'observed attribution cliff, but are derived from attribution magnitudes — a '
+     'property of the explanations — independently of the retraining accuracy they '
+     'evaluate, so the design does not condition on its own outcome.'),
+])
+
 # ── 5.6 Work in progress ─────────────────────────────────────────────────────
 doc.add_heading('1.6  Work in Progress: Retraining Campaign and Fidelity Analysis', level=2)
-para('The 13 training configurations of Section 1.4.6 are scheduled on the '
-     'project’s reference compute (NVIDIA RTX 4090). All runs use the exact '
+para('The 13 unique training configurations of Section 1.4.6 are scheduled on the '
+     'project’s reference compute (a company-provided GCP GPU instance). All runs use the exact '
      'training protocol of the reference paper — 150 epochs × 2,000 samples, '
      'Adam (lr = 0.001), MAPE loss, hidden state 32, T = 8 message-passing '
      'iterations, seed 42, identical data splits — so that the only varying '
@@ -472,23 +567,25 @@ table(
     ['#', 'Configuration', 'Kept path scalars'],
     [
         ['1', 'Baseline (full input)', '10'],
-        ['2–7', 'IG · k ∈ {25, 50, 75} · {relevant, irrelevant}', '2/8, 5/5, 7/3'],
-        ['8–13', 'KernelSHAP · k ∈ {25, 50, 75} · {relevant, irrelevant}', '2/8, 5/5, 7/3'],
-        ['(14–19)', 'Random control · same matrix (conditional on compute)', '2/8, 5/5, 7/3'],
+        ['2–7', 'Principled (IG ≡ KernelSHAP) · k ∈ {30, 50, 70} · {relevant, irrelevant}', '3/7, 5/5, 7/3'],
+        ['8–13', 'Random control · k ∈ {30, 50, 70} · {relevant, irrelevant}', '3/7, 5/5, 7/3'],
     ],
-    caption='Table 1-6: Retraining matrix (Step 7).',
+    caption='Table 1-7: Retraining matrix (Step 7).',
     col_widths=[1.6, 9.4, 5.0],
 )
-para('The fidelity analysis (Step 8) will compare, per method and threshold, the '
-     'test MAPE of relevant_k vs. irrelevant_k variants against the retrained '
-     'baseline. The expected signature of a faithful ranking, preregistered in '
-     'Step 3.5: relevant_k variants approach baseline accuracy already at small '
-     'k (the top-2 features carry the signal), while irrelevant_k variants '
-     'degrade severely even at k = 25 (the model is denied the signal carriers); '
-     'the random control should fall between the two. Subsequent steps add a '
-     'plausibility assessment against queueing theory (Step 10a) and a written '
-     'analysis of the methodology’s transferability to V2X scenarios in support '
-     'of WP4 (Step 10b).')
+para('As established in Section 1.5.5, the two principled methods yield identical '
+     'retrained models, so the campaign trains 13 unique configurations (one '
+     'baseline, six principled, six random) and the IG-vs-KernelSHAP comparison is '
+     'settled on stability and cost rather than fidelity.')
+para('The fidelity analysis (Step 8) compares the principled ranking against the '
+     'random control: at each threshold, the test MAPE of relevant_k vs. '
+     'irrelevant_k variants is measured against the retrained baseline. A faithful '
+     'ranking shows relevant_k approaching baseline accuracy while irrelevant_k '
+     'degrades, with the principled gap clearly exceeding the random-control gap '
+     '(subject to the structural lower-bound caveat of Section 1.5.6). Subsequent '
+     'steps add a plausibility assessment against queueing theory (Step 10a) and '
+     'a written analysis of the methodology’s transferability to V2X scenarios in '
+     'support of WP4 (Step 10b).')
 
 # ── 5.7 Conclusion ───────────────────────────────────────────────────────────
 doc.add_heading('1.7  Conclusion (Interim)', level=2)
@@ -502,7 +599,7 @@ para('The completed phases establish a validated and fully reproducible '
      'matter; and the retraining infrastructure that will deliver the fidelity '
      'verdict — 13 configurations, column-dropping with true input-dimension '
      'reduction, verified end-to-end — is in place. The key intermediate finding '
-     'is that both methods concentrate ≈97 % of attribution mass on 3 of the 10 '
+     'is that both methods concentrate ≈93 % of attribution mass on 3 of the 10 '
      'rankable features (sigma, traffic, packets), a strong and physically '
      'plausible claim that the retraining campaign will now put to the test.')
 

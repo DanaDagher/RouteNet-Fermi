@@ -2,7 +2,7 @@
 **Date:** 2026-06-04  
 **N:** 300 simulations, all_multiplexed test, flow_idx=0
 
-## Check 2 — KernelSHAP top-attributed feature distribution
+## Check 2 ï¿½ KernelSHAP top-attributed feature distribution
 
 | Feature | SHAP top count | SHAP % | IG top count | IG % |
 |---|---|---|---|---|
@@ -15,13 +15,13 @@
 | avg_pkts_lambda | 2 | 0.7% | 2 | 0.7% |
 | pkts_lambda_on | 1 | 0.3% | 0 | 0.0% |
 
-**Cross-check — sigma vs Modulated flows:**
+**Cross-check ï¿½ sigma vs Modulated flows:**
 - Modulated flows in class distribution: **63** (21.0%)
 - sigma top in SHAP: **65** (21.7%)
 - sigma top in IG:   **68** (22.7%)
 - Match (within 10 sims): **YES**
 
-## Check 3 — Spearman rank correlation: IG vs KernelSHAP global ranking
+## Check 3 ï¿½ Spearman rank correlation: IG vs KernelSHAP global ranking
 
 | Feature | mean(|IG|) | IG rank | mean(|SHAP|) | SHAP rank |
 |---|---|---|---|---|

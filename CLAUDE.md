@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-**Version:** v6
+**Version:** v7
 
 This file orients any Claude Code session that opens this project. Read me first.
 
@@ -16,8 +16,8 @@ This file orients any Claude Code session that opens this project. Read me first
 
 ## Two-document contract
 
-1. **`THESIS_DECISIONS.md` (v6)** — what we're doing and why.
-2. **`PIPELINE.md` (v6)** — the step-by-step execution checklist.
+1. **`THESIS_DECISIONS.md` (v7)** — what we're doing and why.
+2. **`PIPELINE.md` (v7)** — the step-by-step execution checklist.
 
 Read both before doing anything. Do not invent decisions that contradict them. If asked to do something inconsistent, flag the inconsistency.
 
@@ -25,16 +25,16 @@ Read both before doing anything. Do not invent decisions that contradict them. I
 
 **Retraining-based comparison (formerly "Protocol B" in v5.5).** Confirmed by Karim (IMT) on the email exchange of June 2026, and confirmed as **column-dropping** (not value-masking).
 
-For each XAI method (IG, KernelSHAP) and each threshold k ∈ {25, 50, 75}, the input feature set is partitioned into two reduced-input variants:
+For each XAI method (IG, KernelSHAP) and each threshold k ∈ {30, 50, 70}, the input feature set is partitioned into two reduced-input variants:
 - **`relevant_k`** — keep the top-k% features (drop the bottom-(100−k)% columns).
 - **`irrelevant_k`** — keep the bottom-(100−k)% features (drop the top-k% columns).
 
-A new model is trained from scratch on each variant. **13 trained models total:**
+A new model is trained from scratch on each variant. **13 unique trained models:**
 - 1 baseline (full 10 path scalars, retrained from scratch with seed 42).
-- 6 IG variants (3 k × 2 partitions).
-- 6 KernelSHAP variants (3 k × 2 partitions).
+- 6 **principled** variants (3 k × 2 partitions). At k ∈ {30, 50, 70} the IG and KernelSHAP rankings yield **identical kept-feature sets at every cell** (the two rankings differ only by adjacent swaps that never cross a cut boundary), so the methods share the same 6 retrained models — training KernelSHAP separately would reproduce the IG models bit-for-bit. This IG ≡ KernelSHAP equivalence is itself a finding (convergent validity), enforced by a check in `audit_steps_1_to_6.py`.
+- 6 **random**-ranking negative-control variants (3 k × 2 partitions). **Core, not conditional:** because IG ≡ KernelSHAP, the meaningful faithfulness test is principled-vs-random, so the random control carries the fidelity result.
 
-A random-ranking negative control runs the same 6-cell matrix as a third "method." **The random control's 6 retrainings are conditional on compute availability** — execute them if and only if the 13 main retrainings completed cleanly and time / GPU access remains. See PIPELINE Step 7 and THESIS_DECISIONS §7.B.
+**IG vs KernelSHAP are compared not on fidelity** (identical models → identical curves) **but on stability** (half-split Spearman 0.88 vs 0.95) **and cost** (IG ~5× cheaper: 50 gradient steps vs 256 perturbations) → **recommend IG**. The fidelity headline is principled-vs-random. See PIPELINE Step 7 and THESIS_DECISIONS §7.
 
 ## Quick facts
 
@@ -44,13 +44,13 @@ A random-ranking negative control runs the same 6-cell matrix as a third "method
 - **XAI methods compared:** Integrated Gradients + KernelSHAP. Random-ranking control as conditional third method.
 - **Features in scope for XAI ranking:** the 10 per-flow path scalars. The other 12 of 22 inputs are **always present** in every dataset variant — they define the graph structure the GNN operates over and are never removed. See THESIS_DECISIONS §5.
 - **Variant generation:** **column dropping**, not value masking. The `path_embedding` input dimension changes per variant. The 12 structural inputs pass through unchanged in every variant.
-- **Threshold sweep:** k ∈ {25, 50, 75}. Reported as feature counts: top-2 / top-5 / top-7 of 10 (since k×10 with floor/round gives those).
+- **Threshold sweep:** k ∈ {30, 50, 70}. Reported as feature counts: top-3 / top-5 / top-7 of 10 (k×10 gives those exactly). Chosen so k=30 isolates the top-3 features above the ~19–20× attribution cliff seen in both IG and KernelSHAP (Step 5); see THESIS_DECISIONS §6/§7 and changelog v7. Revised from {25, 50, 75} on 2026-06-16.
 - **Sample budget:**
   - **For XAI explanations:** N = 300 simulations from `all_multiplexed` test (same 300 for IG and KernelSHAP).
   - **For training:** full `all_multiplexed` training split, all 13 (or 19 if random control runs) models.
   - **For evaluation of retrained models:** full `all_multiplexed` test split.
 - **Hyperparameters per retraining (paper §IV.D):** 150 epochs of 2,000 samples, Adam optimizer at lr=0.001, MAPE loss for delay, hidden state size 32, T=8 message-passing iterations. **Same for all 13 models.** Seed 42 for all.
-- **Reference compute:** Sogeti machine with NVIDIA RTX 4090. Pending Mouna's confirmation of SSH access.
+- **Reference compute:** GCP (company-provided resource for Dana), as of 2026-06-17. Replaces the earlier Sogeti RTX 4090 plan. **Claude never runs anything on the remote machine — Dana executes Step 7 on GCP by hand;** Claude only prepares scripts/configs locally.
 
 ## Repository layout (actual)
 
@@ -87,11 +87,10 @@ RouteNet-Fermi/
 ├── xai/                                             ← TO CREATE in Step 3
 ├── explanation_set/, explanations/, rankings/       ← Steps 4–5
 ├── datasets/                                        ← Step 6: reduced-input variant configs
-├── checkpoints/                                     ← Step 7: 13 (or 19) trained models
+├── checkpoints/                                     ← Step 7: 13 unique trained models
 │   ├── baseline_seed42/
-│   ├── ig/k{25,50,75}_{relevant,irrelevant}/
-│   ├── kernel_shap/k{25,50,75}_{relevant,irrelevant}/
-│   └── random/k{25,50,75}_{relevant,irrelevant}/    ← conditional
+│   ├── principled/k{30,50,70}_{relevant,irrelevant}/   ← IG ≡ KernelSHAP (trained from configs/ig/)
+│   └── random/k{30,50,70}_{relevant,irrelevant}/       ← negative control (core, not conditional)
 └── (other dirs created on demand per pipeline)
 ```
 

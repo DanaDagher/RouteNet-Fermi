@@ -40,7 +40,7 @@ Aggregation: `mean(|score|)` across all 300 simulations per feature.
 
 | Rank | Feature | mean(|IG|) |
 |---|---|---|
-| 1 | sigma | 0.182053 |
+| 1 | sigma | 0.182053 
 | 2 | traffic | 0.159653 |
 | 3 | packets | 0.130660 |
 | 4 | pkts_lambda_on | 0.007042 |
@@ -99,16 +99,20 @@ outperform this floor.
 | 4 (best tail) | 0.007 | 0.008 |
 | **ratio** | **~19x** | **~20x** |
 
-The top-3 features (sigma, traffic, packets) carry ~97% of the total attribution
-mass. The bottom-7 are a flat near-noise tail with scores ~20x smaller. This
+The top-3 features (sigma, traffic, packets) carry ~93% of the total attribution
+mass (IG 92.9%, KernelSHAP 93.3%; pooled share = sum of the top-3 mean|attribution|
+over the sum across all 10 features). The bottom-7 are a flat near-noise tail with
+scores ~20x smaller. This
 cliff is the headline structural finding of the ranking step — it directly
 informs which k thresholds are informative:
 
-- **k=25 (top-2)**: extremely discriminative — keeps sigma+traffic (IG) or
-  traffic+sigma (SHAP), drops everything else including packets.
+- **k=30 (top-3)**: isolates exactly the cliff set {sigma, traffic, packets} —
+  the cleanest fidelity probe (relevant_30 tests sufficiency of the top-3,
+  irrelevant_30 tests their necessity). This finding is why the sweep was set
+  to {30, 50, 70} (v7).
 - **k=50 (top-5)**: keeps the full meaningful signal (top-3) plus the very
-  start of the noise tail.
-- **k=75 (top-7)**: keeps top-3 plus most of the noise tail; mostly a sanity
+  start of the noise tail; intermediate control.
+- **k=70 (top-7)**: keeps top-3 plus most of the noise tail; mostly a sanity
   check that adding noise features doesn't help.
 
 ### 2. IG vs KernelSHAP agreement
@@ -135,8 +139,8 @@ sigma=0.177). This near-tie is physically meaningful:
   across all 5 traffic classes, hence consistently attributed by both methods.
 
 The near-tie at ranks 1/2 does NOT affect Step 6: both sigma and traffic are
-in the top-2 for both methods. Any top-2 variant (k=25) keeps both regardless
-of which method's ranking is used.
+in the top-3 for both methods. Every relevant variant (k=30 keeps top-3, and
+k=50/k=70 keep more) retains both regardless of which method's ranking is used.
 
 ---
 

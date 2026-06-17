@@ -5,7 +5,7 @@
 **Context:** TRAVEL ANR project — WP3, Task 3.2, IMT Contribution 3. Feeds deliverable D3.2 Section 5.
 **Reference paper:** Ferriol-Galmés et al., *RouteNet-Fermi: Network Modeling with Graph Neural Networks*, IEEE/ACM ToN 2023, DOI 10.1109/TNET.2023.3269983.
 **Status:** Locked.
-**Version:** v6
+**Version:** v7
 
 ---
 
@@ -97,32 +97,35 @@ The 12 "excluded" inputs are excluded only from the **XAI ranking** step. In the
 **Procedure:**
 1. Run XAI methods on N=300 simulations from `all_multiplexed` test (Step 4).
 2. Aggregate per-feature importance, rank the 10 path scalars globally (Step 5).
-3. For each k ∈ {25, 50, 75}, build two reduced-input dataset configurations (Step 6).
+3. For each k ∈ {30, 50, 70}, build two reduced-input dataset configurations (Step 6).
 4. Retrain RouteNet-Fermi from scratch on each (Step 7).
 
 ---
 
 ## 7. Experimental protocol — RETRAINING-BASED (LOCKED)
 
-### §7.A — Core matrix (mandatory)
+### §7.A — Core matrix (13 unique models, all mandatory)
 
 | # | Cell | Trainings |
 |---|---|---|
 | 1 | Baseline — full 10 path scalars, retrained from scratch with seed 42 | 1 |
-| 2–4 | IG · k=25 · {relevant, irrelevant} → 2; k=50 · 2; k=75 · 2 | 6 |
-| 5–7 | KernelSHAP · k=25 · {relevant, irrelevant} → 2; k=50 · 2; k=75 · 2 | 6 |
-| | **Core total** | **13** |
+| 2–7 | **Principled** (IG ≡ KernelSHAP) · k=30/50/70 · {relevant, irrelevant} | 6 |
+| 8–13 | **Random** negative control · k=30/50/70 · {relevant, irrelevant} | 6 |
+| | **Total** | **13** |
 
-### §7.B — Random-ranking negative control (conditional)
+**Why 6 principled cells, not 12 (IG ≡ KernelSHAP):** at k ∈ {30, 50, 70} the IG and KernelSHAP rankings produce identical kept-feature **sets** at every cell — the two rankings differ only by adjacent swaps that never cross a cut boundary (verified by `audit_steps_1_to_6.py`: "IG set == KernelSHAP set" at all 6 cells). Since the model re-sorts features to canonical order, identical sets → identical trained models (same seed, data, set). Training the KernelSHAP configs would reproduce the IG models bit-for-bit, so the 6 IG-derived cells **are** the principled variants for both methods. This equivalence is a *finding* (convergent validity), not an assumption. The 6 trained models live in `checkpoints/principled/` (trained from `configs/ig/`).
 
-| # | Cell | Trainings |
-|---|---|---|
-| 8–10 | Random · k=25 · {relevant, irrelevant}; k=50 · 2; k=75 · 2 | 6 |
-| | **With random control: total** | **19** |
+**Why the random control is now core (not conditional):** because IG ≡ KernelSHAP, the IG-vs-KernelSHAP *fidelity* comparison is degenerate (identical models → identical curves). The meaningful faithfulness test is **principled-vs-random**: the ranking is faithful iff `relevant_k` stays near baseline, `irrelevant_k` degrades, AND both beat the random control. Without a random baseline a fidelity claim is unfalsifiable (standard ROAR negative control, Hooker et al. 2019). The random control therefore **carries the fidelity result and is mandatory**.
 
-**Condition for running §7.B:** the 13 core trainings have completed cleanly AND time + GPU access remain. If §7.B is skipped, the limitation is reported honestly in the thesis (the IG-vs-KernelSHAP comparison is sound on its own; what §7.B adds is a fidelity floor demonstrating that the XAI methods outperform random selection).
+### §7.B — How IG and KernelSHAP are compared
 
-**Critical constraints (all 13 / 19 models):**
+Since the two methods produce identical retrained models (§7.A), they are **not** compared on fidelity. The comparison lives on two axes that *do* differ, both available from the explanation phase (Step 4–5, no extra retraining):
+- **Stability** — half-split Spearman: IG **0.88** vs KernelSHAP **0.95** (KernelSHAP is more self-consistent across data subsets).
+- **Cost** — IG ~50 gradient steps vs KernelSHAP 256 perturbations per flow (IG ~5× cheaper).
+
+**Conclusion:** the methods are equivalent in what they select and equally faithful; we recommend **Integrated Gradients** (same ranking, sufficiently stable, far cheaper). The strong cross-method agreement (Spearman 0.96, identical subsets at every threshold) is *convergent-validity* evidence that the ranking reflects the model, not the method — a recognized and valuable result, since disagreement between XAI methods is a known field-wide concern.
+
+**Critical constraints (all 13 models):**
 - Identical hyperparameters per paper §IV.D: 150 epochs × 2,000 samples, Adam optimizer at lr=0.001, MAPE loss for delay, hidden state size 32, T=8 message-passing iterations.
 - Identical seed: 42 for all training runs.
 - Identical training/validation/test split.
@@ -136,7 +139,7 @@ The upstream pretrained checkpoint was trained on BNN-UPC's machine with BNN-UPC
 
 The retraining-based protocol was selected after explicit comparison with an inference-only alternative (where the upstream pretrained model is run on masked inputs and predictions are compared to the unmasked-input reference). The inference-only protocol is cheaper (no retraining) but answers a weaker question: it conflates "the model relies on this feature at inference" with "the masked input is out-of-distribution." The retraining protocol eliminates this confound by ensuring every model sees only in-distribution input combinations during training and at evaluation. This was the protocol explicitly requested by the IMT supervisor (Karim Gizzini, Sogeti / IMT contribution) for the deliverable.
 
-**Quotable rationale:** *"We adopt a retraining-based feature-filtering protocol. For each XAI method and each threshold k ∈ {25, 50, 75}, the 10 path-scalar inputs are partitioned into two reduced-input variants (top-k% kept, bottom-(100−k)% kept), the `path_embedding` layer is resized accordingly, and the model is retrained from scratch with identical hyperparameters and seed. This eliminates the out-of-distribution confound that affects inference-only feature-importance evaluation (Hooker et al. 2019)."*
+**Quotable rationale:** *"We adopt a retraining-based feature-filtering protocol. For each XAI method and each threshold k ∈ {30, 50, 70}, the 10 path-scalar inputs are partitioned into two reduced-input variants (top-k% kept, bottom-(100−k)% kept), the `path_embedding` layer is resized accordingly, and the model is retrained from scratch with identical hyperparameters and seed. This eliminates the out-of-distribution confound that affects inference-only feature-importance evaluation (Hooker et al. 2019)."*
 
 ---
 
@@ -184,10 +187,10 @@ The retraining-based protocol was selected after explicit comparison with an inf
 
 **Primary — Fidelity (the three-way comparison at every k, on retrained models):**
 
-At every k ∈ {25, 50, 75}, the figure shows three quantities on the same axes:
+At every k ∈ {30, 50, 70}, the figure shows three quantities on the same axes:
 
 - **Baseline reference** — test MAE/MAPE of the **retrained full-feature baseline** (seed 42) on the full `all_multiplexed` test split. Anchor, horizontal line.
-- **`relevant_k` line** — test MAE/MAPE of the model retrained on the top-k% features only. For each XAI method (IG, KernelSHAP, [optionally random]).
+- **`relevant_k` line** — test MAE/MAPE of the model retrained on the top-k% features only. For the **principled** ranking (IG ≡ KernelSHAP) and for the **random** control.
 - **`irrelevant_k` line** — test MAE/MAPE of the model retrained on the bottom-(100−k)% features only.
 
 **Comparison rules (locked interpretation):**
@@ -195,8 +198,10 @@ At every k ∈ {25, 50, 75}, the figure shows three quantities on the same axes:
 - **`irrelevant_k` MAE should be close to baseline.** The "irrelevant" features alone should suffice — meaning the XAI method correctly identified them as low-importance (the model can do without the top features). High MAE here = the XAI method missed important features.
 - **`relevant_k` MAE should also be close to baseline, and ideally lower than `irrelevant_k` MAE.** Keeping only the top-k% features should preserve performance if those features really are the important ones.
 - **`relevant_k` − `irrelevant_k` MAE gap** is the per-(method, k) cell statistic. Larger negative gap (relevant < irrelevant) = stronger XAI fidelity.
-- **Compared across IG and KernelSHAP:** whichever method shows a larger `irrelevant − relevant` gap across the three k values is the more faithful explainer.
-- **Random control (if §7.B runs):** should show no consistent gap. If IG and KernelSHAP gaps don't clearly exceed random's gap, the protocol isn't informative on this dataset.
+- **Principled vs. random (the headline):** the principled ranking's `irrelevant − relevant` gap should clearly exceed the random control's gap across the three k values. IG and KernelSHAP are **not** separated here — they share identical models (§7.A) — so the fidelity comparison is principled-vs-random, not IG-vs-KernelSHAP.
+- **Random control (core):** should show no consistent gap. The faithfulness claim rests on the principled gap clearly exceeding random's gap; if it does not, the protocol isn't informative on this dataset (itself a reportable finding).
+
+**Caveat — `traffic` and `packets` are structurally retained (lower-bound gaps):** these two are never removed from the data dict (they feed the load and `pkt_size` computations; `_DROPPABLE_PATH_SCALARS` has 8 entries, not 10 — see §5). When a variant "drops" them they leave only the *learned path embedding*, not the physics. So any gap that depends on removing `traffic`/`packets` is a **lower bound**, and the fidelity test most cleanly validates the ranking of the **8 truly-removable features** plus `sigma`. This is acceptable because `traffic`/`packets` are independently established as important by queueing theory (they are in the delay formula); XAI's discriminating value is on the *learned* features, which are fully testable.
 
 **MAPE reported alongside MAE** for direct comparability with the RouteNet-Fermi paper (which reports MAPE).
 
@@ -221,12 +226,11 @@ Spearman rank correlation between the two rankings, per method.
 - **Step 1–2:** environment + smoke test. CPU sufficient.
 - **Step 2.5:** 5 inference passes (one per sub-dataset) on N=300 with the upstream checkpoints. CPU sufficient.
 - **Step 4:** 300 KernelSHAP explanations + 300 IG explanations + 2 stability runs. CPU; KernelSHAP is the bottleneck (~3.5 h).
-- **Step 7 (core):** 13 retrainings of RouteNet-Fermi. Per paper §IV.D: 150 epochs × 2,000 samples per run. **GPU required.** Target: Sogeti RTX 4090.
-- **Step 7 (random control, optional):** +6 retrainings = 19 total.
+- **Step 7:** 13 unique retrainings of RouteNet-Fermi (1 baseline + 6 principled + 6 random). Per paper §IV.D: 150 epochs × 2,000 samples per run. **GPU required.** Compute: **GCP** (company-provided).
 
 **Action items:**
-1. Confirm SSH access to Sogeti RTX 4090 with Mouna.
-2. Once confirmed, estimate per-training wall-clock on the RTX 4090 (probably 1–4 h) to plan the 13–19 runs.
+1. Provision the GCP VM (Dana, via company resource). Claude never runs anything on it — Dana executes Step 7 by hand.
+2. Once provisioned, estimate per-training wall-clock on the GCP GPU to plan the 13 runs.
 
 ---
 
@@ -287,6 +291,7 @@ Sealed and dated via a git commit **before any Step 4 results are observed**. Co
 | v5 | Switched to inference-only protocol. Stretch retrain in §17. |
 | v5.5 | Both protocols (A inference-only / B retraining) documented as conditional branches. Hard-stop gate added. Random control promoted to third method. k changed to {25, 50, 75}. Pre-registration formalized. Step 2.5 validity check on all 5 sub-datasets added. RouteNet-Fermi paper named as the validation reference. |
 | v6 | **Protocol locked to retraining-based per Karim's email (June 2026).** Variant generation confirmed as **column dropping**, not value masking. Inference-only branch and hard-stop gate removed. §7 rewritten with the locked matrix (13 core + 6 conditional random control). §10 evaluation rewritten around the retrained-baseline reference and the `irrelevant_k − relevant_k` MAE gap. §13 glossary updated. §12 out-of-scope updated to explicitly list value-masking and inference-only as rejected. Random control made conditional rather than mandatory, to keep core scope at 13 retrainings. CLAUDE.md and PIPELINE.md aligned. |
+| v7 | **Post-Step-5 redesign (2026-06-16/17, Dana — decisions taken and justified independently).** Six linked decisions: **(1) Threshold sweep {25,50,75} → {30,50,70}** — Step 5 shows both methods placing the same 3 features ({traffic, sigma, packets}, ~93% of attribution mass) above a ~19–20× cliff; k=30 isolates that top-3, k=50 intermediate control, k=70 adds the noise tail; exact mapping k×10 = 3/5/7; thresholds derived from attribution magnitudes (not from the fidelity they evaluate → not circular). **(2) Train 7 unique principled models, not 12** — at every cell IG and KernelSHAP yield identical kept-feature SETS (rankings differ only by adjacent swaps that never cross a cut; enforced by an `audit_steps_1_to_6.py` equivalence check), so the 6 IG-derived models cover both methods; KernelSHAP duplicates would be bit-identical. **(3) Random control promoted to core** — since IG ≡ KernelSHAP the fidelity comparison becomes principled-vs-random; the 6 random retrainings now carry the faithfulness result. New matrix = 1 baseline + 6 principled + 6 random = **13 unique**. **(4) Framing → convergent-validity + trade-off** — IG and KernelSHAP compared on stability (0.88 vs 0.95) and cost (~5×), not fidelity; recommend IG. **(5) traffic/packets structural caveat** stated in §10 (their gaps are lower bounds). **(6) Compute → GCP** (replaces Sogeti RTX 4090). Propagated across configs, `run_step7_all.sh` (checkpoints/principled + checkpoints/random), audit, smoke test, CLAUDE.md, PIPELINE.md, step reports, and the D3.2 deliverable. Re-verified: audit + smoke 19/19 PASS. |
 
 ---
 

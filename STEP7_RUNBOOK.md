@@ -1,7 +1,17 @@
 # Step 7 Runbook — Retraining the 13-Cell Matrix on the Sogeti RTX 4090
 
-**Who runs this:** Dana, by hand, on `travel@sogeti-rtx-Precision-3680`.
-Claude Code never accesses this machine — it only prepares scripts and
+> ⚠️ **SUPERSEDED (2026-06-17) — retained for reference only.**
+> Compute moved from the Sogeti RTX 4090 to **GCP** (company-provided). The
+> conda/CUDA setup below is Sogeti-specific; a **GCP runbook will be written
+> once the VM image / GPU type are confirmed** (not yet decided).
+> Also note the matrix changed: the 13 cells are now **1 baseline + 6 principled
+> (IG ≡ KernelSHAP, from `configs/ig/`) + 6 random** (output dirs
+> `checkpoints/principled/` and `checkpoints/random/`), per the updated
+> `run_step7_all.sh`. The hyperparameters and the "Dana runs it by hand, Claude
+> never touches the remote machine" rule are unchanged. See THESIS_DECISIONS §7.
+
+**Who runs this:** Dana, by hand, on the GCP VM (formerly the Sogeti machine).
+Claude Code never accesses the remote machine — it only prepares scripts and
 analyzes what you bring back.
 
 **What it produces:** 13 trained models under `checkpoints/`, each with

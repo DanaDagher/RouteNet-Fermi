@@ -1,0 +1,22 @@
+{
+  "xai_method": "random",
+  "k": 50,
+  "partition": "relevant",
+  "kept_features": [
+    "avg_t_on",
+    "avg_pkts_lambda",
+    "eq_lambda",
+    "ar_a",
+    "pkts_lambda_on"
+  ],
+  "dropped_features": [
+    "avg_t_off",
+    "sigma",
+    "exp_max_factor",
+    "traffic",
+    "packets"
+  ],
+  "n_path_scalars_kept": 5,
+  "path_embedding_input_dim": 12,
+  "note": "Keep top-50% (5 features) by random ranking (seed 42). Negative control."
+}

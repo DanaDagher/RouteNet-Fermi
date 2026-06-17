@@ -44,7 +44,26 @@
       "Bash(\"venv/Scripts/python.exe\" audit_steps_1_to_6.py)",
       "Bash(PYTHONIOENCODING=utf-8 \"venv/Scripts/python.exe\" audit_steps_1_to_6.py)",
       "Bash(git commit -m 'Add independent end-to-end audit script for Steps 1-6 \\(all checks pass\\) *)",
-      "PowerShell(Set-Location traffic_models\\\\delay; & C:\\\\Users\\\\ddagher\\\\RouteNet-Fermi\\\\venv\\\\Scripts\\\\python.exe $env:TEMP\\\\delay_range_check.py)"
+      "PowerShell(Set-Location traffic_models\\\\delay; & C:\\\\Users\\\\ddagher\\\\RouteNet-Fermi\\\\venv\\\\Scripts\\\\python.exe $env:TEMP\\\\delay_range_check.py)",
+      "Bash(\"venv/Scripts/python.exe\" -c \"import sys, tensorflow as tf, numpy, networkx; print\\('python', sys.version\\); print\\('tf', tf.__version__\\); print\\('numpy', numpy.__version__\\); print\\('networkx', networkx.__version__\\)\")",
+      "Bash(kill 879)",
+      "Bash(rm -rf /tmp/step7_dry_baseline)",
+      "Bash(\"venv/Scripts/python.exe\" run_step7_train.py --config configs/ig/k25_relevant.json --output /tmp/step7_dry_variant --epochs 2 --steps-per-epoch 3 --validation-steps 2 --test-steps 3)",
+      "Read(//tmp/**)",
+      "Read(//tmp/step7_dry_variant/**)",
+      "Bash(\"venv/Scripts/python.exe\" run_step7_train.py --config configs/ig/k25_relevant.json --output /tmp/step7_dry_variant --epochs 3 --steps-per-epoch 3 --validation-steps 2 --test-steps 3)",
+      "Bash(bash -n run_step7_all.sh)",
+      "Bash(rm -rf /tmp/step7_dry_variant /tmp/step7_dry_baseline)",
+      "Bash(git commit -m 'Step 7 prep: trainer, matrix driver, and Sogeti runbook *)",
+      "Bash(py -3.11 deliverable/build_xai_meeting_brief.py)",
+      "Bash(where soffice *)",
+      "Bash(py -3.11 deliverable/build_d32_draft.py)",
+      "Bash(PYTHONIOENCODING=utf-8 \"venv/Scripts/python.exe\" run_step6_smoke.py)",
+      "Bash(cd \"C:/Users/ddagher/RouteNet-Fermi\" && ls deliverable/~\\\\$* 2>/dev/null && echo \"WARNING: Word lock file present \\(Word may be open\\)\" || echo \"No Word lock — safe to regenerate\"; py -3.11 deliverable/build_d32_draft.py 2>&1 | tail -3)",
+      "Bash(cd \"C:/Users/ddagher/RouteNet-Fermi\" && echo \"=== full-repo sweep for stray 97 attribution claims ===\" && grep -rnE \"97 ?%|≈97|~97|97 percent|97 pour\" --include=*.md --include=*.py . 2>/dev/null | grep -v venv | grep -viE \"0\\\\.97|1350\\\\.97|\\\\.97[0-9]\" ; echo \"--- end sweep ---\"; echo \"\"; if ls deliverable/~\\\\$* >/dev/null 2>&1; then echo \"WORD IS OPEN — close it to regenerate\"; else py -3.11 deliverable/build_d32_draft.py 2>&1 | tail -2; fi)",
+      "Bash(cd \"C:/Users/ddagher/RouteNet-Fermi\" *)",
+      "Bash(python -)",
+      "Bash(git rm *)"
     ]
   }
 }

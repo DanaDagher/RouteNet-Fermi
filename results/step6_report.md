@@ -1,8 +1,16 @@
 # Step 6 — Build Reduced-Input Dataset Variants (Column Dropping)
 
-**Date:** 2026-06-10
+**Date:** 2026-06-10 (originally for k ∈ {25, 50, 75}); **revised 2026-06-16** for k ∈ {30, 50, 70}.
 **Branch:** xai-protocol-b (created off xai-features at commit 6bf1113)
 **Status:** COMPLETE — verified by smoke test (13/13 PASS), confirmed by Dana before this report was written.
+
+> **Revision note (2026-06-16, v7):** The threshold sweep was changed from
+> {25, 50, 75} to **{30, 50, 70}** so that k=30 isolates exactly the top-3
+> features sitting above the ~19–20× attribution cliff observed in both IG and
+> KernelSHAP (Step 5). The 8 k25/k75 configs were deleted and 8 k30/k70 configs
+> generated; the k50 pair and baseline are unchanged. Model count stays 13.
+> Re-verified: audit + smoke test 13/13 PASS. The tables below reflect the
+> current (v7) configs. See THESIS_DECISIONS §6/§7 and changelog v7.
 
 ---
 
@@ -10,7 +18,7 @@
 
 Implement the column-dropping infrastructure required by the locked retraining
 protocol (CLAUDE.md / THESIS_DECISIONS §7): for each XAI method (IG, KernelSHAP)
-and each threshold k ∈ {25, 50, 75}, partition the 10 path scalars into a
+and each threshold k ∈ {30, 50, 70}, partition the 10 path scalars into a
 `relevant_k` variant (keep top-k%) and an `irrelevant_k` variant (keep
 bottom-(100−k)%), with the model's `path_embedding` input dimension genuinely
 reduced per variant — a real input-dimension change, not a runtime mask.
@@ -27,8 +35,8 @@ exclusively on `xai-protocol-b`; `xai-features` and `main` are untouched.
 | `delay_model.py` | MODIFIED — variant-aware model (see below) |
 | `traffic_models/delay/data_generator.py` | MODIFIED — feature-dropping loader (see below) |
 | `configs/baseline/full.json` | NEW — baseline config (10 scalars, dim=17) |
-| `configs/ig/k{25,50,75}_{relevant,irrelevant}.json` | NEW — 6 IG variant configs |
-| `configs/kernel_shap/k{25,50,75}_{relevant,irrelevant}.json` | NEW — 6 KernelSHAP variant configs |
+| `configs/ig/k{30,50,70}_{relevant,irrelevant}.json` | NEW — 6 IG variant configs |
+| `configs/kernel_shap/k{30,50,70}_{relevant,irrelevant}.json` | NEW — 6 KernelSHAP variant configs |
 | `run_step6_smoke.py` | NEW — smoke test over all 13 configs |
 
 Committed on `xai-protocol-b` (commit `5d346a2`), pushed to
@@ -98,34 +106,31 @@ Rankings source: Step 5 main rankings (`rankings/ig.csv`,
 | Config | Kept (path-embedding) | n kept | embed dim |
 |---|---|---|---|
 | baseline/full | all 10 | 10 | 17 |
-| ig/k25_relevant | sigma, traffic | 2 | 9 |
-| ig/k25_irrelevant | the other 8 | 8 | 15 |
+| ig/k30_relevant | sigma, traffic, packets | 3 | 10 |
+| ig/k30_irrelevant | the other 7 | 7 | 14 |
 | ig/k50_relevant | sigma, traffic, packets, pkts_lambda_on, eq_lambda | 5 | 12 |
 | ig/k50_irrelevant | avg_t_off, ar_a, exp_max_factor, avg_t_on, avg_pkts_lambda | 5 | 12 |
-| ig/k75_relevant | top-7 by IG | 7 | 14 |
-| ig/k75_irrelevant | exp_max_factor, avg_t_on, avg_pkts_lambda | 3 | 10 |
-| kernel_shap/k25_relevant | traffic, sigma | 2 | 9 |
-| kernel_shap/k25_irrelevant | the other 8 | 8 | 15 |
+| ig/k70_relevant | top-7 by IG | 7 | 14 |
+| ig/k70_irrelevant | exp_max_factor, avg_t_on, avg_pkts_lambda | 3 | 10 |
+| kernel_shap/k30_relevant | traffic, sigma, packets | 3 | 10 |
+| kernel_shap/k30_irrelevant | the other 7 | 7 | 14 |
 | kernel_shap/k50_relevant | traffic, sigma, packets, eq_lambda, pkts_lambda_on | 5 | 12 |
 | kernel_shap/k50_irrelevant | ar_a, avg_t_off, exp_max_factor, avg_t_on, avg_pkts_lambda | 5 | 12 |
-| kernel_shap/k75_relevant | top-7 by SHAP | 7 | 14 |
-| kernel_shap/k75_irrelevant | exp_max_factor, avg_t_on, avg_pkts_lambda | 3 | 10 |
+| kernel_shap/k70_relevant | top-7 by SHAP | 7 | 14 |
+| kernel_shap/k70_irrelevant | exp_max_factor, avg_t_on, avg_pkts_lambda | 3 | 10 |
 
 Each JSON records `xai_method`, `k`, `partition`, `kept_features`,
 `dropped_features`, `n_path_scalars_kept`, `path_embedding_input_dim`.
-Random-control configs (conditional §7.B) are not generated yet; they will be
-produced from `rankings/random.csv` only if §7.B is triggered.
 
-### Convention note (flagged inconsistency)
+**Update (2026-06-17):** the 6 **random-control** configs (`configs/random/k{30,50,70}_{relevant,irrelevant}.json`) have now been generated from `rankings/random.csv` and are **core, not conditional** — there are 19 config files total (baseline + 6 IG + 6 KernelSHAP + 6 random). Step 7 trains 13 unique models: baseline + 6 principled (IG ≡ KernelSHAP, so the KernelSHAP configs are not trained separately) + 6 random. See THESIS_DECISIONS §7.
 
-PIPELINE.md line 175 gives example `irrelevant_k` feature counts
-(k=25 → "3 features", k=75 → "2 features") that contradict the locked
-convention stated immediately below it (lines 178–179) and in CLAUDE.md:
-`relevant_k` and `irrelevant_k` **partition** the 10 scalars, so the counts
-are complements — 2/8 at k=25, 5/5 at k=50, 7/3 at k=75. The implementation
-follows the locked convention (which both contract documents state
-identically); the line-175 parentheticals appear to be a leftover editing
-error.
+### Convention note
+
+`relevant_k` and `irrelevant_k` **partition** the 10 scalars, so the kept
+counts are complements: **3/7 at k=30, 5/5 at k=50, 7/3 at k=70**. (The v6
+PIPELINE Step 6 block had garbled example counts on its old line 175; that
+block was rewritten in v7 to state the exact k×10 mapping, resolving the
+earlier inconsistency.)
 
 ---
 
@@ -159,6 +164,7 @@ Step 6 is complete per the PIPELINE stop criterion:
 - Smoke test confirms all 13 configurations load, initialise with the correct
   reduced input dimension, and complete a forward pass.
 
-**Next: Step 7** — the 13 retrainings (150 epochs × 2,000 samples each,
-seed 42), pending GPU access (Sogeti RTX 4090, awaiting Mouna's SSH
-confirmation). Random-control retrainings (§7.B) remain conditional.
+**Next: Step 7** — the 13 unique retrainings (150 epochs × 2,000 samples each,
+seed 42): baseline + 6 principled + 6 random. Compute: **GCP** (company-provided;
+Dana runs it by hand). The random-control retrainings are now **core** (they
+carry the principled-vs-random fidelity result).

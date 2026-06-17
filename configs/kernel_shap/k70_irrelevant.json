@@ -1,6 +1,6 @@
 {
   "xai_method": "kernel_shap",
-  "k": 75,
+  "k": 70,
   "partition": "irrelevant",
   "kept_features": [
     "exp_max_factor",
@@ -18,5 +18,5 @@
   ],
   "n_path_scalars_kept": 3,
   "path_embedding_input_dim": 10,
-  "note": "Keep bottom-25% (3 features) by kernel_shap ranking."
+  "note": "Keep bottom-30% (3 features) by kernel_shap ranking."
 }

@@ -328,7 +328,7 @@ The within-method stability Spearman (median vs. mean, same method) is 0.61–0.
 - The **top-3 features are identical in both reference-point variants**: sigma,
   traffic, and packets appear in ranks 1–3 for both the median and mean runs
   (with minor reordering within the top-3). This is the part of the ranking
-  that drives the k=25 (top-2) and k=50 (top-5) retraining variants — the
+  that drives the k=30 (top-3) and k=50 (top-5) retraining variants — the
   most diagnostic cells of the fidelity matrix.
 - The **disagreement is concentrated in ranks 4–10**, where attribution scores
   are near-zero (~0.005–0.007, vs ~0.13–0.18 for the top-3). Reordering

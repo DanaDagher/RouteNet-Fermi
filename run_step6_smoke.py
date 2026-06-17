@@ -1,7 +1,7 @@
 """
 run_step6_smoke.py — Step 6 smoke test.
 
-For each of the 13 configs (baseline + 12 variants) verify:
+For each config (baseline + 6 IG + 6 KernelSHAP + 6 random = 19) verify:
   1. Model instantiates with the expected path_embedding input_dim.
   2. Dataset loads without error (dropped_features fix works).
   3. Forward pass succeeds on one batch.
@@ -149,7 +149,7 @@ n_pass = sum(1 for _, s, _ in results if s == 'PASS')
 n_fail = sum(1 for _, s, _ in results if s == 'FAIL')
 print(f'\nTotal: {n_pass}/{len(results)} PASS, {n_fail} FAIL')
 if all_pass:
-    print('\nAll 13 configs passed smoke test. Step 6 ready.')
+    print(f'\nAll {len(results)} configs passed smoke test. Step 6 ready.')
 else:
     print('\nSome configs FAILED. Fix errors before proceeding.')
     sys.exit(1)
