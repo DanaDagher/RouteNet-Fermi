@@ -75,7 +75,9 @@
       "Bash(\"venv/Scripts/python.exe\" run_step7_train.py --config configs/baseline/full.json --output /tmp/cal3 --max-train-samples 200 --cache --epochs 3 --steps-per-epoch 200 --max-test-samples 100)",
       "Bash(\"venv/Scripts/python.exe\" run_step7_train.py --config configs/ig/k30_relevant.json --output /tmp/cal4 --max-train-samples 150 --cache --epochs 2 --steps-per-epoch 150 --val-samples 50 --max-test-samples 100)",
       "Bash(\"venv/Scripts/python.exe\" -m py_compile run_step7_train.py)",
-      "Bash(bash -n run_step7_pilot.sh)"
+      "Bash(bash -n run_step7_pilot.sh)",
+      "PowerShell(Get-Process python,python3 -ErrorAction SilentlyContinue | Select-Object Id,ProcessName,StartTime,CPU; if \\(-not \\(Get-Process python,python3 -ErrorAction SilentlyContinue\\)\\) { \"No python processes running.\" })",
+      "Bash(git commit -m 'Update permission allowlist \\(Step 7 pilot calibration runs\\) *)"
     ]
   }
 }
