@@ -69,6 +69,20 @@ def parse_args():
                    help='val batches per epoch (upstream main.py uses 200)')
     p.add_argument('--test-steps', type=int, default=None,
                    help='cap test-eval batches (dry runs only; default: full split)')
+    # ── compute-constrained (local CPU) options ───────────────────────────────
+    p.add_argument('--max-train-samples', type=int, default=None,
+                   help='train on a FIXED seeded subsample of this many simulations '
+                        '(deterministic: first N in file order). Default: full split. '
+                        'Use with --cache so the subsample is parsed once and reused.')
+    p.add_argument('--max-test-samples', type=int, default=None,
+                   help='FINAL test eval on the first N test simulations (fixed). Default: full.')
+    p.add_argument('--val-samples', type=int, default=None,
+                   help='per-epoch validation on the first N test simulations (fixed). '
+                        'Default: same as --max-test-samples, else full. Keep small '
+                        'on CPU so per-epoch val does not dominate runtime.')
+    p.add_argument('--cache', action='store_true',
+                   help='cache the (subsampled) training set to disk after the first '
+                        'pass so later epochs skip graph re-parsing. Big CPU speedup.')
     return p.parse_args()
 
 
@@ -111,9 +125,40 @@ def main():
 
     # ── data ──────────────────────────────────────────────────────────────────
     dropped = cfg['dropped_features']
-    ds_train = input_fn(train_dir, shuffle=True, dropped_features=dropped)
-    ds_train = ds_train.repeat()
+
+    # Training set. For local CPU runs we (a) take a FIXED seeded subsample so
+    # all models train on the exact same simulations, and (b) cache it so the
+    # expensive networkx/DatanetAPI parsing happens once, not every epoch.
+    # shuffle=False makes the subsample deterministic (first N in file order);
+    # per-epoch variety is restored by a tf-level shuffle after caching.
+    if args.max_train_samples is not None:
+        ds_train = input_fn(train_dir, shuffle=False, dropped_features=dropped)
+        ds_train = ds_train.take(args.max_train_samples)
+        if args.cache:
+            cache_file = os.path.join(args.output, '_train_cache')
+            ds_train = ds_train.cache(cache_file)
+        buf = min(args.max_train_samples, 1000)
+        ds_train = ds_train.shuffle(buf, seed=SEED, reshuffle_each_iteration=True)
+        ds_train = ds_train.repeat()
+    else:
+        ds_train = input_fn(train_dir, shuffle=True, dropped_features=dropped)
+        if args.cache:
+            ds_train = ds_train.cache(os.path.join(args.output, '_train_cache'))
+        ds_train = ds_train.repeat()
+
+    # Per-epoch validation set (for the convergence curve + best-checkpoint).
+    # Decoupled from the final test eval so we can keep val small on CPU.
+    val_cap = args.val_samples
+    if val_cap is None:
+        val_cap = args.max_test_samples
     ds_val = input_fn(test_dir, shuffle=False, dropped_features=dropped)
+    if val_cap is not None:
+        ds_val = ds_val.take(val_cap)
+        if args.cache:
+            ds_val = ds_val.cache(os.path.join(args.output, '_val_cache'))
+    # With a fixed subsample, run the WHOLE subsample each epoch
+    # (validation_steps=None) instead of a fixed count that could exceed it.
+    val_steps = None if val_cap is not None else args.validation_steps
 
     # ── model (locked hyperparameters) ────────────────────────────────────────
     model = RouteNet_Fermi(kept_path_scalars=cfg['kept_features'])
@@ -148,6 +193,10 @@ def main():
         'train_dir': train_dir,
         'validation_dir': test_dir,   # upstream convention: test split as val
         'test_dir': test_dir,
+        'max_train_samples': args.max_train_samples,   # None = full split
+        'max_test_samples': args.max_test_samples,
+        'val_samples': args.val_samples,
+        'cache': args.cache,
         'tf_version': tf.__version__,
         'hostname': socket.gethostname(),
         'config_file': args.config,
@@ -180,7 +229,7 @@ def main():
                   initial_epoch=initial_epoch,
                   steps_per_epoch=args.steps_per_epoch,
                   validation_data=ds_val,
-                  validation_steps=args.validation_steps,
+                  validation_steps=val_steps,
                   callbacks=callbacks,
                   use_multiprocessing=True)
     else:
@@ -205,13 +254,17 @@ def main():
             best_val_mape = float(best_row['val_loss'])
             best_epoch = int(best_row['epoch']) + 1   # CSVLogger is 0-based
 
-    # ── evaluate on the FULL test split ───────────────────────────────────────
-    print('\nEvaluating on full test split...'
-          if args.test_steps is None else
-          f'\nEvaluating on first {args.test_steps} test batches (DRY RUN)...')
+    # ── evaluate on the test split ────────────────────────────────────────────
+    # All models are evaluated on the SAME test set (full, or the same fixed
+    # first-N subsample) so test MAPE is comparable across the 5 cells.
+    test_cap = args.max_test_samples if args.max_test_samples is not None else args.test_steps
+    if test_cap is None:
+        print('\nEvaluating on full test split...')
+    else:
+        print(f'\nEvaluating on first {test_cap} test simulations (fixed)...')
     ds_test = input_fn(test_dir, shuffle=False, dropped_features=dropped)
-    if args.test_steps is not None:
-        ds_test = ds_test.take(args.test_steps)
+    if test_cap is not None:
+        ds_test = ds_test.take(test_cap)
     test_mape, test_mae = model.evaluate(ds_test, verbose=2)
 
     metrics = {
@@ -231,7 +284,9 @@ def main():
         'seed': SEED,
         'n_features_kept': cfg['n_path_scalars_kept'],
         'dropped_features': dropped,
-        'test_eval_full_split': args.test_steps is None,
+        'max_train_samples': args.max_train_samples,
+        'max_test_samples': args.max_test_samples,
+        'test_eval_full_split': test_cap is None,
     }
     with open(os.path.join(args.output, 'metrics.json'), 'w') as fh:
         json.dump(metrics, fh, indent=2)

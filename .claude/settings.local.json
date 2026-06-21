@@ -63,7 +63,19 @@
       "Bash(cd \"C:/Users/ddagher/RouteNet-Fermi\" && echo \"=== full-repo sweep for stray 97 attribution claims ===\" && grep -rnE \"97 ?%|≈97|~97|97 percent|97 pour\" --include=*.md --include=*.py . 2>/dev/null | grep -v venv | grep -viE \"0\\\\.97|1350\\\\.97|\\\\.97[0-9]\" ; echo \"--- end sweep ---\"; echo \"\"; if ls deliverable/~\\\\$* >/dev/null 2>&1; then echo \"WORD IS OPEN — close it to regenerate\"; else py -3.11 deliverable/build_d32_draft.py 2>&1 | tail -2; fi)",
       "Bash(cd \"C:/Users/ddagher/RouteNet-Fermi\" *)",
       "Bash(python -)",
-      "Bash(git rm *)"
+      "Bash(git rm *)",
+      "WebSearch",
+      "WebFetch(domain:arxiv.org)",
+      "Bash(rm -rf /tmp/cal)",
+      "Bash(\"venv/Scripts/python.exe\" run_step7_train.py --config configs/baseline/full.json --output /tmp/cal --max-train-samples 100 --cache --epochs 3 --steps-per-epoch 100 --max-test-samples 50)",
+      "Bash(grep -E \"Epoch [0-9]|step -|step$|ms/step|s/step|CELL|test MAPE|Evaluating\")",
+      "Bash(grep -qE \"CELL COMPLETE|Traceback|Error|test MAPE\" /c/Users/ddagher/AppData/Local/Temp/claude/C--Users-ddagher-RouteNet-Fermi/af037f76-9ced-4952-b1a7-e377fa0dec3f/tasks/b2gutndvm.output)",
+      "Read(//c/Users/ddagher/AppData/Local/Temp/claude/C--Users-ddagher-RouteNet-Fermi/af037f76-9ced-4952-b1a7-e377fa0dec3f/tasks/**)",
+      "Bash(\"venv/Scripts/python.exe\" run_step7_train.py --config configs/baseline/full.json --output /tmp/cal_run2 --max-train-samples 120 --cache --epochs 3 --steps-per-epoch 120 --max-test-samples 60)",
+      "Bash(\"venv/Scripts/python.exe\" run_step7_train.py --config configs/baseline/full.json --output /tmp/cal3 --max-train-samples 200 --cache --epochs 3 --steps-per-epoch 200 --max-test-samples 100)",
+      "Bash(\"venv/Scripts/python.exe\" run_step7_train.py --config configs/ig/k30_relevant.json --output /tmp/cal4 --max-train-samples 150 --cache --epochs 2 --steps-per-epoch 150 --val-samples 50 --max-test-samples 100)",
+      "Bash(\"venv/Scripts/python.exe\" -m py_compile run_step7_train.py)",
+      "Bash(bash -n run_step7_pilot.sh)"
     ]
   }
 }
