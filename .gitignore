@@ -5,3 +5,10 @@ venv/
 data/
 .DS_Store
 Thumbs.db
+# Step 7 pilot checkpoints: keep only the small result files (metrics/logs),
+# ignore the large TF weight files and tf.data caches.
+checkpoints/**/_train_cache*
+checkpoints/**/_val_cache*
+checkpoints/**/checkpoint
+checkpoints/**/*.data-*
+checkpoints/**/*.index

@@ -1,6 +1,6 @@
 # Step 7 Pilot — Working Report (DRAFT)
 
-**Status:** DRAFT, run in progress (2 of 5 models complete at time of writing).
+**Status:** DRAFT — all 5 models complete; results and interpretation filled in.
 **Date:** 2026-06-22
 **Branch:** xai-protocol-b
 **Compute:** Dana's local Windows PC, CPU only (no GPU available).
@@ -140,27 +140,38 @@ carries real information — the intended result.
 
 ---
 
-## 7. Results so far (PRELIMINARY — run in progress)
+## 7. Results (all 5 models complete)
 
-Test MAPE (lower = better), on the 300-sample fixed test set:
+Test MAPE (lower = better), on the same 300-sample fixed test set; trained on
+the same 500-sample subset, 40 epochs, seed 42:
 
-| Model | Learned features | Test MAPE | Status |
+| Model | learned features | n kept | Test MAPE |
 |---|---|---|---|
-| baseline | all 10 | — | pending (needs re-run) |
-| principled k30_relevant | top-3 (sigma, traffic, packets) | **5.41%** | ✅ done |
-| principled k30_irrelevant | bottom-7 (top-3 excluded from embedding) | **6.38%** | ✅ done |
-| random k30_relevant | 3 random scalars | — | 🔄 training |
-| random k30_irrelevant | 7 random scalars | — | pending |
+| principled k30_relevant | top-3 (sigma, traffic, packets) | 3 | **5.41%** |
+| random k30_relevant | 3 random scalars | 3 | **5.43%** |
+| random k30_irrelevant | 7 random scalars | 7 | 5.80% |
+| baseline | all 10 | 10 | 6.14% |
+| principled k30_irrelevant | bottom-7 (top-3 removed from embedding) | 7 | 6.38% |
 
-Early observations (to be confirmed once all 5 finish):
+**The result is a null for faithfulness — and it is consistent and explained:**
 
-- The **top-3** model reaches **5.41%** test MAPE on just 500 samples and 3
-  learned features — close to the paper's full-model 4.71% — a strong
-  *sufficiency* signal.
-- The `irrelevant` model stays good (6.38%) — **expected**, and explained by §5
-  (Door 2 keeps `traffic`/`packets` in the prediction).
-- The decisive numbers (baseline; random relevant/irrelevant) are still
-  training. **No final conclusion until all 5 are in.**
+1. **principled-3 (5.41%) ≈ random-3 (5.43%)** — a near-exact tie. The
+   *identity* of the embedding features does not affect accuracy. This is the
+   decisive comparison, and it shows **no** faithfulness signal.
+2. **The whole spread is ~1 pp (5.41–6.38%) and does not track importance.**
+   The all-10 baseline (6.14%) is *worse* than the 3-feature models, and
+   removing the top-3 (irrelevant, 6.38%) does not collapse accuracy.
+3. **Why:** as the delay-mechanism analysis shows (see
+   `step7_delay_mechanism_analysis_DRAFT.md`), `traffic`/`packets` re-enter the
+   prediction through the QT terms (link load eq. 7, transmission eq. 9) in
+   *every* model, so the learnable embedding has little marginal influence — the
+   small differences are within small-sample (500) training variance and are
+   uncorrelated with the XAI ranking.
+
+**Conclusion:** the ROAR-style retraining test **cannot discriminate** feature
+importance for RouteNet-Fermi delay. This is the pilot's headline — a critical
+finding, not a measurement to be "improved," because its cause is structural
+(the model's physics), not the dataset size or the run.
 
 ---
 

@@ -1,0 +1,25 @@
+{
+  "xai_method": "random",
+  "k": 30,
+  "partition": "irrelevant",
+  "train_mape_final": 3.5071213245391846,
+  "train_mae_final": 0.019956670701503754,
+  "val_mape_final": 6.029379367828369,
+  "val_mae_final": 0.07099618762731552,
+  "test_mae": 0.06875517964363098,
+  "test_mape": 5.795276641845703,
+  "best_val_mape": 5.38218355178833,
+  "best_epoch": 39,
+  "training_time_minutes": 73.78,
+  "epochs_run": 40,
+  "seed": 42,
+  "n_features_kept": 7,
+  "dropped_features": [
+    "avg_t_on",
+    "avg_pkts_lambda",
+    "eq_lambda"
+  ],
+  "max_train_samples": 500,
+  "max_test_samples": 300,
+  "test_eval_full_split": false
+}

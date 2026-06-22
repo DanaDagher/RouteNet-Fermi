@@ -1,0 +1,25 @@
+{
+  "xai_method": "ig",
+  "k": 30,
+  "partition": "irrelevant",
+  "train_mape_final": 3.5612664222717285,
+  "train_mae_final": 0.020714497193694115,
+  "val_mape_final": 6.547349452972412,
+  "val_mae_final": 0.07451040297746658,
+  "test_mae": 0.07316574454307556,
+  "test_mape": 6.375686168670654,
+  "best_val_mape": 5.866586208343506,
+  "best_epoch": 39,
+  "training_time_minutes": 511.77,
+  "epochs_run": 40,
+  "seed": 42,
+  "n_features_kept": 7,
+  "dropped_features": [
+    "sigma",
+    "traffic",
+    "packets"
+  ],
+  "max_train_samples": 500,
+  "max_test_samples": 300,
+  "test_eval_full_split": false
+}

@@ -1,0 +1,40 @@
+{
+  "xai_method": "ig",
+  "k": 30,
+  "partition": "irrelevant",
+  "kept_features": [
+    "pkts_lambda_on",
+    "eq_lambda",
+    "avg_t_off",
+    "ar_a",
+    "exp_max_factor",
+    "avg_t_on",
+    "avg_pkts_lambda"
+  ],
+  "dropped_features": [
+    "sigma",
+    "traffic",
+    "packets"
+  ],
+  "n_features_kept": 7,
+  "path_embedding_input_dim": 14,
+  "epochs": 40,
+  "steps_per_epoch": 500,
+  "validation_steps": 200,
+  "optimizer": "adam",
+  "learning_rate": 0.001,
+  "loss": "MeanAbsolutePercentageError",
+  "hidden_state_dim": 32,
+  "message_passing_iterations": 8,
+  "seed": 42,
+  "train_dir": "C:\\Users\\ddagher\\RouteNet-Fermi\\data\\traffic_models\\all_multiplexed\\train",
+  "validation_dir": "C:\\Users\\ddagher\\RouteNet-Fermi\\data\\traffic_models\\all_multiplexed\\test",
+  "test_dir": "C:\\Users\\ddagher\\RouteNet-Fermi\\data\\traffic_models\\all_multiplexed\\test",
+  "max_train_samples": 500,
+  "max_test_samples": 300,
+  "val_samples": 100,
+  "cache": true,
+  "tf_version": "2.6.5",
+  "hostname": "LFR-5CG12043SB",
+  "config_file": "configs/ig/k30_irrelevant.json"
+}

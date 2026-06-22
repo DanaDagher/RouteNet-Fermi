@@ -77,7 +77,17 @@
       "Bash(\"venv/Scripts/python.exe\" -m py_compile run_step7_train.py)",
       "Bash(bash -n run_step7_pilot.sh)",
       "PowerShell(Get-Process python,python3 -ErrorAction SilentlyContinue | Select-Object Id,ProcessName,StartTime,CPU; if \\(-not \\(Get-Process python,python3 -ErrorAction SilentlyContinue\\)\\) { \"No python processes running.\" })",
-      "Bash(git commit -m 'Update permission allowlist \\(Step 7 pilot calibration runs\\) *)"
+      "Bash(git commit -m 'Update permission allowlist \\(Step 7 pilot calibration runs\\) *)",
+      "Bash(awk -F, 'NR==1{next} {printf \"  epoch %2d: train_MAPE=%.2f  val_MAPE=%.2f\\\\n\", $1+1, $2, $4}' checkpoints/pilot_n500/principled/k30_relevant/training_log.csv)",
+      "mcp__visualize__read_me",
+      "mcp__visualize__show_widget",
+      "Bash(git commit -m 'Step 7 pilot: working draft report \\(setup, clarifications, two-doors limitation\\) *)",
+      "Bash(\"venv/Scripts/python.exe\" -c \"import PyPDF2; print\\('PyPDF2 ok'\\)\")",
+      "Bash(\"venv/Scripts/python.exe\" -c \"import pdfplumber; print\\('pdfplumber ok'\\)\")",
+      "Bash(git check-ignore *)",
+      "Bash(xargs echo \"metrics.json files:\")",
+      "Bash(awk -F, 'NR>1{sum+=$3; n++} END{print sum/n, \"s/sim,\", n, \"sims\"}' results/inference/ig/timings.csv)",
+      "Bash(awk -F, 'NR>1{sum+=$3; n++} END{print sum/n, \"s/sim,\", n, \"sims\"}' results/inference/kernel_shap/timings.csv)"
     ]
   }
 }
