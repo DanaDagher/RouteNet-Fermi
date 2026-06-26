@@ -12,3 +12,4 @@ checkpoints/**/_val_cache*
 checkpoints/**/checkpoint
 checkpoints/**/*.data-*
 checkpoints/**/*.index
+.claude/
