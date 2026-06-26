@@ -87,7 +87,12 @@
       "Bash(git check-ignore *)",
       "Bash(xargs echo \"metrics.json files:\")",
       "Bash(awk -F, 'NR>1{sum+=$3; n++} END{print sum/n, \"s/sim,\", n, \"sims\"}' results/inference/ig/timings.csv)",
-      "Bash(awk -F, 'NR>1{sum+=$3; n++} END{print sum/n, \"s/sim,\", n, \"sims\"}' results/inference/kernel_shap/timings.csv)"
+      "Bash(awk -F, 'NR>1{sum+=$3; n++} END{print sum/n, \"s/sim,\", n, \"sims\"}' results/inference/kernel_shap/timings.csv)",
+      "Bash(python -c ' *)",
+      "Bash(\"venv/Scripts/python.exe\" run_step7_eval_robustness.py --pool 800 --offset 300 --draw-size 300 --n-draws 10)",
+      "Bash(\"venv/Scripts/python.exe\" make_deliverable_figures.py)",
+      "Bash(cat /tmp/travel.txt | sed -n '520,900p')",
+      "Bash(gh auth *)"
     ]
   }
 }
