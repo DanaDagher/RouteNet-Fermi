@@ -2,10 +2,10 @@
 
 **Date:** 2026-06-17
 **Branch:** xai-protocol-b
-**Status:** DECIDED (in-session with Dana). **Pending Karim sign-off** before the
+**Status:** DECIDED (in-session with Dana). **Pending IMT technical advisor sign-off** before the
 v7 contract is bumped — see "Contract impact" below.
 **Decision owner:** Dana Dagher, on the advice of an external XAI expert,
-to be confirmed with Karim (IMT) who confirmed the original protocol.
+to be confirmed with the IMT technical advisor who confirmed the original protocol.
 
 ---
 
@@ -81,7 +81,7 @@ is why the reduced set is **5**, not 1.
   check — expected to confirm, not change, the result.)
 - **Nothing is deleted.** All 19 configs and the full 13-cell driver
   (`run_step7_all.sh`) remain in the repo. The full {30,50,70} sweep stays
-  runnable if Karim or a reviewer asks for it. The k=30 run uses a separate
+  runnable if the IMT technical advisor or a reviewer asks for it. The k=30 run uses a separate
   focused driver, `run_step7_k30.sh`.
 - **No model / data-pipeline code changes.** The Step 6 infrastructure already
   supports any subset of configs.
@@ -91,16 +91,16 @@ is why the reduced set is **5**, not 1.
 ## Contract impact
 
 This narrows the v7 Step 7 scope (13 → 5 models). Because the retraining
-protocol was confirmed by Karim, this scope reduction should be run by him
-before THESIS_DECISIONS is bumped to v8. Until then:
+protocol was confirmed by the IMT technical advisor, this scope reduction should be
+reviewed before THESIS_DECISIONS is bumped to v8. Until then:
 
 - This file is the decision record of intent.
 - `run_step7_k30.sh` is the execution artifact.
 - THESIS_DECISIONS / PIPELINE / CLAUDE.md remain at v7 (full sweep) and are
   **not** edited yet — to avoid locking a contract change ahead of sign-off.
 
-**Action for Dana:** confirm the k=30-only scope with Karim, then tell Claude
-to fold this into THESIS_DECISIONS as a v8 changelog entry.
+**Action for Dana:** confirm the k=30-only scope with the IMT technical advisor,
+then fold this into THESIS_DECISIONS as a v8 changelog entry.
 
 ---
 

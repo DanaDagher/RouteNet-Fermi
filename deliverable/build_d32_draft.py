@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 build_d32_draft.py — Generate the D3.2 / T3.2 contribution draft (Steps 1-6)
-as a Word document for internal review (Dana + Mouna).
+as a Word document for internal review.
 
 Structure mirrors the ANR TRAVEL report chapter style (cf. Rapport-ANR DX.1,
 Chapter 4): Introduction / Background / Datasets / Methodology / Results /
@@ -125,14 +125,14 @@ para('WP3 — XAI-based E2E network automation  ·  Task T3.2 — Critical and c
      'study of XAI approaches for network automation',
      size=10, align=WD_ALIGN_PARAGRAPH.CENTER)
 para('', size=6)
-para('DRAFT v0.2 — internal review version (Dana Dagher / Mouna Ben Mabrouk). '
+para('DRAFT v0.2 — internal review version. '
      'Covers completed work: pipeline Steps 1 to 6, including the post-Step-5 '
      'design decisions (method-equivalence finding, threshold choice, and stated '
      'limitations — Sections 1.5.5–1.5.6). Retraining campaign (Step 7) and '
      'fidelity results (Step 8) to be added in the next revision.',
      italic=True, size=10, align=WD_ALIGN_PARAGRAPH.CENTER,
      color=RGBColor(0xB0, 0x30, 0x30))
-para('Author: Dana Dagher (SogetiLabs). Reviewer: Mouna Ben Mabrouk (SogetiLabs).',
+para('Author: Dana Dagher (SogetiLabs).',
      size=10, align=WD_ALIGN_PARAGRAPH.CENTER)
 para('Date: 17 June 2026', size=10, align=WD_ALIGN_PARAGRAPH.CENTER)
 doc.add_page_break()

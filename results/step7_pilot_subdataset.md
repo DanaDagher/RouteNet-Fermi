@@ -4,8 +4,8 @@
 **Branch:** xai-protocol-b
 **Status:** STAGED — scripts ready and CPU-validated; full run pending (Dana runs on her PC).
 **Relation to the contract:** a new INTERIM step inserted between Step 6 and the
-full Step 7. It does **not** modify or replace the v7 pipeline; pending Karim
-sign-off to fold into PIPELINE/THESIS_DECISIONS as a documented step.
+full Step 7. It does **not** modify or replace the v7 pipeline; pending the
+IMT technical advisor's sign-off to fold into PIPELINE/THESIS_DECISIONS as a documented step.
 
 ---
 
@@ -115,7 +115,7 @@ the same schema as the full Step 7, so the Step 8 analysis works on either.
 
 1. Dana runs `run_step7_pilot.sh` on her PC (baseline first; sanity-check the
    pattern), reports `metrics.json` for the 5 cells.
-2. Claude builds the pilot fidelity summary (relevant vs irrelevant vs random).
+2. Build the pilot fidelity summary (relevant vs irrelevant vs random).
 3. When GPU appears: run the full-data Step 7; the pilot becomes a documented
    compute-constrained precursor.
-4. Karim sign-off → fold this step into PIPELINE/THESIS_DECISIONS (v8).
+4. IMT technical advisor sign-off → fold this step into PIPELINE/THESIS_DECISIONS (v8).

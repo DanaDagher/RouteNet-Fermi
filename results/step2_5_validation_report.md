@@ -127,4 +127,4 @@ N=300 is valid and representative. The environment reproduces the paper's number
 within +/-0.12 pp on all 5 sub-datasets. Step 2.5 is complete.
 
 Next step: Step 3.5 (pre-registration writeup) is unblocked.
-Steps 3, 4, 5, 6, 7, 8 remain blocked pending Mouna's protocol decision.
+Steps 3, 4, 5, 6, 7, 8 remain blocked pending the supervisor's protocol decision.

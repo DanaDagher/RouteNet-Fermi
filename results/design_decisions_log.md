@@ -158,7 +158,7 @@ machine by hand; the scripts are prepared locally.
 **Problem.** In the main Step 4 run, IG took ~44 min and KernelSHAP only ~10 min —
 which would wrongly suggest the *more complex* method (KernelSHAP, 256 coalition
 evaluations) is cheaper than the simpler one (IG, 50 gradient steps). Reviewer
-guidance (Mouna, 2026-06-17) was to settle the IG-vs-KernelSHAP comparison on
+guidance (2026-06-17) was to settle the IG-vs-KernelSHAP comparison on
 **complexity**, so a defensible cost metric was needed.
 
 **Change.** The raw sequential wall-clock is **not** used as the cost metric. Two

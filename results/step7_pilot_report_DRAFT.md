@@ -7,7 +7,7 @@
 **Purpose of this draft:** capture the pilot setup, the methodological
 clarifications that came up while running it, and the key limitation we
 discovered — to be merged into the final Step 7 pilot report and raised with
-Karim for D3.2.
+the IMT technical advisor for D3.2.
 
 ---
 
@@ -175,7 +175,7 @@ finding, not a measurement to be "improved," because its cause is structural
 
 ---
 
-## 8. Implications / to raise with Karim
+## 8. Implications / to raise with the IMT technical advisor
 
 1. The **necessity arm** of the retraining test is structurally limited for
    `traffic` and `packets`. This should be stated as a limitation in D3.2, with

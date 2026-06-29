@@ -1,5 +1,5 @@
 """
-md_to_tex.py — pragmatic Markdown -> LaTeX fragment converter for the Mouna
+md_to_tex.py — pragmatic Markdown -> LaTeX fragment converter for the
 deliverable. Produces a \section-level fragment (no preamble) to paste/\input
 into an existing LaTeX document.
 
@@ -9,8 +9,8 @@ LaTeX touch-up — proof-read the output.
 """
 import re, sys, os
 
-SRC = sys.argv[1] if len(sys.argv) > 1 else "results/deliverable_subsections_for_mouna_DRAFT.md"
-DST = sys.argv[2] if len(sys.argv) > 2 else "results/deliverable_subsections_for_mouna.tex"
+SRC = sys.argv[1] if len(sys.argv) > 1 else "results/deliverable_subsections_DRAFT.md"
+DST = sys.argv[2] if len(sys.argv) > 2 else "results/deliverable_subsections.tex"
 
 UNI = {
     "≈": r"$\approx$", "×": r"$\times$", "−": r"$-$", "→": r"$\rightarrow$",

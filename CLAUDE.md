@@ -23,7 +23,7 @@ Read both before doing anything. Do not invent decisions that contradict them. I
 
 ## Protocol (LOCKED)
 
-**Retraining-based comparison (formerly "Protocol B" in v5.5).** Confirmed by Karim (IMT) on the email exchange of June 2026, and confirmed as **column-dropping** (not value-masking).
+**Retraining-based comparison (formerly "Protocol B" in v5.5).** Confirmed by the IMT technical advisor on the email exchange of June 2026, and confirmed as **column-dropping** (not value-masking).
 
 For each XAI method (IG, KernelSHAP) and each threshold k ∈ {30, 50, 70}, the input feature set is partitioned into two reduced-input variants:
 - **`relevant_k`** — keep the top-k% features (drop the bottom-(100−k)% columns).
@@ -112,7 +112,7 @@ RouteNet-Fermi/
 - The `scheduling/`, `scalability/`, `fat_tree/`, `all_mixed/`, `real_traffic/`, `testbed/` directories.
 - The other four sub-datasets under `traffic_models/delay/` (only `all_multiplexed/` continues past Step 2.5).
 - Jitter and loss models.
-- Value-based masking. **Variant generation is column dropping.** Per Karim's confirmation.
+- Value-based masking. **Variant generation is column dropping.** Per the IMT technical advisor's confirmation.
 - Inference-only XAI evaluation on the frozen upstream checkpoint as the *core* protocol. Inference on the frozen checkpoint is used **only** for (a) Step 2.5 validity check and (b) Step 4 XAI explanations on N=300. The actual fidelity evaluation (Step 7+) is on retrained models.
 
 ## On chat continuity

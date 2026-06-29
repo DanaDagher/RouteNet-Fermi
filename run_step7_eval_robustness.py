@@ -11,7 +11,7 @@ per-simulation (sum of absolute-percentage-error, #flows); then compute the
 micro-MAPE over the full pool and over n seeded random subsets of size
 --draw-size (reported as mean +/- std and min..max). Pure inference.
 
-Output: results/step7_robustness_eval.md (+ .json). NOT part of the Mouna
+Output: results/step7_robustness_eval.md (+ .json). NOT part of the deliverable
 subsection.
 
 Usage:
