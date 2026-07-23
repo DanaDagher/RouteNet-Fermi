@@ -1,0 +1,88 @@
+{
+  "args": {
+    "pool": 300,
+    "n_seeds": 5
+  },
+  "clean_mape_per_model": {
+    "upstream_baseline": 31.845710700539982
+  },
+  "results": [
+    {
+      "model": "upstream_baseline",
+      "mode": "clean",
+      "features": "-",
+      "n_seeds": 1,
+      "mape_mean": 31.845710700539982,
+      "mape_std": 0.0,
+      "mape_min": 31.845710700539982,
+      "mape_max": 31.845710700539982,
+      "delta_vs_clean": 0.0
+    },
+    {
+      "model": "upstream_baseline",
+      "mode": "shuffle_traffic",
+      "features": "traffic",
+      "n_seeds": 5,
+      "mape_mean": 59.55362468165978,
+      "mape_std": 0.3441452922210433,
+      "mape_min": 59.05342324649586,
+      "mape_max": 59.99480589623545,
+      "delta_vs_clean": 27.707913981119795
+    },
+    {
+      "model": "upstream_baseline",
+      "mode": "shuffle_packets",
+      "features": "packets",
+      "n_seeds": 5,
+      "mape_mean": 51.097068407245715,
+      "mape_std": 0.15033825711542192,
+      "mape_min": 50.86881884406595,
+      "mape_max": 51.22617884617226,
+      "delta_vs_clean": 19.251357706705733
+    },
+    {
+      "model": "upstream_baseline",
+      "mode": "shuffle_traffic_packets",
+      "features": "traffic,packets",
+      "n_seeds": 5,
+      "mape_mean": 39.22969735777612,
+      "mape_std": 0.2677342892730031,
+      "mape_min": 38.820910465016084,
+      "mape_max": 39.55960544960172,
+      "delta_vs_clean": 7.383986657236136
+    },
+    {
+      "model": "upstream_baseline",
+      "mode": "shuffle_eq_lambda",
+      "features": "eq_lambda",
+      "n_seeds": 5,
+      "mape_mean": 31.7939957706227,
+      "mape_std": 0.013611062794305406,
+      "mape_min": 31.768823158413756,
+      "mape_max": 31.808368272968366,
+      "delta_vs_clean": -0.05171492991728144
+    },
+    {
+      "model": "upstream_baseline",
+      "mode": "shuffle_avg_pkts_lambda",
+      "features": "avg_pkts_lambda",
+      "n_seeds": 5,
+      "mape_mean": 31.732034689510566,
+      "mape_std": 0.010379958436212143,
+      "mape_min": 31.717046442966836,
+      "mape_max": 31.74925102084291,
+      "delta_vs_clean": -0.11367601102941549
+    },
+    {
+      "model": "upstream_baseline",
+      "mode": "shuffle_top3",
+      "features": "sigma,traffic,packets",
+      "n_seeds": 5,
+      "mape_mean": 38.53768773336971,
+      "mape_std": 0.27900360318642914,
+      "mape_min": 38.100391797832415,
+      "mape_max": 38.87891696107154,
+      "delta_vs_clean": 6.691977032829726
+    }
+  ]
+}
