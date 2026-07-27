@@ -1,0 +1,29 @@
+{
+  "per_split": {
+    "train/geant2-multiplexed": {
+      "archives": 11988,
+      "simulations": 59922,
+      "sims_per_archive_mean": 5.0
+    },
+    "train/nsfnet-multiplexed": {
+      "archives": 3043,
+      "simulations": 57436,
+      "sims_per_archive_mean": 18.87
+    },
+    "test/gbn-multiplexed": {
+      "archives": 6174,
+      "simulations": 67762,
+      "sims_per_archive_mean": 10.98
+    }
+  },
+  "grand_total": 185120,
+  "archives_total": 21205,
+  "train_pool": 117358,
+  "test_pool": 67762,
+  "used_train": 500,
+  "used_test": 300,
+  "used_train_pct": 0.426,
+  "used_test_pct": 0.4427,
+  "test_flow_predictions_used": 81600,
+  "elapsed_seconds": 95.0
+}

@@ -44,8 +44,9 @@ TEST_DIR = os.path.join(REPO, "data", "traffic_models", "all_multiplexed", "test
 # frozen paper checkpoint. A cell is silently skipped if its checkpoint dir has
 # no weight files.
 CELLS = [
-    ("gpu_baseline",      "configs/baseline/full.json", "checkpoints/gpu_full/baseline_seed42"),
-    # ("upstream_baseline", "configs/baseline/full.json", "traffic_models/delay/ckpt_dir_all_multiplexed"),
+    ("local_sanity_baseline", "configs/baseline/full.json", "checkpoints/local_sanity/baseline_seed42"),
+    # ("gpu_baseline",        "configs/baseline/full.json", "checkpoints/gpu_full/baseline_seed42"),
+    # ("upstream_baseline",   "configs/baseline/full.json", "traffic_models/delay/ckpt_dir_all_multiplexed"),
 ]
 
 # (mode_name, list_of_features_to_shuffle_with_same_permutation)
@@ -85,7 +86,7 @@ def apply_shuffle(inputs, feats_to_shuffle, seed):
 def per_sim_ape(model, ds, pool, feats_to_shuffle, seed):
     """Iterate `pool` sims, apply shuffle, return per-sim (sum APE, #flows)."""
     ape_sum, n_flows = [], []
-    for i, (inputs, label) in enumerate(ds.take(pool)):
+    for i, (inputs, label) in enumerate(ds):  # ds already .take(pool).cache()'d in main
         inputs_p = apply_shuffle(inputs, feats_to_shuffle, seed=seed + i)
         pred = model(inputs_p, training=False)
         y = tf.reshape(tf.cast(label, tf.float32), [-1]).numpy()
@@ -120,7 +121,10 @@ def main():
             print(f"  SKIP: no checkpoint found in {ckpt_dir}")
             continue
         model = RouteNet_Fermi(kept_path_scalars=cfg["kept_features"])
+        # .cache() populates on first pass, all subsequent passes read from RAM
+        # -- avoids re-parsing the same 300 sims 36 times.
         ds = input_fn(TEST_DIR, shuffle=False, dropped_features=cfg["dropped_features"])
+        ds = ds.take(args.pool).cache()
         for inp, _ in ds.take(1):
             model(inp, training=False)
             break

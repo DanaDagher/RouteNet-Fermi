@@ -37,7 +37,9 @@ from delay_model import RouteNet_Fermi
 from data_generator import input_fn
 
 N_TEST = 300   # same fixed subset as the pilot final test eval
-CKPT_DIR = os.path.join(REPO, 'checkpoints', 'pilot_n500', 'baseline_seed42')
+# Retrained baseline with saved weights (test MAPE 5.36 %). The old pilot
+# checkpoint (6.14 %) was lost; this is the model used everywhere in v12.
+CKPT_DIR = os.path.join(REPO, 'checkpoints', 'local_sanity', 'baseline_seed42')
 TEST_DIR = os.path.join(REPO, 'data', 'traffic_models', 'all_multiplexed', 'test')
 
 
@@ -137,7 +139,7 @@ def main():
     }
 
     os.makedirs(os.path.join(REPO, 'results'), exist_ok=True)
-    dst = os.path.join(REPO, 'results', 'delay_decomposition.json')
+    dst = os.path.join(REPO, 'results', 'delay_decomposition_v12.json')
     with open(dst, 'w') as fh:
         json.dump(out, fh, indent=2)
 
