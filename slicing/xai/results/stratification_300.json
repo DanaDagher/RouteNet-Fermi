@@ -1,0 +1,3020 @@
+{
+ "meta": {
+  "ckpt": "026-1.79",
+  "n_flows": 300,
+  "shared_set": "slicing/xai/sets/shared_300.json",
+  "baseline_stats": "slicing/xai/baseline_stats.json",
+  "scope": "numeric (categorical one-hots pinned per-flow)"
+ },
+ "summary": {
+  "effect_percentiles": {
+   "p10": 1.3272900832816959e-05,
+   "p25": 0.00021798181114718318,
+   "median": 0.002339515369385481,
+   "p75": 0.010296518681570888,
+   "p90": 0.0392859435174615
+  }
+ },
+ "records": [
+  {
+   "file": "results_slicing_WFQ_1000_routing_7800_7899.tar.gz_0074.pkl",
+   "flow_idx": 1,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.030478,
+   "f_actual": 0.02237032540142536,
+   "f_baseline": 0.007727281656116247,
+   "effect": 0.014643043745309114
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_400_499.tar.gz_0041.pkl",
+   "flow_idx": 5,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.018813,
+   "f_actual": 0.013245104812085629,
+   "f_baseline": 0.0072172051295638084,
+   "effect": 0.00602789968252182
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7000_7099.tar.gz_0041.pkl",
+   "flow_idx": 1,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.006437,
+   "f_actual": 0.007037547416985035,
+   "f_baseline": 0.0026156713720411062,
+   "effect": 0.004421876044943929
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_5800_5899.tar.gz_0073.pkl",
+   "flow_idx": 5,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 2.17474,
+   "f_actual": 0.004040792118757963,
+   "f_baseline": 0.004118212964385748,
+   "effect": 7.742084562778473e-05
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_2100_2199.tar.gz_0054.pkl",
+   "flow_idx": 66,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.006023,
+   "f_actual": 0.01160696055740118,
+   "f_baseline": 0.009958450682461262,
+   "effect": 0.0016485098749399185
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_400_499.tar.gz_0036.pkl",
+   "flow_idx": 45,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.020472,
+   "f_actual": 0.01120121031999588,
+   "f_baseline": 0.010242704302072525,
+   "effect": 0.0009585060179233551
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_800_899.tar.gz_0051.pkl",
+   "flow_idx": 2,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.021247,
+   "f_actual": 0.010508366860449314,
+   "f_baseline": 0.007576712407171726,
+   "effect": 0.002931654453277588
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1100_1199.tar.gz_0038.pkl",
+   "flow_idx": 41,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.008675,
+   "f_actual": 0.012644550763070583,
+   "f_baseline": 0.013399683870375156,
+   "effect": 0.0007551331073045731
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3500_3599.tar.gz_0081.pkl",
+   "flow_idx": 0,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.030397,
+   "f_actual": 0.023553727194666862,
+   "f_baseline": 0.002167037921026349,
+   "effect": 0.021386689273640513
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3500_3599.tar.gz_0058.pkl",
+   "flow_idx": 134,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 162.146,
+   "f_actual": 0.32740798592567444,
+   "f_baseline": 0.11901340633630753,
+   "effect": 0.2083945795893669
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7000_7099.tar.gz_0000.pkl",
+   "flow_idx": 0,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.000661,
+   "f_actual": 0.0008319879416376352,
+   "f_baseline": 0.0007712984224781394,
+   "effect": 6.068951915949583e-05
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_2100_2199.tar.gz_0071.pkl",
+   "flow_idx": 130,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.006374,
+   "f_actual": 0.011527348309755325,
+   "f_baseline": 0.013715668581426144,
+   "effect": 0.0021883202716708183
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_800_899.tar.gz_0040.pkl",
+   "flow_idx": 78,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.015824,
+   "f_actual": 0.01589522510766983,
+   "f_baseline": 0.006814601831138134,
+   "effect": 0.009080623276531696
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3500_3599.tar.gz_0019.pkl",
+   "flow_idx": 4,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.01297,
+   "f_actual": 0.012019360437989235,
+   "f_baseline": 0.05817338079214096,
+   "effect": 0.046154020354151726
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3300_3399.tar.gz_0029.pkl",
+   "flow_idx": 41,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.019894,
+   "f_actual": 0.014227255247533321,
+   "f_baseline": 0.0039049042388796806,
+   "effect": 0.01032235100865364
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1100_1199.tar.gz_0005.pkl",
+   "flow_idx": 132,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.030381,
+   "f_actual": 0.02359449677169323,
+   "f_baseline": 0.006939261686056852,
+   "effect": 0.016655235085636377
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3400_3499.tar.gz_0001.pkl",
+   "flow_idx": 2,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.001961,
+   "f_actual": 0.001552174799144268,
+   "f_baseline": 0.0010191428009420633,
+   "effect": 0.0005330319982022047
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7100_7199.tar.gz_0003.pkl",
+   "flow_idx": 24,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.02508,
+   "f_actual": 0.011988016776740551,
+   "f_baseline": 0.04306690767407417,
+   "effect": 0.031078890897333622
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_400_499.tar.gz_0077.pkl",
+   "flow_idx": 153,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.001198,
+   "f_actual": 0.020582960918545723,
+   "f_baseline": 0.03556830808520317,
+   "effect": 0.014985347166657448
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7800_7899.tar.gz_0008.pkl",
+   "flow_idx": 39,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.001923,
+   "f_actual": 0.001120151486247778,
+   "f_baseline": 0.0009866745676845312,
+   "effect": 0.00013347691856324673
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_800_899.tar.gz_0034.pkl",
+   "flow_idx": 63,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.021708,
+   "f_actual": 0.013576187193393707,
+   "f_baseline": 0.002741571282967925,
+   "effect": 0.010834615910425782
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3500_3599.tar.gz_0039.pkl",
+   "flow_idx": 4,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.001026,
+   "f_actual": 0.0011993027292191982,
+   "f_baseline": 0.0008648360380902886,
+   "effect": 0.0003344666911289096
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7800_7899.tar.gz_0053.pkl",
+   "flow_idx": 61,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.000595,
+   "f_actual": 0.0007331900997087359,
+   "f_baseline": 0.00047337685828097165,
+   "effect": 0.0002598132414277643
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_800_899.tar.gz_0008.pkl",
+   "flow_idx": 1,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.053542,
+   "f_actual": 0.017569398507475853,
+   "f_baseline": 0.010138954035937786,
+   "effect": 0.007430444471538067
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_2100_2199.tar.gz_0051.pkl",
+   "flow_idx": 0,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 248.164,
+   "f_actual": 0.7171210646629333,
+   "f_baseline": 0.04491761699318886,
+   "effect": 0.6722034476697445
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_800_899.tar.gz_0032.pkl",
+   "flow_idx": 55,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.014112,
+   "f_actual": 0.009286998771131039,
+   "f_baseline": 0.03438709303736687,
+   "effect": 0.02510009426623583
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_2100_2199.tar.gz_0048.pkl",
+   "flow_idx": 1,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 1.74661,
+   "f_actual": 0.6857556104660034,
+   "f_baseline": 0.17875492572784424,
+   "effect": 0.5070006847381592
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_2400_2499.tar.gz_0017.pkl",
+   "flow_idx": 6,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.055625,
+   "f_actual": 0.02136545442044735,
+   "f_baseline": 0.004507490899413824,
+   "effect": 0.016857963521033525
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3300_3399.tar.gz_0058.pkl",
+   "flow_idx": 23,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.020633,
+   "f_actual": 0.008751831017434597,
+   "f_baseline": 0.011603863909840584,
+   "effect": 0.002852032892405987
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3500_3599.tar.gz_0067.pkl",
+   "flow_idx": 2,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.031604,
+   "f_actual": 0.02731025405228138,
+   "f_baseline": 0.012652472592890263,
+   "effect": 0.014657781459391117
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7200_7299.tar.gz_0073.pkl",
+   "flow_idx": 30,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.026277,
+   "f_actual": 0.011610954999923706,
+   "f_baseline": 0.004654565826058388,
+   "effect": 0.006956389173865318
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1100_1199.tar.gz_0082.pkl",
+   "flow_idx": 3,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.0211,
+   "f_actual": 0.017236005514860153,
+   "f_baseline": 0.008300053887069225,
+   "effect": 0.008935951627790928
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7800_7899.tar.gz_0043.pkl",
+   "flow_idx": 1,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.012671,
+   "f_actual": 0.00547966081649065,
+   "f_baseline": 0.003617539769038558,
+   "effect": 0.0018621210474520922
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_400_499.tar.gz_0027.pkl",
+   "flow_idx": 2,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.001889,
+   "f_actual": 0.017809972167015076,
+   "f_baseline": 0.004078765399754047,
+   "effect": 0.013731206767261028
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7200_7299.tar.gz_0078.pkl",
+   "flow_idx": 74,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.001835,
+   "f_actual": 0.009393258951604366,
+   "f_baseline": 0.007356529124081135,
+   "effect": 0.0020367298275232315
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1100_1199.tar.gz_0021.pkl",
+   "flow_idx": 1,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.029205,
+   "f_actual": 0.021916333585977554,
+   "f_baseline": 0.004875826183706522,
+   "effect": 0.017040507402271032
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3700_3799.tar.gz_0062.pkl",
+   "flow_idx": 0,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.029536,
+   "f_actual": 0.013892349787056446,
+   "f_baseline": 0.000940350815653801,
+   "effect": 0.012951998971402645
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_2100_2199.tar.gz_0062.pkl",
+   "flow_idx": 46,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 13.7978,
+   "f_actual": 1.1757521629333496,
+   "f_baseline": 0.35877418518066406,
+   "effect": 0.8169779777526855
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3500_3599.tar.gz_0048.pkl",
+   "flow_idx": 3,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.001242,
+   "f_actual": 0.05929716303944588,
+   "f_baseline": 0.00895084161311388,
+   "effect": 0.050346321426332
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7200_7299.tar.gz_0024.pkl",
+   "flow_idx": 12,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.019312,
+   "f_actual": 0.01345103606581688,
+   "f_baseline": 0.00965135358273983,
+   "effect": 0.0037996824830770493
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_400_499.tar.gz_0065.pkl",
+   "flow_idx": 1,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.030823,
+   "f_actual": 0.022169478237628937,
+   "f_baseline": 0.12490633875131607,
+   "effect": 0.10273686051368713
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3500_3599.tar.gz_0004.pkl",
+   "flow_idx": 3,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.012356,
+   "f_actual": 0.008653038181364536,
+   "f_baseline": 0.007600158452987671,
+   "effect": 0.0010528797283768654
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_200_299.tar.gz_0044.pkl",
+   "flow_idx": 192,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.026765,
+   "f_actual": 0.08481603860855103,
+   "f_baseline": 0.023778636008501053,
+   "effect": 0.06103740260004997
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_800_899.tar.gz_0093.pkl",
+   "flow_idx": 5,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.106917,
+   "f_actual": 0.37407952547073364,
+   "f_baseline": 0.1059744581580162,
+   "effect": 0.26810506731271744
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3700_3799.tar.gz_0056.pkl",
+   "flow_idx": 58,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.082506,
+   "f_actual": 0.0111583536490798,
+   "f_baseline": 0.003762706182897091,
+   "effect": 0.007395647466182709
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7200_7299.tar.gz_0071.pkl",
+   "flow_idx": 0,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.033672,
+   "f_actual": 0.018949205055832863,
+   "f_baseline": 0.02183658629655838,
+   "effect": 0.0028873812407255173
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7200_7299.tar.gz_0005.pkl",
+   "flow_idx": 2,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.02071,
+   "f_actual": 0.004308478906750679,
+   "f_baseline": 0.0037446804344654083,
+   "effect": 0.0005637984722852707
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7100_7199.tar.gz_0060.pkl",
+   "flow_idx": 100,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.002213,
+   "f_actual": 0.001820045756176114,
+   "f_baseline": 0.0025913112331181765,
+   "effect": 0.0007712654769420624
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_400_499.tar.gz_0056.pkl",
+   "flow_idx": 2,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.000698,
+   "f_actual": 0.004670857451856136,
+   "f_baseline": 0.0020304126664996147,
+   "effect": 0.0026404447853565216
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_200_299.tar.gz_0074.pkl",
+   "flow_idx": 76,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.0234,
+   "f_actual": 0.011336235329508781,
+   "f_baseline": 0.0036730787251144648,
+   "effect": 0.007663156604394317
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7200_7299.tar.gz_0046.pkl",
+   "flow_idx": 0,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 9.97243,
+   "f_actual": 0.5656498074531555,
+   "f_baseline": 0.18267224729061127,
+   "effect": 0.38297756016254425
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_2400_2499.tar.gz_0072.pkl",
+   "flow_idx": 2,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.019417,
+   "f_actual": 0.018012266606092453,
+   "f_baseline": 0.00440949434414506,
+   "effect": 0.013602772261947393
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_200_299.tar.gz_0034.pkl",
+   "flow_idx": 25,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.030637,
+   "f_actual": 0.012529632076621056,
+   "f_baseline": 0.003759794868528843,
+   "effect": 0.008769837208092213
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1200_1299.tar.gz_0069.pkl",
+   "flow_idx": 2,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.000675,
+   "f_actual": 0.0009400062263011932,
+   "f_baseline": 0.0005429160664789379,
+   "effect": 0.0003970901598222554
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1900_1999.tar.gz_0041.pkl",
+   "flow_idx": 60,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.026774,
+   "f_actual": 0.010027225129306316,
+   "f_baseline": 0.04631838947534561,
+   "effect": 0.036291164346039295
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_800_899.tar.gz_0027.pkl",
+   "flow_idx": 2,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.000849,
+   "f_actual": 0.005145840812474489,
+   "f_baseline": 0.0018112878315150738,
+   "effect": 0.0033345529809594154
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7800_7899.tar.gz_0068.pkl",
+   "flow_idx": 1,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 56.0588,
+   "f_actual": 0.4887770116329193,
+   "f_baseline": 0.06511761248111725,
+   "effect": 0.42365939915180206
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_400_499.tar.gz_0075.pkl",
+   "flow_idx": 4,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.005578,
+   "f_actual": 0.009269689209759235,
+   "f_baseline": 0.11068421602249146,
+   "effect": 0.10141452681273222
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_5800_5899.tar.gz_0006.pkl",
+   "flow_idx": 6,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.019748,
+   "f_actual": 0.016420966014266014,
+   "f_baseline": 0.01565546914935112,
+   "effect": 0.0007654968649148941
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1100_1199.tar.gz_0042.pkl",
+   "flow_idx": 104,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.005295,
+   "f_actual": 0.010814300738275051,
+   "f_baseline": 0.0553240142762661,
+   "effect": 0.04450971353799105
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_2100_2199.tar.gz_0014.pkl",
+   "flow_idx": 1,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.004275,
+   "f_actual": 0.019748477265238762,
+   "f_baseline": 0.009460569359362125,
+   "effect": 0.010287907905876637
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3300_3399.tar.gz_0072.pkl",
+   "flow_idx": 11,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.000723,
+   "f_actual": 0.003886195132508874,
+   "f_baseline": 0.0029779314063489437,
+   "effect": 0.0009082637261599302
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_2400_2499.tar.gz_0012.pkl",
+   "flow_idx": 14,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.013314,
+   "f_actual": 0.014064219780266285,
+   "f_baseline": 0.04992484673857689,
+   "effect": 0.035860626958310604
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_2400_2499.tar.gz_0022.pkl",
+   "flow_idx": 43,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.029994,
+   "f_actual": 0.41849470138549805,
+   "f_baseline": 0.13169844448566437,
+   "effect": 0.2867962568998337
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_2400_2499.tar.gz_0006.pkl",
+   "flow_idx": 1,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.027755,
+   "f_actual": 0.021809697151184082,
+   "f_baseline": 0.003229225054383278,
+   "effect": 0.018580472096800804
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_2100_2199.tar.gz_0082.pkl",
+   "flow_idx": 21,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.132602,
+   "f_actual": 0.09296531975269318,
+   "f_baseline": 0.010564575903117657,
+   "effect": 0.08240074384957552
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1100_1199.tar.gz_0071.pkl",
+   "flow_idx": 1,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.022849,
+   "f_actual": 0.01677211932837963,
+   "f_baseline": 0.00867487769573927,
+   "effect": 0.008097241632640362
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_800_899.tar.gz_0049.pkl",
+   "flow_idx": 0,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 12.6635,
+   "f_actual": 0.22890236973762512,
+   "f_baseline": 0.013747655786573887,
+   "effect": 0.21515471395105124
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_400_499.tar.gz_0044.pkl",
+   "flow_idx": 4,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 176.175,
+   "f_actual": 0.4957728683948517,
+   "f_baseline": 0.1300789713859558,
+   "effect": 0.3656938970088959
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1900_1999.tar.gz_0022.pkl",
+   "flow_idx": 1,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.026729,
+   "f_actual": 0.007450387347489595,
+   "f_baseline": 0.003316993359476328,
+   "effect": 0.0041333939880132675
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1200_1299.tar.gz_0062.pkl",
+   "flow_idx": 68,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.002877,
+   "f_actual": 0.003202955238521099,
+   "f_baseline": 0.0027925248723477125,
+   "effect": 0.0004104303661733866
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1200_1299.tar.gz_0017.pkl",
+   "flow_idx": 113,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.013024,
+   "f_actual": 0.009944372810423374,
+   "f_baseline": 0.07032589614391327,
+   "effect": 0.060381523333489895
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_5800_5899.tar.gz_0043.pkl",
+   "flow_idx": 28,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.022865,
+   "f_actual": 0.002579295774921775,
+   "f_baseline": 0.0012931856326758862,
+   "effect": 0.0012861101422458887
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7200_7299.tar.gz_0057.pkl",
+   "flow_idx": 74,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.008711,
+   "f_actual": 0.008322537876665592,
+   "f_baseline": 0.016771433874964714,
+   "effect": 0.008448895998299122
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_2100_2199.tar.gz_0040.pkl",
+   "flow_idx": 92,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.006037,
+   "f_actual": 0.006802058778703213,
+   "f_baseline": 0.004951898939907551,
+   "effect": 0.001850159838795662
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1100_1199.tar.gz_0087.pkl",
+   "flow_idx": 11,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.010277,
+   "f_actual": 0.021885477006435394,
+   "f_baseline": 0.16954971849918365,
+   "effect": 0.14766424149274826
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3700_3799.tar.gz_0055.pkl",
+   "flow_idx": 1,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.013163,
+   "f_actual": 0.012046972289681435,
+   "f_baseline": 0.019788891077041626,
+   "effect": 0.007741918787360191
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7200_7299.tar.gz_0009.pkl",
+   "flow_idx": 63,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.009099,
+   "f_actual": 0.011071041226387024,
+   "f_baseline": 0.0537150613963604,
+   "effect": 0.04264402016997337
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_200_299.tar.gz_0031.pkl",
+   "flow_idx": 0,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.026752,
+   "f_actual": 0.015348308719694614,
+   "f_baseline": 0.0016229480970650911,
+   "effect": 0.013725360622629523
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_800_899.tar.gz_0083.pkl",
+   "flow_idx": 2,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.061021,
+   "f_actual": 0.02462010644376278,
+   "f_baseline": 0.02414589934051037,
+   "effect": 0.0004742071032524109
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7000_7099.tar.gz_0002.pkl",
+   "flow_idx": 33,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.042888,
+   "f_actual": 0.01699923723936081,
+   "f_baseline": 0.009870816953480244,
+   "effect": 0.007128420285880566
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3300_3399.tar.gz_0014.pkl",
+   "flow_idx": 91,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.000773,
+   "f_actual": 0.0009488954092375934,
+   "f_baseline": 0.0006074646953493357,
+   "effect": 0.00034143071388825774
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7800_7899.tar.gz_0063.pkl",
+   "flow_idx": 34,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.028222,
+   "f_actual": 0.012762804515659809,
+   "f_baseline": 0.003977748099714518,
+   "effect": 0.008785056415945292
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1900_1999.tar.gz_0082.pkl",
+   "flow_idx": 3,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.00108,
+   "f_actual": 0.0035482714883983135,
+   "f_baseline": 0.004080857615917921,
+   "effect": 0.0005325861275196075
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7800_7899.tar.gz_0078.pkl",
+   "flow_idx": 3,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.008019,
+   "f_actual": 0.007455306127667427,
+   "f_baseline": 0.003505152650177479,
+   "effect": 0.003950153477489948
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7800_7899.tar.gz_0039.pkl",
+   "flow_idx": 117,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.025791,
+   "f_actual": 0.029798757284879684,
+   "f_baseline": 0.04470870643854141,
+   "effect": 0.014909949153661728
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3300_3399.tar.gz_0074.pkl",
+   "flow_idx": 109,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.049677,
+   "f_actual": 0.015472603030502796,
+   "f_baseline": 0.01782604679465294,
+   "effect": 0.0023534437641501427
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7200_7299.tar.gz_0001.pkl",
+   "flow_idx": 46,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.008671,
+   "f_actual": 0.0038939195219427347,
+   "f_baseline": 0.002584907691925764,
+   "effect": 0.0013090118300169706
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3700_3799.tar.gz_0027.pkl",
+   "flow_idx": 1,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.000797,
+   "f_actual": 0.0011236383579671383,
+   "f_baseline": 0.0006467829225584865,
+   "effect": 0.00047685543540865183
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7100_7199.tar.gz_0056.pkl",
+   "flow_idx": 14,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.057515,
+   "f_actual": 0.019198980182409286,
+   "f_baseline": 0.006501663476228714,
+   "effect": 0.012697316706180573
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3700_3799.tar.gz_0057.pkl",
+   "flow_idx": 0,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 2.81262,
+   "f_actual": 1.3564757108688354,
+   "f_baseline": 0.40714794397354126,
+   "effect": 0.9493277668952942
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3700_3799.tar.gz_0083.pkl",
+   "flow_idx": 2,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.001007,
+   "f_actual": 0.10550440847873688,
+   "f_baseline": 0.003496580757200718,
+   "effect": 0.10200782772153616
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3500_3599.tar.gz_0043.pkl",
+   "flow_idx": 1,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.006759,
+   "f_actual": 0.00888457428663969,
+   "f_baseline": 0.0835094004869461,
+   "effect": 0.07462482620030642
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_200_299.tar.gz_0062.pkl",
+   "flow_idx": 4,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.026833,
+   "f_actual": 0.5351935029029846,
+   "f_baseline": 0.1346927434206009,
+   "effect": 0.40050075948238373
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1900_1999.tar.gz_0021.pkl",
+   "flow_idx": 0,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.001042,
+   "f_actual": 0.003948031924664974,
+   "f_baseline": 0.0008935535443015397,
+   "effect": 0.0030544783803634346
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3300_3399.tar.gz_0042.pkl",
+   "flow_idx": 3,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.027627,
+   "f_actual": 0.012928045354783535,
+   "f_baseline": 0.0037415726110339165,
+   "effect": 0.009186472743749619
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_5800_5899.tar.gz_0014.pkl",
+   "flow_idx": 39,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.006591,
+   "f_actual": 0.009944706223905087,
+   "f_baseline": 0.018004851415753365,
+   "effect": 0.008060145191848278
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7800_7899.tar.gz_0009.pkl",
+   "flow_idx": 40,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.026125,
+   "f_actual": 0.01634681224822998,
+   "f_baseline": 0.0074306754395365715,
+   "effect": 0.008916136808693409
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1900_1999.tar.gz_0047.pkl",
+   "flow_idx": 101,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.025199,
+   "f_actual": 0.014565511606633663,
+   "f_baseline": 0.009525266475975513,
+   "effect": 0.00504024513065815
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_2400_2499.tar.gz_0024.pkl",
+   "flow_idx": 1,
+   "slice_type": 0,
+   "slice_name": "eMBB",
+   "label_delay": 0.026623,
+   "f_actual": 0.01686367206275463,
+   "f_baseline": 0.009549535810947418,
+   "effect": 0.007314136251807213
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7800_7899.tar.gz_0057.pkl",
+   "flow_idx": 24,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.028152,
+   "f_actual": 0.020595107227563858,
+   "f_baseline": 0.020578231662511826,
+   "effect": 1.687556505203247e-05
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1900_1999.tar.gz_0045.pkl",
+   "flow_idx": 33,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.02134,
+   "f_actual": 0.017071787267923355,
+   "f_baseline": 0.017728686332702637,
+   "effect": 0.0006568990647792816
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1200_1299.tar.gz_0033.pkl",
+   "flow_idx": 97,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.013526,
+   "f_actual": 0.008087624795734882,
+   "f_baseline": 0.007099567912518978,
+   "effect": 0.0009880568832159042
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7000_7099.tar.gz_0055.pkl",
+   "flow_idx": 48,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 6.59456,
+   "f_actual": 0.008894802071154118,
+   "f_baseline": 0.00948591809719801,
+   "effect": 0.0005911160260438919
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3500_3599.tar.gz_0046.pkl",
+   "flow_idx": 17,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.006378,
+   "f_actual": 0.0031989465933293104,
+   "f_baseline": 0.003212248208001256,
+   "effect": 1.3301614671945572e-05
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_2100_2199.tar.gz_0013.pkl",
+   "flow_idx": 58,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.012547,
+   "f_actual": 0.005341127049177885,
+   "f_baseline": 0.00622855918481946,
+   "effect": 0.0008874321356415749
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_200_299.tar.gz_0074.pkl",
+   "flow_idx": 147,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.021634,
+   "f_actual": 0.01924390345811844,
+   "f_baseline": 0.01736512966454029,
+   "effect": 0.0018787737935781479
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_5800_5899.tar.gz_0025.pkl",
+   "flow_idx": 52,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.023845,
+   "f_actual": 0.10647671669721603,
+   "f_baseline": 0.11749467998743057,
+   "effect": 0.011017963290214539
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3300_3399.tar.gz_0068.pkl",
+   "flow_idx": 89,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.000103,
+   "f_actual": 5.594709000433795e-05,
+   "f_baseline": 5.533714283956215e-05,
+   "effect": 6.099471647758037e-07
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3500_3599.tar.gz_0002.pkl",
+   "flow_idx": 202,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.000716,
+   "f_actual": 0.0010083572706207633,
+   "f_baseline": 0.0012368678580969572,
+   "effect": 0.0002285105874761939
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_800_899.tar.gz_0079.pkl",
+   "flow_idx": 95,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.000106,
+   "f_actual": 4.709895438281819e-05,
+   "f_baseline": 6.744472921127453e-05,
+   "effect": 2.0345774828456342e-05
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1100_1199.tar.gz_0026.pkl",
+   "flow_idx": 96,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.003031,
+   "f_actual": 0.004727090243250132,
+   "f_baseline": 0.003920702263712883,
+   "effect": 0.0008063879795372486
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3400_3499.tar.gz_0021.pkl",
+   "flow_idx": 170,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.000769,
+   "f_actual": 0.0006320212269201875,
+   "f_baseline": 0.0005340389325283468,
+   "effect": 9.79822943918407e-05
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7800_7899.tar.gz_0071.pkl",
+   "flow_idx": 21,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.003469,
+   "f_actual": 0.00022433068079408258,
+   "f_baseline": 0.0002201606403104961,
+   "effect": 4.17004048358649e-06
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7000_7099.tar.gz_0030.pkl",
+   "flow_idx": 110,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 8.9e-05,
+   "f_actual": 0.0009486755589023232,
+   "f_baseline": 0.001058170571923256,
+   "effect": 0.00010949501302093267
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7200_7299.tar.gz_0070.pkl",
+   "flow_idx": 23,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.003852,
+   "f_actual": 0.0016209185123443604,
+   "f_baseline": 0.001458389451727271,
+   "effect": 0.00016252906061708927
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1900_1999.tar.gz_0062.pkl",
+   "flow_idx": 81,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.009208,
+   "f_actual": 0.005341474898159504,
+   "f_baseline": 0.005942094139754772,
+   "effect": 0.0006006192415952682
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1200_1299.tar.gz_0000.pkl",
+   "flow_idx": 32,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.030485,
+   "f_actual": 0.03686080127954483,
+   "f_baseline": 0.037219636142253876,
+   "effect": 0.0003588348627090454
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3500_3599.tar.gz_0042.pkl",
+   "flow_idx": 71,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.000113,
+   "f_actual": 0.031158901751041412,
+   "f_baseline": 0.03379807621240616,
+   "effect": 0.002639174461364746
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3300_3399.tar.gz_0017.pkl",
+   "flow_idx": 281,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.000307,
+   "f_actual": 0.0004134874907322228,
+   "f_baseline": 0.00041207889444194734,
+   "effect": 1.4085962902754545e-06
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1900_1999.tar.gz_0026.pkl",
+   "flow_idx": 442,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.002505,
+   "f_actual": 0.0010277872206643224,
+   "f_baseline": 0.0013696913374587893,
+   "effect": 0.00034190411679446697
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1100_1199.tar.gz_0002.pkl",
+   "flow_idx": 7,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.061056,
+   "f_actual": 0.0372278094291687,
+   "f_baseline": 0.03731762617826462,
+   "effect": 8.981674909591675e-05
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_400_499.tar.gz_0021.pkl",
+   "flow_idx": 127,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.007407,
+   "f_actual": 0.0063495393842458725,
+   "f_baseline": 0.005575424525886774,
+   "effect": 0.0007741148583590984
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1900_1999.tar.gz_0024.pkl",
+   "flow_idx": 31,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.007206,
+   "f_actual": 0.00509939668700099,
+   "f_baseline": 0.004311518277972937,
+   "effect": 0.0007878784090280533
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3700_3799.tar.gz_0052.pkl",
+   "flow_idx": 41,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.010016,
+   "f_actual": 0.008330282755196095,
+   "f_baseline": 0.009904532693326473,
+   "effect": 0.0015742499381303787
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_2100_2199.tar.gz_0044.pkl",
+   "flow_idx": 53,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.000133,
+   "f_actual": 0.00022197593352757394,
+   "f_baseline": 0.00021933203970547765,
+   "effect": 2.643893822096288e-06
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_2100_2199.tar.gz_0015.pkl",
+   "flow_idx": 47,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.005116,
+   "f_actual": 0.004886922426521778,
+   "f_baseline": 0.004479395691305399,
+   "effect": 0.00040752673521637917
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3400_3499.tar.gz_0016.pkl",
+   "flow_idx": 38,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.023201,
+   "f_actual": 0.025493772700428963,
+   "f_baseline": 0.022661777213215828,
+   "effect": 0.0028319954872131348
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7200_7299.tar.gz_0086.pkl",
+   "flow_idx": 155,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.00095,
+   "f_actual": 0.0006726622232235968,
+   "f_baseline": 0.0006743241101503372,
+   "effect": 1.661886926740408e-06
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7200_7299.tar.gz_0065.pkl",
+   "flow_idx": 170,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.018349,
+   "f_actual": 0.0060861255042254925,
+   "f_baseline": 0.006549363490194082,
+   "effect": 0.0004632379859685898
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_400_499.tar.gz_0047.pkl",
+   "flow_idx": 34,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.059517,
+   "f_actual": 0.006017208099365234,
+   "f_baseline": 0.006017218343913555,
+   "effect": 1.0244548320770264e-08
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7200_7299.tar.gz_0067.pkl",
+   "flow_idx": 27,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.02633,
+   "f_actual": 0.0209320280700922,
+   "f_baseline": 0.02200833149254322,
+   "effect": 0.0010763034224510193
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3500_3599.tar.gz_0084.pkl",
+   "flow_idx": 141,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.00068,
+   "f_actual": 0.00022032554261386395,
+   "f_baseline": 0.00020468290313147008,
+   "effect": 1.564263948239386e-05
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3400_3499.tar.gz_0062.pkl",
+   "flow_idx": 65,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 2.2e-05,
+   "f_actual": 2.1742423996329308e-05,
+   "f_baseline": 2.1423953512567095e-05,
+   "effect": 3.184704837622121e-07
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1200_1299.tar.gz_0002.pkl",
+   "flow_idx": 108,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.004108,
+   "f_actual": 0.004049204755574465,
+   "f_baseline": 0.00404865900054574,
+   "effect": 5.457550287246704e-07
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3500_3599.tar.gz_0019.pkl",
+   "flow_idx": 94,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.000115,
+   "f_actual": 0.0013045569648966193,
+   "f_baseline": 0.001094852457754314,
+   "effect": 0.00020970450714230537
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3500_3599.tar.gz_0074.pkl",
+   "flow_idx": 58,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 1.5e-05,
+   "f_actual": 1.5381079720100388e-05,
+   "f_baseline": 1.5165900549618527e-05,
+   "effect": 2.1517917048186064e-07
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1200_1299.tar.gz_0030.pkl",
+   "flow_idx": 96,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.000141,
+   "f_actual": 0.0006370397750288248,
+   "f_baseline": 0.000640303420368582,
+   "effect": 3.263645339757204e-06
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3500_3599.tar.gz_0016.pkl",
+   "flow_idx": 374,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.009064,
+   "f_actual": 0.006947875954210758,
+   "f_baseline": 0.0067217121832072735,
+   "effect": 0.00022616377100348473
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_2100_2199.tar.gz_0085.pkl",
+   "flow_idx": 16,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.040703,
+   "f_actual": 0.1982797384262085,
+   "f_baseline": 0.1978621929883957,
+   "effect": 0.0004175454378128052
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7000_7099.tar.gz_0059.pkl",
+   "flow_idx": 105,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.000176,
+   "f_actual": 0.0002876589132938534,
+   "f_baseline": 0.0002924095024354756,
+   "effect": 4.750589141622186e-06
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3400_3499.tar.gz_0048.pkl",
+   "flow_idx": 197,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.000156,
+   "f_actual": 0.00016575082554481924,
+   "f_baseline": 0.00017876530182547867,
+   "effect": 1.3014476280659437e-05
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1200_1299.tar.gz_0082.pkl",
+   "flow_idx": 177,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.008123,
+   "f_actual": 0.006091732531785965,
+   "f_baseline": 0.005713888444006443,
+   "effect": 0.00037784408777952194
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7000_7099.tar.gz_0003.pkl",
+   "flow_idx": 407,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.003362,
+   "f_actual": 0.0063507226295769215,
+   "f_baseline": 0.006240529008209705,
+   "effect": 0.00011019362136721611
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3300_3399.tar.gz_0090.pkl",
+   "flow_idx": 79,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 5.5e-05,
+   "f_actual": 3.125837247353047e-05,
+   "f_baseline": 3.044617551495321e-05,
+   "effect": 8.121969585772604e-07
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7800_7899.tar.gz_0050.pkl",
+   "flow_idx": 378,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.074157,
+   "f_actual": 0.17315566539764404,
+   "f_baseline": 0.17651355266571045,
+   "effect": 0.0033578872680664062
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7100_7199.tar.gz_0042.pkl",
+   "flow_idx": 341,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.001044,
+   "f_actual": 0.0006542866467498243,
+   "f_baseline": 0.0006474379915744066,
+   "effect": 6.848655175417662e-06
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7100_7199.tar.gz_0087.pkl",
+   "flow_idx": 153,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.001231,
+   "f_actual": 0.0005678112502209842,
+   "f_baseline": 0.0005793485324829817,
+   "effect": 1.1537282261997461e-05
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7800_7899.tar.gz_0028.pkl",
+   "flow_idx": 385,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 3.2e-05,
+   "f_actual": 3.349622420500964e-05,
+   "f_baseline": 3.331343032186851e-05,
+   "effect": 1.827938831411302e-07
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7200_7299.tar.gz_0052.pkl",
+   "flow_idx": 63,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 5.9e-05,
+   "f_actual": 2.384718754910864e-05,
+   "f_baseline": 2.3083226551534608e-05,
+   "effect": 7.639609975740314e-07
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_2100_2199.tar.gz_0061.pkl",
+   "flow_idx": 299,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.001418,
+   "f_actual": 0.000305584107991308,
+   "f_baseline": 0.0002582572924438864,
+   "effect": 4.7326815547421575e-05
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3300_3399.tar.gz_0089.pkl",
+   "flow_idx": 68,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 19.1226,
+   "f_actual": 0.036693476140499115,
+   "f_baseline": 0.04139677435159683,
+   "effect": 0.004703298211097717
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3300_3399.tar.gz_0072.pkl",
+   "flow_idx": 168,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.000235,
+   "f_actual": 0.0001875778689282015,
+   "f_baseline": 0.00019304192392155528,
+   "effect": 5.464054993353784e-06
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_5800_5899.tar.gz_0041.pkl",
+   "flow_idx": 502,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.000312,
+   "f_actual": 0.00018003230798058212,
+   "f_baseline": 0.00020413004676811397,
+   "effect": 2.4097738787531853e-05
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3700_3799.tar.gz_0063.pkl",
+   "flow_idx": 519,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.000404,
+   "f_actual": 0.0010974642354995012,
+   "f_baseline": 0.0009627061663195491,
+   "effect": 0.00013475806917995214
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_200_299.tar.gz_0042.pkl",
+   "flow_idx": 18,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.011041,
+   "f_actual": 0.059585168957710266,
+   "f_baseline": 0.06148899346590042,
+   "effect": 0.001903824508190155
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1200_1299.tar.gz_0086.pkl",
+   "flow_idx": 171,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.007176,
+   "f_actual": 0.01398283801972866,
+   "f_baseline": 0.013883420266211033,
+   "effect": 9.941775351762772e-05
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7200_7299.tar.gz_0071.pkl",
+   "flow_idx": 238,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.003761,
+   "f_actual": 0.002234633546322584,
+   "f_baseline": 0.0020138926338404417,
+   "effect": 0.00022074091248214245
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_2400_2499.tar.gz_0081.pkl",
+   "flow_idx": 96,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 5.6e-05,
+   "f_actual": 0.00016621941176708788,
+   "f_baseline": 0.00016710534691810608,
+   "effect": 8.859351510182023e-07
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_400_499.tar.gz_0014.pkl",
+   "flow_idx": 84,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.009056,
+   "f_actual": 0.028053436428308487,
+   "f_baseline": 0.029353121295571327,
+   "effect": 0.0012996848672628403
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7200_7299.tar.gz_0085.pkl",
+   "flow_idx": 53,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.005579,
+   "f_actual": 0.0039118146523833275,
+   "f_baseline": 0.0036232052370905876,
+   "effect": 0.00028860941529273987
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3700_3799.tar.gz_0025.pkl",
+   "flow_idx": 44,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.023356,
+   "f_actual": 0.013284999877214432,
+   "f_baseline": 0.011407027021050453,
+   "effect": 0.0018779728561639786
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_2100_2199.tar.gz_0050.pkl",
+   "flow_idx": 40,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.006206,
+   "f_actual": 0.012140589766204357,
+   "f_baseline": 0.01205457467585802,
+   "effect": 8.601509034633636e-05
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_2400_2499.tar.gz_0014.pkl",
+   "flow_idx": 96,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.013867,
+   "f_actual": 0.005212236195802689,
+   "f_baseline": 0.005508373491466045,
+   "effect": 0.0002961372956633568
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3300_3399.tar.gz_0012.pkl",
+   "flow_idx": 224,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.014718,
+   "f_actual": 0.010451802052557468,
+   "f_baseline": 0.01051867101341486,
+   "effect": 6.686896085739136e-05
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_800_899.tar.gz_0007.pkl",
+   "flow_idx": 440,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.002654,
+   "f_actual": 0.0014540182892233133,
+   "f_baseline": 0.0015327727887779474,
+   "effect": 7.87544995546341e-05
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_400_499.tar.gz_0000.pkl",
+   "flow_idx": 23,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.046222,
+   "f_actual": 0.18046504259109497,
+   "f_baseline": 0.1776113212108612,
+   "effect": 0.0028537213802337646
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_200_299.tar.gz_0073.pkl",
+   "flow_idx": 181,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.001881,
+   "f_actual": 0.0018608936807140708,
+   "f_baseline": 0.001889062230475247,
+   "effect": 2.816854976117611e-05
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7800_7899.tar.gz_0055.pkl",
+   "flow_idx": 52,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.056127,
+   "f_actual": 0.05137784779071808,
+   "f_baseline": 0.05053158476948738,
+   "effect": 0.0008462630212306976
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7200_7299.tar.gz_0020.pkl",
+   "flow_idx": 90,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.004765,
+   "f_actual": 0.0023720436729490757,
+   "f_baseline": 0.0026891143061220646,
+   "effect": 0.0003170706331729889
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7800_7899.tar.gz_0090.pkl",
+   "flow_idx": 146,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.021407,
+   "f_actual": 0.031831495463848114,
+   "f_baseline": 0.029505908489227295,
+   "effect": 0.002325586974620819
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_400_499.tar.gz_0049.pkl",
+   "flow_idx": 139,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.001492,
+   "f_actual": 0.0013462563510984182,
+   "f_baseline": 0.0009708770085126162,
+   "effect": 0.0003753793425858021
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_200_299.tar.gz_0078.pkl",
+   "flow_idx": 235,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 1.2e-05,
+   "f_actual": 1.2203290680190548e-05,
+   "f_baseline": 1.2204339327581692e-05,
+   "effect": 1.0486473911441863e-09
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1100_1199.tar.gz_0025.pkl",
+   "flow_idx": 130,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.014507,
+   "f_actual": 0.006038479041308165,
+   "f_baseline": 0.0058457632549107075,
+   "effect": 0.00019271578639745712
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1200_1299.tar.gz_0069.pkl",
+   "flow_idx": 234,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 4.4e-05,
+   "f_actual": 7.853446004446596e-05,
+   "f_baseline": 7.619423558935523e-05,
+   "effect": 2.3402244551107287e-06
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3500_3599.tar.gz_0067.pkl",
+   "flow_idx": 86,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.012197,
+   "f_actual": 0.011241620406508446,
+   "f_baseline": 0.012224122881889343,
+   "effect": 0.0009825024753808975
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7100_7199.tar.gz_0076.pkl",
+   "flow_idx": 29,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.056593,
+   "f_actual": 0.029814789071679115,
+   "f_baseline": 0.029938312247395515,
+   "effect": 0.00012352317571640015
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7000_7099.tar.gz_0078.pkl",
+   "flow_idx": 140,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.004605,
+   "f_actual": 0.011225550435483456,
+   "f_baseline": 0.012220536358654499,
+   "effect": 0.0009949859231710434
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_800_899.tar.gz_0031.pkl",
+   "flow_idx": 36,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.004178,
+   "f_actual": 0.0015374424401670694,
+   "f_baseline": 0.0014573431108146906,
+   "effect": 8.009932935237885e-05
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7000_7099.tar.gz_0027.pkl",
+   "flow_idx": 79,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 2.9e-05,
+   "f_actual": 2.1306022972567007e-05,
+   "f_baseline": 2.1417719835881144e-05,
+   "effect": 1.1169686331413686e-07
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7000_7099.tar.gz_0088.pkl",
+   "flow_idx": 35,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.022444,
+   "f_actual": 0.012506797909736633,
+   "f_baseline": 0.0154449213296175,
+   "effect": 0.002938123419880867
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_800_899.tar.gz_0094.pkl",
+   "flow_idx": 121,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.003948,
+   "f_actual": 0.003719050670042634,
+   "f_baseline": 0.0033492455258965492,
+   "effect": 0.0003698051441460848
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1100_1199.tar.gz_0077.pkl",
+   "flow_idx": 32,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.019472,
+   "f_actual": 0.04305029660463333,
+   "f_baseline": 0.047077953815460205,
+   "effect": 0.004027657210826874
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7800_7899.tar.gz_0075.pkl",
+   "flow_idx": 56,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.102504,
+   "f_actual": 0.19044741988182068,
+   "f_baseline": 0.19311723113059998,
+   "effect": 0.002669811248779297
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1900_1999.tar.gz_0025.pkl",
+   "flow_idx": 88,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.000353,
+   "f_actual": 0.00019245983276050538,
+   "f_baseline": 0.0001746989000821486,
+   "effect": 1.7760932678356767e-05
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_400_499.tar.gz_0037.pkl",
+   "flow_idx": 355,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.00035,
+   "f_actual": 0.0003839273995254189,
+   "f_baseline": 0.00044274775427766144,
+   "effect": 5.8820354752242565e-05
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3700_3799.tar.gz_0000.pkl",
+   "flow_idx": 414,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.005266,
+   "f_actual": 0.003288004081696272,
+   "f_baseline": 0.002642872743308544,
+   "effect": 0.0006451313383877277
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_400_499.tar.gz_0065.pkl",
+   "flow_idx": 110,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 1.6e-05,
+   "f_actual": 1.8109503798768856e-05,
+   "f_baseline": 1.7817454136093147e-05,
+   "effect": 2.9204966267570853e-07
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3400_3499.tar.gz_0079.pkl",
+   "flow_idx": 132,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.000421,
+   "f_actual": 0.00017909928283188492,
+   "f_baseline": 0.0001709817152004689,
+   "effect": 8.117567631416023e-06
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1200_1299.tar.gz_0079.pkl",
+   "flow_idx": 224,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 4.9e-05,
+   "f_actual": 0.00011016310600098222,
+   "f_baseline": 0.00011427474964875728,
+   "effect": 4.111643647775054e-06
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7100_7199.tar.gz_0080.pkl",
+   "flow_idx": 213,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.000766,
+   "f_actual": 0.0003855242393910885,
+   "f_baseline": 0.0005505312001332641,
+   "effect": 0.00016500696074217558
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3500_3599.tar.gz_0053.pkl",
+   "flow_idx": 361,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.00141,
+   "f_actual": 0.000891870295163244,
+   "f_baseline": 0.000965962593909353,
+   "effect": 7.409229874610901e-05
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1200_1299.tar.gz_0041.pkl",
+   "flow_idx": 281,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 1.1e-05,
+   "f_actual": 1.1888125300174579e-05,
+   "f_baseline": 1.1748422366508748e-05,
+   "effect": 1.3970293366583064e-07
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_200_299.tar.gz_0004.pkl",
+   "flow_idx": 404,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.001169,
+   "f_actual": 0.0010397547157481313,
+   "f_baseline": 0.001609079772606492,
+   "effect": 0.0005693250568583608
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3500_3599.tar.gz_0008.pkl",
+   "flow_idx": 70,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.009383,
+   "f_actual": 0.0009167203679680824,
+   "f_baseline": 0.000807102071121335,
+   "effect": 0.0001096182968467474
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_400_499.tar.gz_0019.pkl",
+   "flow_idx": 132,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.01159,
+   "f_actual": 0.009250914677977562,
+   "f_baseline": 0.009125946089625359,
+   "effect": 0.00012496858835220337
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_2100_2199.tar.gz_0079.pkl",
+   "flow_idx": 36,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.000316,
+   "f_actual": 0.00014258512237574905,
+   "f_baseline": 0.00014272610133048147,
+   "effect": 1.4097895473241806e-07
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7800_7899.tar.gz_0036.pkl",
+   "flow_idx": 50,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.060424,
+   "f_actual": 0.02898157574236393,
+   "f_baseline": 0.02643391117453575,
+   "effect": 0.0025476645678281784
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3300_3399.tar.gz_0023.pkl",
+   "flow_idx": 32,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.069241,
+   "f_actual": 0.03167400509119034,
+   "f_baseline": 0.028874564915895462,
+   "effect": 0.002799440175294876
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3300_3399.tar.gz_0087.pkl",
+   "flow_idx": 17,
+   "slice_type": 1,
+   "slice_name": "mMTC",
+   "label_delay": 0.012454,
+   "f_actual": 0.013360356912016869,
+   "f_baseline": 0.015882495790719986,
+   "effect": 0.0025221388787031174
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_2400_2499.tar.gz_0073.pkl",
+   "flow_idx": 10,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.001102,
+   "f_actual": 0.00030530703952535987,
+   "f_baseline": 0.000538480409886688,
+   "effect": 0.00023317337036132812
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_200_299.tar.gz_0021.pkl",
+   "flow_idx": 7,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000265,
+   "f_actual": 0.00018701315275393426,
+   "f_baseline": 0.008505456149578094,
+   "effect": 0.00831844299682416
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1100_1199.tar.gz_0071.pkl",
+   "flow_idx": 102,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000286,
+   "f_actual": 0.00046288478188216686,
+   "f_baseline": 0.000626278342679143,
+   "effect": 0.0001633935607969761
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3700_3799.tar.gz_0050.pkl",
+   "flow_idx": 7,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.001687,
+   "f_actual": 0.0004393205454107374,
+   "f_baseline": 0.018840834498405457,
+   "effect": 0.01840151395299472
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3700_3799.tar.gz_0025.pkl",
+   "flow_idx": 22,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 7.9e-05,
+   "f_actual": 0.00026290814275853336,
+   "f_baseline": 0.00807733740657568,
+   "effect": 0.007814429263817146
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_400_499.tar.gz_0019.pkl",
+   "flow_idx": 7,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000166,
+   "f_actual": 0.00020220113219693303,
+   "f_baseline": 0.013019061647355556,
+   "effect": 0.012816860515158623
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3500_3599.tar.gz_0086.pkl",
+   "flow_idx": 20,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000128,
+   "f_actual": 0.00027338528889231384,
+   "f_baseline": 0.01992863230407238,
+   "effect": 0.019655247015180066
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_400_499.tar.gz_0028.pkl",
+   "flow_idx": 23,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000173,
+   "f_actual": 0.0002523496514186263,
+   "f_baseline": 0.00019311634241603315,
+   "effect": 5.923330900259316e-05
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_5800_5899.tar.gz_0060.pkl",
+   "flow_idx": 22,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.00022,
+   "f_actual": 0.00023186214093584567,
+   "f_baseline": 0.010053819976747036,
+   "effect": 0.00982195783581119
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_400_499.tar.gz_0040.pkl",
+   "flow_idx": 22,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 7.5e-05,
+   "f_actual": 0.00011584971798583865,
+   "f_baseline": 0.004388311877846718,
+   "effect": 0.004272462159860879
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_200_299.tar.gz_0078.pkl",
+   "flow_idx": 66,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000285,
+   "f_actual": 9.578235767548904e-05,
+   "f_baseline": 0.0003343505668453872,
+   "effect": 0.00023856820916989818
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_800_899.tar.gz_0023.pkl",
+   "flow_idx": 72,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 5.9e-05,
+   "f_actual": 7.414464926114306e-05,
+   "f_baseline": 0.0041007972322404385,
+   "effect": 0.004026652582979295
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7000_7099.tar.gz_0035.pkl",
+   "flow_idx": 9,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.003439,
+   "f_actual": 0.007672719657421112,
+   "f_baseline": 0.035653095692396164,
+   "effect": 0.027980376034975052
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3700_3799.tar.gz_0022.pkl",
+   "flow_idx": 17,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 4.9e-05,
+   "f_actual": 8.613144018454477e-05,
+   "f_baseline": 0.00017012971511576325,
+   "effect": 8.399827493121848e-05
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3400_3499.tar.gz_0057.pkl",
+   "flow_idx": 35,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 5.7e-05,
+   "f_actual": 0.0001079610810847953,
+   "f_baseline": 0.0002681173791643232,
+   "effect": 0.00016015629807952791
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1900_1999.tar.gz_0038.pkl",
+   "flow_idx": 15,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000421,
+   "f_actual": 0.0002468986203894019,
+   "f_baseline": 0.00013973629393149167,
+   "effect": 0.00010716232645791024
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_2400_2499.tar.gz_0006.pkl",
+   "flow_idx": 2,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.008754,
+   "f_actual": 0.013396330177783966,
+   "f_baseline": 0.007792109623551369,
+   "effect": 0.005604220554232597
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_5800_5899.tar.gz_0039.pkl",
+   "flow_idx": 35,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.001982,
+   "f_actual": 0.0018032314255833626,
+   "f_baseline": 0.007631320506334305,
+   "effect": 0.005828089080750942
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_2400_2499.tar.gz_0017.pkl",
+   "flow_idx": 29,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.016781,
+   "f_actual": 0.00962813850492239,
+   "f_baseline": 0.01364526990801096,
+   "effect": 0.00401713140308857
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3300_3399.tar.gz_0057.pkl",
+   "flow_idx": 57,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 9.1e-05,
+   "f_actual": 7.726295734755695e-05,
+   "f_baseline": 0.004190036095678806,
+   "effect": 0.004112773138331249
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3400_3499.tar.gz_0041.pkl",
+   "flow_idx": 16,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000594,
+   "f_actual": 0.0003002196317538619,
+   "f_baseline": 0.0002263363858219236,
+   "effect": 7.388324593193829e-05
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7100_7199.tar.gz_0031.pkl",
+   "flow_idx": 112,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000307,
+   "f_actual": 0.0008095303201116621,
+   "f_baseline": 0.0008989336783997715,
+   "effect": 8.94033582881093e-05
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_200_299.tar.gz_0019.pkl",
+   "flow_idx": 18,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000134,
+   "f_actual": 0.00033436293597333133,
+   "f_baseline": 0.006017327308654785,
+   "effect": 0.005682964372681454
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3400_3499.tar.gz_0065.pkl",
+   "flow_idx": 31,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.002823,
+   "f_actual": 0.002085356507450342,
+   "f_baseline": 0.085475854575634,
+   "effect": 0.08339049806818366
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1200_1299.tar.gz_0061.pkl",
+   "flow_idx": 4,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.004258,
+   "f_actual": 0.001061691320501268,
+   "f_baseline": 0.006428921595215797,
+   "effect": 0.0053672302747145295
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7200_7299.tar.gz_0049.pkl",
+   "flow_idx": 60,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000521,
+   "f_actual": 0.0005821213126182556,
+   "f_baseline": 0.03734365850687027,
+   "effect": 0.036761537194252014
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_200_299.tar.gz_0009.pkl",
+   "flow_idx": 53,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 6.6e-05,
+   "f_actual": 7.074089808156714e-05,
+   "f_baseline": 0.0027897495310753584,
+   "effect": 0.0027190086329937913
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_200_299.tar.gz_0067.pkl",
+   "flow_idx": 109,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000566,
+   "f_actual": 0.00023525785945821553,
+   "f_baseline": 0.0005524471052922308,
+   "effect": 0.0003171892458340153
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_5800_5899.tar.gz_0024.pkl",
+   "flow_idx": 19,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.003011,
+   "f_actual": 0.00013281431165523827,
+   "f_baseline": 6.128982204245403e-05,
+   "effect": 7.152448961278424e-05
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_2400_2499.tar.gz_0082.pkl",
+   "flow_idx": 14,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.007513,
+   "f_actual": 0.004244478885084391,
+   "f_baseline": 0.029532283544540405,
+   "effect": 0.025287804659456015
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3500_3599.tar.gz_0051.pkl",
+   "flow_idx": 36,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000144,
+   "f_actual": 0.00029645973700098693,
+   "f_baseline": 0.00990209449082613,
+   "effect": 0.009605634753825143
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7800_7899.tar.gz_0089.pkl",
+   "flow_idx": 49,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.00395,
+   "f_actual": 0.004657810088247061,
+   "f_baseline": 0.08174577355384827,
+   "effect": 0.0770879634656012
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_2400_2499.tar.gz_0053.pkl",
+   "flow_idx": 55,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000638,
+   "f_actual": 0.0007705818279646337,
+   "f_baseline": 0.004128034692257643,
+   "effect": 0.003357452864293009
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_400_499.tar.gz_0075.pkl",
+   "flow_idx": 25,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 21.0372,
+   "f_actual": 0.22743602097034454,
+   "f_baseline": 0.1278412640094757,
+   "effect": 0.09959475696086884
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_5800_5899.tar.gz_0023.pkl",
+   "flow_idx": 25,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.004182,
+   "f_actual": 0.0028214326594024897,
+   "f_baseline": 0.025020569562911987,
+   "effect": 0.022199136903509498
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_5800_5899.tar.gz_0008.pkl",
+   "flow_idx": 22,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000119,
+   "f_actual": 0.0004788145888596773,
+   "f_baseline": 0.0003968247910961509,
+   "effect": 8.198979776352644e-05
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1100_1199.tar.gz_0010.pkl",
+   "flow_idx": 16,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000121,
+   "f_actual": 0.00022428753436543047,
+   "f_baseline": 0.000696058850735426,
+   "effect": 0.0004717713163699955
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_200_299.tar.gz_0004.pkl",
+   "flow_idx": 14,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 8.5e-05,
+   "f_actual": 0.00011962467397097498,
+   "f_baseline": 0.0003733254561666399,
+   "effect": 0.00025370078219566494
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7800_7899.tar.gz_0014.pkl",
+   "flow_idx": 24,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000977,
+   "f_actual": 0.001227052416652441,
+   "f_baseline": 0.040139876306056976,
+   "effect": 0.038912823889404535
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3300_3399.tar.gz_0067.pkl",
+   "flow_idx": 17,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000252,
+   "f_actual": 0.0003378795809112489,
+   "f_baseline": 0.0002962842700071633,
+   "effect": 4.1595310904085636e-05
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7800_7899.tar.gz_0030.pkl",
+   "flow_idx": 4,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.001519,
+   "f_actual": 0.001689678872935474,
+   "f_baseline": 0.0030683947261422873,
+   "effect": 0.0013787158532068133
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1900_1999.tar.gz_0002.pkl",
+   "flow_idx": 43,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.00505,
+   "f_actual": 0.003733318764716387,
+   "f_baseline": 0.004803593270480633,
+   "effect": 0.001070274505764246
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_2100_2199.tar.gz_0015.pkl",
+   "flow_idx": 31,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000119,
+   "f_actual": 0.00018817049567587674,
+   "f_baseline": 0.0023882989771664143,
+   "effect": 0.0022001284814905375
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1100_1199.tar.gz_0006.pkl",
+   "flow_idx": 149,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 5.6e-05,
+   "f_actual": 0.001695401268079877,
+   "f_baseline": 0.00018815502698998898,
+   "effect": 0.001507246241089888
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3400_3499.tar.gz_0069.pkl",
+   "flow_idx": 49,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.00059,
+   "f_actual": 0.00023801083443686366,
+   "f_baseline": 0.0003444358881097287,
+   "effect": 0.00010642505367286503
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3700_3799.tar.gz_0036.pkl",
+   "flow_idx": 39,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 8e-05,
+   "f_actual": 0.00022740993881598115,
+   "f_baseline": 0.0019478038884699345,
+   "effect": 0.0017203939496539533
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_200_299.tar.gz_0035.pkl",
+   "flow_idx": 21,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.004837,
+   "f_actual": 0.002749835141003132,
+   "f_baseline": 0.06852474063634872,
+   "effect": 0.06577490549534559
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_2400_2499.tar.gz_0038.pkl",
+   "flow_idx": 8,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000241,
+   "f_actual": 0.0012592674465849996,
+   "f_baseline": 0.00032042182283475995,
+   "effect": 0.0009388456237502396
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_800_899.tar.gz_0051.pkl",
+   "flow_idx": 27,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000128,
+   "f_actual": 0.00011676031863316894,
+   "f_baseline": 8.478591917082667e-05,
+   "effect": 3.197439946234226e-05
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3300_3399.tar.gz_0017.pkl",
+   "flow_idx": 28,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 8.8e-05,
+   "f_actual": 0.00015873825759626925,
+   "f_baseline": 0.0014456982025876641,
+   "effect": 0.0012869599449913949
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_400_499.tar.gz_0085.pkl",
+   "flow_idx": 39,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.001691,
+   "f_actual": 0.0017210275400429964,
+   "f_baseline": 0.0007376783178187907,
+   "effect": 0.0009833492222242057
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_2100_2199.tar.gz_0001.pkl",
+   "flow_idx": 54,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.001415,
+   "f_actual": 0.0004776722053065896,
+   "f_baseline": 0.006022358313202858,
+   "effect": 0.005544686107896268
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7000_7099.tar.gz_0087.pkl",
+   "flow_idx": 11,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.003858,
+   "f_actual": 0.0037422270979732275,
+   "f_baseline": 0.013692345470190048,
+   "effect": 0.00995011837221682
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_5800_5899.tar.gz_0050.pkl",
+   "flow_idx": 32,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000716,
+   "f_actual": 0.0013262678403407335,
+   "f_baseline": 0.0041155447252094746,
+   "effect": 0.002789276884868741
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7200_7299.tar.gz_0087.pkl",
+   "flow_idx": 43,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000161,
+   "f_actual": 0.00018077068671118468,
+   "f_baseline": 0.004969130735844374,
+   "effect": 0.004788360049133189
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3700_3799.tar.gz_0029.pkl",
+   "flow_idx": 6,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000235,
+   "f_actual": 0.0010897091124206781,
+   "f_baseline": 0.011433585546910763,
+   "effect": 0.010343876434490085
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3400_3499.tar.gz_0074.pkl",
+   "flow_idx": 7,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.003349,
+   "f_actual": 0.00046247674617916346,
+   "f_baseline": 0.0041014025919139385,
+   "effect": 0.003638925845734775
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7200_7299.tar.gz_0039.pkl",
+   "flow_idx": 15,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.00029,
+   "f_actual": 0.0004940002108924091,
+   "f_baseline": 0.016177983954548836,
+   "effect": 0.015683983743656427
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3400_3499.tar.gz_0003.pkl",
+   "flow_idx": 17,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000868,
+   "f_actual": 0.0016033584251999855,
+   "f_baseline": 0.022327512502670288,
+   "effect": 0.020724154077470303
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_5800_5899.tar.gz_0071.pkl",
+   "flow_idx": 43,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.002021,
+   "f_actual": 0.001136483740992844,
+   "f_baseline": 0.002772288164123893,
+   "effect": 0.0016358044231310487
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_5800_5899.tar.gz_0015.pkl",
+   "flow_idx": 67,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000177,
+   "f_actual": 0.0002754821034613997,
+   "f_baseline": 0.001635833061300218,
+   "effect": 0.0013603509578388184
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3400_3499.tar.gz_0036.pkl",
+   "flow_idx": 59,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000837,
+   "f_actual": 0.0006499263108707964,
+   "f_baseline": 0.0011014491319656372,
+   "effect": 0.00045152282109484076
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_800_899.tar.gz_0062.pkl",
+   "flow_idx": 20,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.008231,
+   "f_actual": 0.0014433573232963681,
+   "f_baseline": 0.028352614492177963,
+   "effect": 0.026909257168881595
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7000_7099.tar.gz_0042.pkl",
+   "flow_idx": 73,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 8.7e-05,
+   "f_actual": 8.257660374511033e-05,
+   "f_baseline": 0.0040917848236858845,
+   "effect": 0.004009208219940774
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_2100_2199.tar.gz_0005.pkl",
+   "flow_idx": 58,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.001022,
+   "f_actual": 0.002998264506459236,
+   "f_baseline": 0.00669669546186924,
+   "effect": 0.0036984309554100037
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_2400_2499.tar.gz_0044.pkl",
+   "flow_idx": 3,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.008167,
+   "f_actual": 0.004136221017688513,
+   "f_baseline": 0.025420332327485085,
+   "effect": 0.02128411130979657
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7200_7299.tar.gz_0075.pkl",
+   "flow_idx": 123,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000391,
+   "f_actual": 0.0007420579204335809,
+   "f_baseline": 0.004221713170409203,
+   "effect": 0.0034796552499756217
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1200_1299.tar.gz_0062.pkl",
+   "flow_idx": 41,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 5.9e-05,
+   "f_actual": 9.239026985596865e-05,
+   "f_baseline": 0.0017458925722166896,
+   "effect": 0.001653502302360721
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3500_3599.tar.gz_0014.pkl",
+   "flow_idx": 46,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 6.5e-05,
+   "f_actual": 9.735114872455597e-05,
+   "f_baseline": 5.419080116553232e-05,
+   "effect": 4.316034755902365e-05
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_800_899.tar.gz_0047.pkl",
+   "flow_idx": 13,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.006902,
+   "f_actual": 0.0027090157382190228,
+   "f_baseline": 0.02085437811911106,
+   "effect": 0.01814536238089204
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7800_7899.tar.gz_0087.pkl",
+   "flow_idx": 81,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.008406,
+   "f_actual": 0.004692210350185633,
+   "f_baseline": 0.0016724916640669107,
+   "effect": 0.003019718686118722
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_2100_2199.tar.gz_0038.pkl",
+   "flow_idx": 4,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000255,
+   "f_actual": 0.0003186788526363671,
+   "f_baseline": 0.000961565412580967,
+   "effect": 0.0006428865599445999
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7100_7199.tar.gz_0053.pkl",
+   "flow_idx": 96,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 5.4e-05,
+   "f_actual": 5.457526276586577e-05,
+   "f_baseline": 3.0750616133445874e-05,
+   "effect": 2.38246466324199e-05
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7100_7199.tar.gz_0045.pkl",
+   "flow_idx": 92,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.00458,
+   "f_actual": 0.0029503970872610807,
+   "f_baseline": 0.03122139163315296,
+   "effect": 0.02827099454589188
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1100_1199.tar.gz_0044.pkl",
+   "flow_idx": 64,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.001031,
+   "f_actual": 0.0005872476031072438,
+   "f_baseline": 0.004967632237821817,
+   "effect": 0.004380384634714574
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3500_3599.tar.gz_0044.pkl",
+   "flow_idx": 16,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000118,
+   "f_actual": 0.0001252314104931429,
+   "f_baseline": 0.009822783060371876,
+   "effect": 0.009697551649878733
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7800_7899.tar.gz_0074.pkl",
+   "flow_idx": 26,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000147,
+   "f_actual": 0.00018051895312964916,
+   "f_baseline": 0.00012956596037838608,
+   "effect": 5.095299275126308e-05
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_5800_5899.tar.gz_0065.pkl",
+   "flow_idx": 48,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.001344,
+   "f_actual": 0.0007487481343559921,
+   "f_baseline": 0.008805099874734879,
+   "effect": 0.008056351740378886
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3500_3599.tar.gz_0010.pkl",
+   "flow_idx": 49,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.006775,
+   "f_actual": 0.003217285731807351,
+   "f_baseline": 0.02022865228354931,
+   "effect": 0.017011366551741958
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1900_1999.tar.gz_0033.pkl",
+   "flow_idx": 64,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.002489,
+   "f_actual": 0.0021073317620903254,
+   "f_baseline": 0.02680613473057747,
+   "effect": 0.024698802968487144
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7800_7899.tar.gz_0002.pkl",
+   "flow_idx": 30,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 9.2e-05,
+   "f_actual": 0.0001546501589473337,
+   "f_baseline": 0.0032431986182928085,
+   "effect": 0.003088548459345475
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_200_299.tar.gz_0089.pkl",
+   "flow_idx": 22,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 8.1e-05,
+   "f_actual": 0.00010083265806315467,
+   "f_baseline": 0.006535099819302559,
+   "effect": 0.006434267161239404
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3500_3599.tar.gz_0019.pkl",
+   "flow_idx": 19,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000233,
+   "f_actual": 0.0010570855811238289,
+   "f_baseline": 0.014327360317111015,
+   "effect": 0.013270274735987186
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_400_499.tar.gz_0044.pkl",
+   "flow_idx": 46,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000303,
+   "f_actual": 0.0005496368976309896,
+   "f_baseline": 0.023579927161335945,
+   "effect": 0.023030290263704956
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1900_1999.tar.gz_0071.pkl",
+   "flow_idx": 24,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 4.8e-05,
+   "f_actual": 4.968239227309823e-05,
+   "f_baseline": 3.880264557665214e-05,
+   "effect": 1.0879746696446091e-05
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7000_7099.tar.gz_0053.pkl",
+   "flow_idx": 113,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 17.7344,
+   "f_actual": 0.18324312567710876,
+   "f_baseline": 0.11423179507255554,
+   "effect": 0.06901133060455322
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_400_499.tar.gz_0072.pkl",
+   "flow_idx": 7,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.00203,
+   "f_actual": 0.0011112591018900275,
+   "f_baseline": 0.0062100449576973915,
+   "effect": 0.005098785855807364
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7800_7899.tar.gz_0024.pkl",
+   "flow_idx": 45,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.001336,
+   "f_actual": 0.0012313341721892357,
+   "f_baseline": 0.005673543084412813,
+   "effect": 0.0044422089122235775
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3400_3499.tar.gz_0047.pkl",
+   "flow_idx": 17,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000124,
+   "f_actual": 0.00013082980876788497,
+   "f_baseline": 0.008384975604712963,
+   "effect": 0.008254145795945078
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_800_899.tar.gz_0065.pkl",
+   "flow_idx": 15,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.002361,
+   "f_actual": 0.0024904869496822357,
+   "f_baseline": 0.01565476506948471,
+   "effect": 0.013164278119802475
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_800_899.tar.gz_0076.pkl",
+   "flow_idx": 2,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.006017,
+   "f_actual": 0.001024883589707315,
+   "f_baseline": 0.0069229877553880215,
+   "effect": 0.0058981041656807065
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3500_3599.tar.gz_0005.pkl",
+   "flow_idx": 40,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000937,
+   "f_actual": 0.0008129164925776422,
+   "f_baseline": 0.021123578771948814,
+   "effect": 0.020310662279371172
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3300_3399.tar.gz_0046.pkl",
+   "flow_idx": 37,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.00188,
+   "f_actual": 0.0005546414176933467,
+   "f_baseline": 0.006777510046958923,
+   "effect": 0.006222868629265577
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_400_499.tar.gz_0065.pkl",
+   "flow_idx": 21,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.003012,
+   "f_actual": 0.006530737038701773,
+   "f_baseline": 0.01563475839793682,
+   "effect": 0.009104021359235048
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7800_7899.tar.gz_0078.pkl",
+   "flow_idx": 8,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 7.4e-05,
+   "f_actual": 0.002330394461750984,
+   "f_baseline": 0.15296053886413574,
+   "effect": 0.15063014440238476
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_2400_2499.tar.gz_0005.pkl",
+   "flow_idx": 4,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000211,
+   "f_actual": 0.00035273691173642874,
+   "f_baseline": 0.01240462064743042,
+   "effect": 0.012051883735693991
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7800_7899.tar.gz_0064.pkl",
+   "flow_idx": 10,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.00032,
+   "f_actual": 0.0005320367636159062,
+   "f_baseline": 0.02171250805258751,
+   "effect": 0.021180471288971603
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_3300_3399.tar.gz_0082.pkl",
+   "flow_idx": 41,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000178,
+   "f_actual": 0.000217635344597511,
+   "f_baseline": 0.017082560807466507,
+   "effect": 0.016864925462868996
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_7100_7199.tar.gz_0057.pkl",
+   "flow_idx": 141,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.00012,
+   "f_actual": 9.444761963095516e-05,
+   "f_baseline": 8.654275734443218e-05,
+   "effect": 7.904862286522985e-06
+  },
+  {
+   "file": "results_slicing_WFQ_1000_routing_1200_1299.tar.gz_0060.pkl",
+   "flow_idx": 5,
+   "slice_type": 2,
+   "slice_name": "URLLC",
+   "label_delay": 0.000102,
+   "f_actual": 9.340823453385383e-05,
+   "f_baseline": 8.673443517182022e-05,
+   "effect": 6.6737993620336056e-06
+  }
+ ]
+}

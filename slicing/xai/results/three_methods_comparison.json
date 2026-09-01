@@ -1,0 +1,355 @@
+{
+ "per_slice": {
+  "eMBB": {
+   "scores": {
+    "IG": {
+     "traffic": 1.779030117958047e-05,
+     "packets": 1.156138410491319e-06,
+     "eq_lambda": 0.0,
+     "avg_pkts_lambda": 1.9902576558445898e-10,
+     "exp_max_factor": 0.0,
+     "delta": 0.009065170822579915,
+     "slice_type": 0.0,
+     "model": 0.0
+    },
+    "SHAP": {
+     "traffic": 2.1017942973704847e-05,
+     "packets": 1.2111569081203364e-06,
+     "eq_lambda": 1.0149771354870678e-08,
+     "avg_pkts_lambda": 6.569424472017965e-09,
+     "exp_max_factor": 7.257590155770297e-09,
+     "delta": 0.006142790772031281,
+     "slice_type": 0.016743189857065334,
+     "model": 3.5005246828180885e-09
+    },
+    "Permutation": {
+     "traffic": 0.02930421829223633,
+     "packets": -0.002069377899169922,
+     "eq_lambda": 0.004375839233398437,
+     "avg_pkts_lambda": 0.000911712646484375,
+     "exp_max_factor": 0.0,
+     "delta": -0.0028431892395019533,
+     "slice_type": -0.012817668914794921,
+     "model": 0.0
+    }
+   },
+   "ranking_6feat": {
+    "IG": [
+     "delta",
+     "traffic",
+     "packets",
+     "avg_pkts_lambda",
+     "eq_lambda",
+     "exp_max_factor"
+    ],
+    "SHAP": [
+     "delta",
+     "traffic",
+     "packets",
+     "eq_lambda",
+     "exp_max_factor",
+     "avg_pkts_lambda"
+    ],
+    "Permutation": [
+     "traffic",
+     "eq_lambda",
+     "delta",
+     "packets",
+     "avg_pkts_lambda",
+     "exp_max_factor"
+    ]
+   },
+   "ranking_8feat": {
+    "SHAP": [
+     "slice_type",
+     "delta",
+     "traffic",
+     "packets",
+     "eq_lambda",
+     "exp_max_factor",
+     "avg_pkts_lambda",
+     "model"
+    ],
+    "Permutation": [
+     "traffic",
+     "slice_type",
+     "eq_lambda",
+     "delta",
+     "packets",
+     "avg_pkts_lambda",
+     "exp_max_factor",
+     "model"
+    ]
+   },
+   "rank_correlation_6feat": {
+    "IG_vs_SHAP": 0.8285714285714287,
+    "IG_vs_Permutation": 0.5428571428571429,
+    "SHAP_vs_Permutation": 0.6571428571428573
+   },
+   "rank_correlation_8feat": {
+    "SHAP_vs_Permutation": 0.8095238095238096
+   },
+   "top3_by_method": {
+    "IG_6": [
+     "delta",
+     "traffic",
+     "packets"
+    ],
+    "SHAP_6": [
+     "delta",
+     "traffic",
+     "packets"
+    ],
+    "Permutation_6": [
+     "traffic",
+     "eq_lambda",
+     "delta"
+    ],
+    "SHAP_8": [
+     "slice_type",
+     "delta",
+     "traffic"
+    ],
+    "Permutation_8": [
+     "traffic",
+     "slice_type",
+     "eq_lambda"
+    ]
+   }
+  },
+  "mMTC": {
+   "scores": {
+    "IG": {
+     "traffic": 5.425038124922093e-09,
+     "packets": 2.768744229668938e-08,
+     "eq_lambda": 1.2021386988788486e-11,
+     "avg_pkts_lambda": 0.0,
+     "exp_max_factor": 0.0,
+     "delta": 0.0007391495661116298,
+     "slice_type": 0.0,
+     "model": 0.0
+    },
+    "SHAP": {
+     "traffic": 8.023001094255054e-09,
+     "packets": 3.666748733220315e-08,
+     "eq_lambda": 1.0731850449552444e-09,
+     "avg_pkts_lambda": 7.575473754838432e-10,
+     "exp_max_factor": 4.6076339557485475e-10,
+     "delta": 0.0007905042960671464,
+     "slice_type": 0.0006038627986127527,
+     "model": 9.5367971125186e-10
+    },
+    "Permutation": {
+     "traffic": 0.02295527458190918,
+     "packets": 0.0010054469108581542,
+     "eq_lambda": 0.0042751491069793705,
+     "avg_pkts_lambda": 0.0007256150245666503,
+     "exp_max_factor": 2.384185791015625e-08,
+     "delta": 0.0005743563175201416,
+     "slice_type": 0.0018680632114410401,
+     "model": 1.7881393432617187e-08
+    }
+   },
+   "ranking_6feat": {
+    "IG": [
+     "delta",
+     "packets",
+     "traffic",
+     "eq_lambda",
+     "avg_pkts_lambda",
+     "exp_max_factor"
+    ],
+    "SHAP": [
+     "delta",
+     "packets",
+     "traffic",
+     "eq_lambda",
+     "avg_pkts_lambda",
+     "exp_max_factor"
+    ],
+    "Permutation": [
+     "traffic",
+     "eq_lambda",
+     "packets",
+     "avg_pkts_lambda",
+     "delta",
+     "exp_max_factor"
+    ]
+   },
+   "ranking_8feat": {
+    "SHAP": [
+     "delta",
+     "slice_type",
+     "packets",
+     "traffic",
+     "eq_lambda",
+     "model",
+     "avg_pkts_lambda",
+     "exp_max_factor"
+    ],
+    "Permutation": [
+     "traffic",
+     "eq_lambda",
+     "slice_type",
+     "packets",
+     "avg_pkts_lambda",
+     "delta",
+     "exp_max_factor",
+     "model"
+    ]
+   },
+   "rank_correlation_6feat": {
+    "IG_vs_SHAP": 1.0,
+    "IG_vs_Permutation": 0.2571428571428572,
+    "SHAP_vs_Permutation": 0.2571428571428572
+   },
+   "rank_correlation_8feat": {
+    "SHAP_vs_Permutation": 0.3571428571428572
+   },
+   "top3_by_method": {
+    "IG_6": [
+     "delta",
+     "packets",
+     "traffic"
+    ],
+    "SHAP_6": [
+     "delta",
+     "packets",
+     "traffic"
+    ],
+    "Permutation_6": [
+     "traffic",
+     "eq_lambda",
+     "packets"
+    ],
+    "SHAP_8": [
+     "delta",
+     "slice_type",
+     "packets"
+    ],
+    "Permutation_8": [
+     "traffic",
+     "eq_lambda",
+     "slice_type"
+    ]
+   }
+  },
+  "URLLC": {
+   "scores": {
+    "IG": {
+     "traffic": 1.4569577898471132e-07,
+     "packets": 1.7005180918466463e-07,
+     "eq_lambda": 0.0,
+     "avg_pkts_lambda": 8.983345414282414e-11,
+     "exp_max_factor": 0.0,
+     "delta": 0.0007383726746849106,
+     "slice_type": 0.0,
+     "model": 0.0
+    },
+    "SHAP": {
+     "traffic": 1.7014322776738492e-07,
+     "packets": 1.755877019042531e-07,
+     "eq_lambda": 1.2593602742191779e-10,
+     "avg_pkts_lambda": 1.9761767126383426e-10,
+     "exp_max_factor": 1.0710004634737049e-10,
+     "delta": 0.0007820266213183992,
+     "slice_type": 0.00053719084410565,
+     "model": 1.1320953998814701e-10
+    },
+    "Permutation": {
+     "traffic": 0.002724999189376831,
+     "packets": 0.0006661593914031982,
+     "eq_lambda": 0.003955608606338501,
+     "avg_pkts_lambda": 0.0012878656387329101,
+     "exp_max_factor": 0.0,
+     "delta": 0.0001797914505004883,
+     "slice_type": -9.971261024475098e-05,
+     "model": 0.0
+    }
+   },
+   "ranking_6feat": {
+    "IG": [
+     "delta",
+     "packets",
+     "traffic",
+     "avg_pkts_lambda",
+     "eq_lambda",
+     "exp_max_factor"
+    ],
+    "SHAP": [
+     "delta",
+     "packets",
+     "traffic",
+     "avg_pkts_lambda",
+     "eq_lambda",
+     "exp_max_factor"
+    ],
+    "Permutation": [
+     "eq_lambda",
+     "traffic",
+     "avg_pkts_lambda",
+     "packets",
+     "delta",
+     "exp_max_factor"
+    ]
+   },
+   "ranking_8feat": {
+    "SHAP": [
+     "delta",
+     "slice_type",
+     "packets",
+     "traffic",
+     "avg_pkts_lambda",
+     "eq_lambda",
+     "model",
+     "exp_max_factor"
+    ],
+    "Permutation": [
+     "eq_lambda",
+     "traffic",
+     "avg_pkts_lambda",
+     "packets",
+     "delta",
+     "slice_type",
+     "exp_max_factor",
+     "model"
+    ]
+   },
+   "rank_correlation_6feat": {
+    "IG_vs_SHAP": 1.0,
+    "IG_vs_Permutation": -0.08571428571428573,
+    "SHAP_vs_Permutation": -0.08571428571428573
+   },
+   "rank_correlation_8feat": {
+    "SHAP_vs_Permutation": 0.19047619047619052
+   },
+   "top3_by_method": {
+    "IG_6": [
+     "delta",
+     "packets",
+     "traffic"
+    ],
+    "SHAP_6": [
+     "delta",
+     "packets",
+     "traffic"
+    ],
+    "Permutation_6": [
+     "eq_lambda",
+     "traffic",
+     "avg_pkts_lambda"
+    ],
+    "SHAP_8": [
+     "delta",
+     "slice_type",
+     "packets"
+    ],
+    "Permutation_8": [
+     "eq_lambda",
+     "traffic",
+     "avg_pkts_lambda"
+    ]
+   }
+  }
+ }
+}

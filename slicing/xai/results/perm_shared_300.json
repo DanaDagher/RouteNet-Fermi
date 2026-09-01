@@ -1,0 +1,157 @@
+{
+ "shared": "shared_300.json",
+ "ckpt": "026-1.79",
+ "n_repeats": 5,
+ "seed": 42,
+ "baseline_mae_all": 2.490147590637207,
+ "baseline_mae_per_slice": {
+  "eMBB": 6.818729877471924,
+  "mMTC": 0.2671889364719391,
+  "URLLC": 0.38452303409576416
+ },
+ "importance_all": {
+  "mean": {
+   "traffic": 0.018327951431274414,
+   "packets": -0.00013298988342285155,
+   "eq_lambda": 0.004201841354370117,
+   "avg_pkts_lambda": 0.0009747982025146484,
+   "exp_max_factor": 0.0,
+   "delta": -0.0006967067718505859,
+   "slice_type": -0.0036834716796875,
+   "model": 0.0
+  },
+  "std": {
+   "traffic": 0.002414996401645388,
+   "packets": 0.0012084597636273034,
+   "eq_lambda": 0.0011987861650604142,
+   "avg_pkts_lambda": 0.0014253132528579202,
+   "exp_max_factor": 0.0,
+   "delta": 0.0015197263053923966,
+   "slice_type": 0.00014936163799977588,
+   "model": 0.0
+  },
+  "ranking_by_mean_desc": [
+   "traffic",
+   "eq_lambda",
+   "avg_pkts_lambda",
+   "exp_max_factor",
+   "model",
+   "packets",
+   "delta",
+   "slice_type"
+  ]
+ },
+ "importance_per_slice": {
+  "eMBB": {
+   "importance_mean": {
+    "traffic": 0.02930421829223633,
+    "packets": -0.002069377899169922,
+    "eq_lambda": 0.004375839233398437,
+    "avg_pkts_lambda": 0.000911712646484375,
+    "exp_max_factor": 0.0,
+    "delta": -0.0028431892395019533,
+    "slice_type": -0.012817668914794921,
+    "model": 0.0
+   },
+   "importance_std": {
+    "traffic": 0.006859392613709984,
+    "packets": 0.0024531035650382895,
+    "eq_lambda": 0.0017980125413417016,
+    "avg_pkts_lambda": 0.0034963478615728056,
+    "exp_max_factor": 0.0,
+    "delta": 0.0041261564845876866,
+    "slice_type": 0.0007624245634716644,
+    "model": 0.0
+   },
+   "ranking": [
+    "traffic",
+    "eq_lambda",
+    "avg_pkts_lambda",
+    "exp_max_factor",
+    "model",
+    "packets",
+    "delta",
+    "slice_type"
+   ],
+   "top3": [
+    "traffic",
+    "eq_lambda",
+    "avg_pkts_lambda"
+   ]
+  },
+  "mMTC": {
+   "importance_mean": {
+    "traffic": 0.02295527458190918,
+    "packets": 0.0010054469108581542,
+    "eq_lambda": 0.0042751491069793705,
+    "avg_pkts_lambda": 0.0007256150245666503,
+    "exp_max_factor": 2.384185791015625e-08,
+    "delta": 0.0005743563175201416,
+    "slice_type": 0.0018680632114410401,
+    "model": 1.7881393432617187e-08
+   },
+   "importance_std": {
+    "traffic": 0.0024732322623537886,
+    "packets": 0.0013271504239811894,
+    "eq_lambda": 0.002842586621779121,
+    "avg_pkts_lambda": 0.0010944564558402908,
+    "exp_max_factor": 1.3328003749250115e-08,
+    "delta": 0.0009674219128957233,
+    "slice_type": 0.0006058815950631953,
+    "model": 1.6323404237781947e-08
+   },
+   "ranking": [
+    "traffic",
+    "eq_lambda",
+    "slice_type",
+    "packets",
+    "avg_pkts_lambda",
+    "delta",
+    "exp_max_factor",
+    "model"
+   ],
+   "top3": [
+    "traffic",
+    "eq_lambda",
+    "slice_type"
+   ]
+  },
+  "URLLC": {
+   "importance_mean": {
+    "traffic": 0.002724999189376831,
+    "packets": 0.0006661593914031982,
+    "eq_lambda": 0.003955608606338501,
+    "avg_pkts_lambda": 0.0012878656387329101,
+    "exp_max_factor": 0.0,
+    "delta": 0.0001797914505004883,
+    "slice_type": -9.971261024475098e-05,
+    "model": 0.0
+   },
+   "importance_std": {
+    "traffic": 0.0003341238927926971,
+    "packets": 0.00012544748490177224,
+    "eq_lambda": 0.0012127815882715435,
+    "avg_pkts_lambda": 0.0002457948400779162,
+    "exp_max_factor": 0.0,
+    "delta": 0.00022175540152511708,
+    "slice_type": 0.00036680296165337054,
+    "model": 0.0
+   },
+   "ranking": [
+    "eq_lambda",
+    "traffic",
+    "avg_pkts_lambda",
+    "packets",
+    "delta",
+    "exp_max_factor",
+    "model",
+    "slice_type"
+   ],
+   "top3": [
+    "eq_lambda",
+    "traffic",
+    "avg_pkts_lambda"
+   ]
+  }
+ }
+}

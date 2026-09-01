@@ -1,7 +1,28 @@
+# --- Python ---
 __pycache__/
 *.pyc
+*.pyo
 venv/
-*.npy
-data/
+.venv/
+
+# --- OS ---
 .DS_Store
 Thumbs.db
+
+# --- Private / personal (NEVER push to public repo) ---
+_private/
+
+# --- Large data & model artifacts (regenerable, too big for git) ---
+data/
+new_dataset/*.tar.gz
+new_dataset/graphs/
+checkpoints/
+
+# --- Prediction outputs / caches ---
+*.npy
+*.npz
+*.log
+
+# --- IDE ---
+.vscode/
+.idea/

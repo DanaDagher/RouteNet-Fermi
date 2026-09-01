@@ -1,0 +1,232 @@
+{
+ "ig_npz": "ig_shared_300_perslice.npz",
+ "diagnostics_json": "audit_diagnostics.json",
+ "n_total": 300,
+ "converged_all": 300,
+ "completeness_all": {
+  "mean": 0.3272544126957655,
+  "median": 0.11647683568298817,
+  "max": 9.900153428316116
+ },
+ "steps_all": {
+  "min": 100,
+  "median": 100,
+  "max": 200
+ },
+ "per_slice": {
+  "eMBB": {
+   "n": 100,
+   "mean_abs_ig": {
+    "traffic": 1.7790300262277015e-05,
+    "packets": 1.156138409896812e-06,
+    "eq_lambda": 0.0,
+    "avg_pkts_lambda": 1.990257403328144e-10,
+    "exp_max_factor": 0.0,
+    "delta": 0.009065168909728527,
+    "slice_type": 0.0,
+    "model": 0.0
+   },
+   "median_abs_ig": {
+    "traffic": 2.810896262417373e-07,
+    "packets": 8.748271795866458e-08,
+    "eq_lambda": 0.0,
+    "avg_pkts_lambda": 9.752102771154458e-12,
+    "exp_max_factor": 0.0,
+    "delta": 0.0003898990689776838,
+    "slice_type": 0.0,
+    "model": 0.0
+   },
+   "mean_signed_ig": {
+    "traffic": -1.1208781870664097e-05,
+    "packets": -5.938057938692509e-07,
+    "eq_lambda": 0.0,
+    "avg_pkts_lambda": -1.7359509663084083e-10,
+    "exp_max_factor": 0.0,
+    "delta": -0.000503395451232791,
+    "slice_type": 0.0,
+    "model": 0.0
+   },
+   "feature_ranking_by_mean_abs": [
+    "delta",
+    "traffic",
+    "packets",
+    "avg_pkts_lambda",
+    "eq_lambda",
+    "exp_max_factor",
+    "slice_type",
+    "model"
+   ],
+   "top3": [
+    "delta",
+    "traffic",
+    "packets"
+   ],
+   "completeness_pct_of_scale": {
+    "mean": 0.2365519292652607,
+    "median": 0.007587351865367964,
+    "max": 9.900153428316116
+   },
+   "effect_size": {
+    "median_abs_f_actual_minus_f_baseline": 0.0003879810683429241,
+    "p10": 2.6744510978460313e-05,
+    "p90": 0.005652306973934184
+   },
+   "converged_frac": 1.0,
+   "steps_used": {
+    "min": 100,
+    "median": 100,
+    "max": 100
+   }
+  },
+  "mMTC": {
+   "n": 100,
+   "mean_abs_ig": {
+    "traffic": 5.42503775236014e-09,
+    "packets": 2.76874381199832e-08,
+    "eq_lambda": 1.2021388225147422e-11,
+    "avg_pkts_lambda": 0.0,
+    "exp_max_factor": 0.0,
+    "delta": 0.0007391494000330567,
+    "slice_type": 0.0,
+    "model": 0.0
+   },
+   "median_abs_ig": {
+    "traffic": 7.305515636879534e-10,
+    "packets": 1.799229432108973e-09,
+    "eq_lambda": 9.225008994542816e-13,
+    "avg_pkts_lambda": 0.0,
+    "exp_max_factor": 0.0,
+    "delta": 0.00014976065722294152,
+    "slice_type": 0.0,
+    "model": 0.0
+   },
+   "mean_signed_ig": {
+    "traffic": 7.658310097191645e-10,
+    "packets": 8.953249697185583e-09,
+    "eq_lambda": -2.5003856949333547e-14,
+    "avg_pkts_lambda": 0.0,
+    "exp_max_factor": 0.0,
+    "delta": -0.00020632738596759737,
+    "slice_type": 0.0,
+    "model": 0.0
+   },
+   "feature_ranking_by_mean_abs": [
+    "delta",
+    "packets",
+    "traffic",
+    "eq_lambda",
+    "avg_pkts_lambda",
+    "exp_max_factor",
+    "slice_type",
+    "model"
+   ],
+   "top3": [
+    "delta",
+    "packets",
+    "traffic"
+   ],
+   "completeness_pct_of_scale": {
+    "mean": 0.49058948643505573,
+    "median": 0.2749356674030423,
+    "max": 4.522043094038963
+   },
+   "effect_size": {
+    "median_abs_f_actual_minus_f_baseline": 0.00014981339336372912,
+    "p10": 7.453914804500529e-07,
+    "p90": 0.002612912654876709
+   },
+   "converged_frac": 1.0,
+   "steps_used": {
+    "min": 100,
+    "median": 100,
+    "max": 200
+   }
+  },
+  "URLLC": {
+   "n": 100,
+   "mean_abs_ig": {
+    "traffic": 1.4569577899692376e-07,
+    "packets": 1.700517913150179e-07,
+    "eq_lambda": 0.0,
+    "avg_pkts_lambda": 8.983346705404571e-11,
+    "exp_max_factor": 0.0,
+    "delta": 0.0007383727352134883,
+    "slice_type": 0.0,
+    "model": 0.0
+   },
+   "median_abs_ig": {
+    "traffic": 1.856402143118885e-08,
+    "packets": 3.0531516870269115e-08,
+    "eq_lambda": 0.0,
+    "avg_pkts_lambda": 1.465416676893483e-11,
+    "exp_max_factor": 0.0,
+    "delta": 0.00011445637210272253,
+    "slice_type": 0.0,
+    "model": 0.0
+   },
+   "mean_signed_ig": {
+    "traffic": 5.592077201299617e-08,
+    "packets": 5.771541822241488e-08,
+    "eq_lambda": 0.0,
+    "avg_pkts_lambda": 2.602129102469153e-11,
+    "exp_max_factor": 0.0,
+    "delta": 0.00042468562605790794,
+    "slice_type": 0.0,
+    "model": 0.0
+   },
+   "feature_ranking_by_mean_abs": [
+    "delta",
+    "packets",
+    "traffic",
+    "avg_pkts_lambda",
+    "eq_lambda",
+    "exp_max_factor",
+    "slice_type",
+    "model"
+   ],
+   "top3": [
+    "delta",
+    "packets",
+    "traffic"
+   ],
+   "completeness_pct_of_scale": {
+    "mean": 0.2546217991039157,
+    "median": 0.13011202681809664,
+    "max": 2.615305408835411
+   },
+   "effect_size": {
+    "median_abs_f_actual_minus_f_baseline": 0.00011467338481452316,
+    "p10": 1.0093868695548737e-05,
+    "p90": 0.002122676977887755
+   },
+   "converged_frac": 1.0,
+   "steps_used": {
+    "min": 100,
+    "median": 100,
+    "max": 100
+   }
+  }
+ },
+ "rank_correlation": {
+  "eMBB_vs_mMTC": 0.9523809523809524,
+  "eMBB_vs_URLLC": 0.9761904761904763,
+  "mMTC_vs_URLLC": 0.9761904761904763
+ },
+ "diagnostic_typology": {
+  "eMBB": {
+   "type1_typical": 2,
+   "type2_model_collapsed": 1,
+   "type3_high_effect": 97
+  },
+  "mMTC": {
+   "type1_typical": 29,
+   "type2_model_collapsed": 25,
+   "type3_high_effect": 46
+  },
+  "URLLC": {
+   "type1_typical": 11,
+   "type2_model_collapsed": 7,
+   "type3_high_effect": 82
+  }
+ }
+}

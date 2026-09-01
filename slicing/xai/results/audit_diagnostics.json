@@ -1,0 +1,267 @@
+{
+  "checkpoint": "026-1.79",
+  "shared": "slicing/xai/sets/shared_300.json",
+  "n_flows": 300,
+  "thresholds": {
+    "threshold_effect_pctile": 25.0,
+    "threshold_effect_value": 0.0002179815201088786,
+    "threshold_err_frac": 0.5
+  },
+  "per_slice": {
+    "eMBB": {
+      "n": 100,
+      "y_true_pct": {
+        "10": 0.0010404000175185501,
+        "25": 0.006289750104770064,
+        "50": 0.020671500824391842,
+        "75": 0.030384999699890614,
+        "90": 0.29400281012059637
+      },
+      "f_actual_pct": {
+        "10": 0.003140586358495057,
+        "25": 0.008570412872359157,
+        "50": 0.013086575549095869,
+        "75": 0.021828644908964634,
+        "90": 0.3320746511220936
+      },
+      "f_baseline_pct": {
+        "10": 0.0012657813495025039,
+        "25": 0.0035894432803615928,
+        "50": 0.008013666374608874,
+        "75": 0.02670620149001479,
+        "90": 0.11151713579893119
+      },
+      "abs_pred_err_pct": {
+        "10": 0.0004072382114827633,
+        "25": 0.003286080143880099,
+        "50": 0.007832967210561037,
+        "75": 0.01961014559492469,
+        "90": 0.5636098980903672
+      },
+      "effect_pct": {
+        "10": 0.0005270126392133535,
+        "25": 0.002150421729311347,
+        "50": 0.008777447044849396,
+        "75": 0.035968235693871975,
+        "90": 0.22044936120510147
+      },
+      "typology_counts": {
+        "type1_typical": 2,
+        "type2_model_collapsed": 1,
+        "type3_high_effect": 97
+      }
+    },
+    "mMTC": {
+      "n": 100,
+      "y_true_pct": {
+        "10": 5.5900000734254715e-05,
+        "25": 0.0003414999882807024,
+        "50": 0.004143000114709139,
+        "75": 0.014559750212356448,
+        "90": 0.04721250124275693
+      },
+      "f_actual_pct": {
+        "10": 5.506227025762201e-05,
+        "25": 0.00036434188223211095,
+        "50": 0.0035035285400226712,
+        "75": 0.012701353756710887,
+        "90": 0.036710208654403685
+      },
+      "f_baseline_pct": {
+        "10": 6.623397202929482e-05,
+        "25": 0.00038216145912883803,
+        "50": 0.00328074605204165,
+        "75": 0.012638943968340755,
+        "90": 0.03722943514585495
+      },
+      "abs_pred_err_pct": {
+        "10": 3.2909200308495207e-05,
+        "25": 0.0001435519225196913,
+        "50": 0.0016764500178396702,
+        "75": 0.006906592869199812,
+        "90": 0.032054885104298644
+      },
+      "effect_pct": {
+        "10": 6.035483238520101e-07,
+        "25": 1.0682266292860731e-05,
+        "50": 0.00014864510740153491,
+        "75": 0.0007925066165626049,
+        "90": 0.002556804195046426
+      },
+      "typology_counts": {
+        "type1_typical": 29,
+        "type2_model_collapsed": 25,
+        "type3_high_effect": 46
+      }
+    },
+    "URLLC": {
+      "n": 100,
+      "y_true_pct": {
+        "10": 7.490000352845527e-05,
+        "25": 0.00012324999806878623,
+        "50": 0.0003555000002961606,
+        "75": 0.0021127500804141164,
+        "90": 0.006092799967154867
+      },
+      "f_actual_pct": {
+        "10": 9.564888605382294e-05,
+        "25": 0.00018788118177326396,
+        "50": 0.0004864073998760432,
+        "75": 0.0016911101702135056,
+        "90": 0.003781626583077017
+      },
+      "f_baseline_pct": {
+        "10": 0.00018635243031894788,
+        "25": 0.0008586204057792202,
+        "50": 0.0058454356621950865,
+        "75": 0.015785567928105593,
+        "90": 0.02970119975507261
+      },
+      "abs_pred_err_pct": {
+        "10": 1.5003879161668011e-05,
+        "25": 6.226795449038036e-05,
+        "50": 0.00019479029288049787,
+        "75": 0.0010756204719655216,
+        "90": 0.0035733219701796783
+      },
+      "effect_pct": {
+        "10": 7.364737393800169e-05,
+        "25": 0.000864855814143084,
+        "50": 0.004411299014464021,
+        "75": 0.013873700983822346,
+        "90": 0.027016377076506625
+      },
+      "typology_counts": {
+        "type1_typical": 11,
+        "type2_model_collapsed": 7,
+        "type3_high_effect": 82
+      }
+    }
+  },
+  "effect_vs_error_crosstab": {
+    "threshold_effect_p25": 0.0002179815201088786,
+    "threshold_err_frac_p75": 0.8484730869531631,
+    "low_effect_and_high_err": 17,
+    "low_effect_and_low_err": 58,
+    "high_effect_and_high_err": 58,
+    "high_effect_and_low_err": 167
+  },
+  "sanity": {
+    "exp_max_factor_test_unique": 1,
+    "exp_max_factor_test_min": 10.0,
+    "exp_max_factor_test_max": 10.0
+  },
+  "correlations_train": {
+    "n_train_flows_sampled": 43978,
+    "slice_type_as_int": {
+      "traffic": {
+        "pearson": -0.2604040733106824,
+        "spearman": 0.31967810444411454
+      },
+      "packets": {
+        "pearson": 0.8344594664393881,
+        "spearman": 0.4147251366856498
+      },
+      "eq_lambda": {
+        "pearson": -0.1873481846485745,
+        "spearman": 0.6940410202167216
+      },
+      "avg_pkts_lambda": {
+        "pearson": 0.8344597930810057,
+        "spearman": 0.7931922477812394
+      },
+      "exp_max_factor": {
+        "pearson": null,
+        "spearman": null
+      },
+      "delta": {
+        "pearson": -0.0003869199960358792,
+        "spearman": -0.019940610947195635
+      }
+    },
+    "slice_type_onehot": {
+      "eMBB": {
+        "traffic": {
+          "pearson": 0.9584744423194169,
+          "spearman": 0.15676364507713883
+        },
+        "packets": {
+          "pearson": 0.031006981553753036,
+          "spearman": 0.10536814870400969
+        },
+        "eq_lambda": {
+          "pearson": 0.9344192546815807,
+          "spearman": 0.5703463272662515
+        },
+        "avg_pkts_lambda": {
+          "pearson": 0.03100648657624003,
+          "spearman": 0.5236137334150024
+        },
+        "exp_max_factor": {
+          "pearson": null,
+          "spearman": null
+        },
+        "delta": {
+          "pearson": -0.00205859518499709,
+          "spearman": -0.01889744054660374
+        }
+      },
+      "mMTC": {
+        "traffic": {
+          "pearson": -0.6185780121129041,
+          "spearman": -0.565790778495218
+        },
+        "packets": {
+          "pearson": -0.9404898134716387,
+          "spearman": -0.5656888228128705
+        },
+        "eq_lambda": {
+          "pearson": -0.6756975624180347,
+          "spearman": -0.3185519937759458
+        },
+        "avg_pkts_lambda": {
+          "pearson": -0.9404897038777013,
+          "spearman": -0.31783252399522965
+        },
+        "exp_max_factor": {
+          "pearson": null,
+          "spearman": null
+        },
+        "delta": {
+          "pearson": 0.002361890063233096,
+          "spearman": -0.002885786458196331
+        }
+      },
+      "URLLC": {
+        "traffic": {
+          "pearson": 0.17869739285275132,
+          "spearman": 0.4452165384470418
+        },
+        "packets": {
+          "pearson": 0.9901401609839767,
+          "spearman": 0.4977353743395628
+        },
+        "eq_lambda": {
+          "pearson": 0.2518982539657202,
+          "spearman": 0.8676316618570988
+        },
+        "avg_pkts_lambda": {
+          "pearson": 0.9901402931178754,
+          "spearman": 0.9244520171216942
+        },
+        "exp_max_factor": {
+          "pearson": null,
+          "spearman": null
+        },
+        "delta": {
+          "pearson": -0.001488833583523135,
+          "spearman": -0.02413979441177021
+        }
+      }
+    },
+    "model_onehot_value_counts_train_sample": {
+      "0": 43978
+    }
+  },
+  "notes": "Type 1 = low effect AND low pred error; the model matches truth near its baseline. Type 2 = low effect AND high pred error; model collapsed to baseline on a flow whose true delay is far from baseline. Type 3 = high effect; the model is using its learnable features on this flow. These three cohorts should NOT be aggregated into a single \"near-baseline\" bucket for the XAI report."
+}
